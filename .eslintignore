@@ -1,3 +1,4 @@
 /tests/*
 src/**/*.spec.js
 src/**/*-copy.js
+object.assign.js

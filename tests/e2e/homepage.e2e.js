@@ -1,6 +1,7 @@
 import { routes } from '../../src/app/routes';
 
 module.exports = {
+  '@tags': ['smoke'],
   before(browser) {
     browser.pageLoaded(routes.homepage.path, 'body');
   },

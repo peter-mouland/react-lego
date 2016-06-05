@@ -14,7 +14,7 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
 
  * [ ] Universal React App (master)
  * [ ] DevTools
- * [ ] Hot-reloading
+ * [ ] [Hot-reloading](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)
  * [ ] Redux
  * [ ] Selectors
  * [ ] Adding SVGs

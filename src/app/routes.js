@@ -28,6 +28,7 @@ export const routes = {
   }
 };
 
+// todo : make ie compatible
 const indexRoute = (route) => Object.assign({}, route, { path: null });
 
 export function makeRoutes() {

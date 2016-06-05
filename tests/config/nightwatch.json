@@ -33,7 +33,6 @@
     },
     "local": {
       "launch_url" : "http://localhost",
-      "silent": true,
       "selenium_port"  : 4444,
       "selenium_host"  : "127.0.0.1",
       "screenshots" : {

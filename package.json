@@ -5,11 +5,11 @@
   "main": "src/server-entry.js",
   "scripts": {
     "prestart": "npm run build",
-    "prestart:debug": "npm run build:dev",
+    "prestart:dev": "npm run build:dev",
     "build": "webpack --config src/config/webpack.config.prod.babel.js",
     "build:dev": "webpack --config src/config/webpack.config.dev.babel.js",
     "start": "node src/server-entry.js",
-    "start:dev": "DEBUG=lego:* npm run start",
+    "start:dev": "DEBUG=lego:* node src/server-entry.js",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "npm run test:unit && npm run test:func",
     "test:unit": "npm run mocha -- 'src/**/*.spec.js'",
