@@ -1,0 +1,24 @@
+@import '../../styles/utils/colours';
+@import '../../styles/utils/mixins';
+
+$nav-height: 65px;
+$footer-height: 65px;
+$content-height: calc(100vh - #{$nav-height + $footer-height});
+$col1-width: 33% !default;
+$col2-width: 66% !default;
+
+.layout {
+  width: 100%;
+}
+
+.layout__nav {
+  height: $nav-height;
+}
+
+.layout__content {
+  height: $content-height;
+}
+
+.layout__footer {
+  height: $footer-height;
+}

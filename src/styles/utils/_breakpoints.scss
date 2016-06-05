@@ -1,0 +1,38 @@
+@import "./mixins";
+
+.small-only {
+  @include medium {
+    display: none !important;
+  }
+}
+
+.medium {
+  @include small-only {
+    display: none !important;
+  }
+}
+
+.medium-only {
+  @include small-only {
+    display: none !important;
+  }
+
+  @include large {
+    display: none !important;
+  }
+}
+
+.small-medium-only {
+  @include large {
+    display: none !important;
+  }
+}
+
+.large-only {
+  @include small-only {
+    display: none !important;
+  }
+  @include medium-only {
+    display: none !important;
+  }
+}

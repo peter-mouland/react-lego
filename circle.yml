@@ -1,0 +1,33 @@
+machine:
+  timezone:
+    Europe/London
+  node:
+    version: v6.2
+general:
+  artifacts:
+    - test/reports
+    - test/nightwatch/report
+    - test/nightwatch/screenshots
+dependencies:
+  cache_directories:
+    - browserstack
+    - node_modules
+  post:
+    - npm run build
+test:
+  override:
+    - npm run test:unit
+    - npm run test:func
+  post:
+    - git config --global user.name "Peter Mouland"
+    - git config --global user.email "peter.mouland@gmail.com"
+deployment:
+  main:
+    branch: master
+    commands:
+      - bin/BrowserStackLocal-linux $BROWSERSTACK_KEY -force:
+          background: true
+      - git push git@heroku.com:react-lego-preprod.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
+#      - npm run test:e2e-xb -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego-preprod.herokuapp.com --bskey=$BROWSERSTACK_KEY --bsuser=$BROWSERSTACK_USER --retries 4
+      - git push git@heroku.com:react-lego.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
+#      - npm run test:e2e-smoke -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego.herokuapp.com --bskey=$BROWSERSTACK_KEY --bsuser=$BROWSERSTACK_USER --retries 4

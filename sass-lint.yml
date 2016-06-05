@@ -1,0 +1,40 @@
+
+# Linter Options
+options:
+  merge-default-rules: true
+  formatter: stylish
+# File Options
+files:
+  include: 'src/app/**/*.scss'
+# Rule Configuration
+rules:
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 2
+  no-warn: 1
+  no-debug: 1
+  no-ids: 2
+  no-important: 2
+  hex-notation:
+    - 2
+    -
+      style: uppercase
+  indentation:
+    - 2
+    -
+      size: 2
+  property-sort-order:
+    - 0
+    -
+      ignore-custom-properties: true
+  variable-for-property:
+    - 0
+  bem-depth: 2
+  class-name-format:
+    - 1
+    -
+      convention: hyphenatedbem
+  force-attribute-nesting: 0
+  no-qualifying-elements: 0
+  force-pseudo-nesting: 0
+  force-element-nesting: 0
