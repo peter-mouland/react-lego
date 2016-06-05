@@ -3,7 +3,7 @@ require('babel-core/register')({
 });
 require('babel-polyfill');
 const hook = require('node-hook').hook;
-hook('.scss', (source, filename) => `console.log("${filename}");`);
+hook('.scss', () => '');
 
 require('./config/environment');
 

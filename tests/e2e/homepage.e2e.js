@@ -1,6 +1,7 @@
 import { routes } from '../../src/app/routes';
 
 module.exports = {
+  '@tags': ['smoke'],
   before(browser) {
     browser.pageLoaded(routes.homepage.path, 'body');
   },
@@ -15,8 +16,8 @@ module.exports = {
     browser.expect.element('.layout__footer').to.be.present;
   },
 
-  ['homepage can navigate to the search page'](browser) {
-    browser.safeClick('[href="/search"]');
-    browser.expect.element('#search').to.be.present;
+  ['homepage can navigate to the game page'](browser) {
+    browser.safeClick('[href="/game"]');
+    browser.expect.element('#game').to.be.present;
   }
 };

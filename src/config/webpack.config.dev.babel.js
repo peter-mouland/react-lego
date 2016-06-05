@@ -8,7 +8,7 @@ import './environment';
 import { SRC, DIST } from './paths';
 
 export default {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: {
     app: [
       `${SRC}/client-entry.js`

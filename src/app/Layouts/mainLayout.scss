@@ -15,6 +15,10 @@ $col2-width: 66% !default;
   height: $nav-height;
 }
 
+.layout__nav-link {
+  margin: 5px 10px;
+}
+
 .layout__content {
   height: $content-height;
 }

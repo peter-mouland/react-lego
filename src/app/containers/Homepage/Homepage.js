@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router';
 import debug from 'debug';
+
 import { copy } from './homepage-copy';
+import { LinkHelper } from '../../routes';
+
 
 debug('lego:Homepage.jsx');
 
@@ -14,7 +16,11 @@ export default class Homepage extends React.Component {
           <h1>{copy.title}</h1>
           <p>{copy.blurb}</p>
         </banner>
-        <Link to='/search'>search</Link>
+        <section>
+          <h2>Demo</h2>
+          <p>Do you want to play?</p>
+          <LinkHelper to="game" />
+        </section>
       </div>
     );
   }

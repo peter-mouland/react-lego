@@ -28,6 +28,6 @@ deployment:
       - bin/BrowserStackLocal-linux $BROWSERSTACK_KEY -force:
           background: true
       - git push git@heroku.com:react-lego-preprod.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
-#      - npm run test:e2e-xb -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego-preprod.herokuapp.com --bskey=$BROWSERSTACK_KEY --bsuser=$BROWSERSTACK_USER --retries 4
+      - npm run test:e2e-xb -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego-preprod.herokuapp.com --retries 4
       - git push git@heroku.com:react-lego.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
-#      - npm run test:e2e-smoke -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego.herokuapp.com --bskey=$BROWSERSTACK_KEY --bsuser=$BROWSERSTACK_USER --retries 4
+      - npm run test:e2e-smoke -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego.herokuapp.com --retries 4

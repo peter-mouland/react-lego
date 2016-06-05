@@ -3,13 +3,6 @@ $large: 1120px !default;
 $maxSmallWidth: $medium - 1 !default;
 $maxMediumWidth: $large - 1 !default;
 
-@mixin circle($width){
-  display: block;
-  width: $width;
-  height: $width;
-  z-index: 1;
-  border-radius: 50%;
-}
 
 @mixin clearfix {
   &:before, &:after {

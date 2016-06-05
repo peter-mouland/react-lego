@@ -23,10 +23,10 @@ describe('Client Render', function () {
     });
   });
 
-  describe('search', () => {
-    it('should render the search page', () => {
-      history.push('/search');
-      expect(this.wrapper.find('#search').length).to.equal(1);
+  describe('game', () => {
+    it('should render the game page', () => {
+      history.push('/game');
+      expect(this.wrapper.find('#game').length).to.equal(1);
     });
   });
 });

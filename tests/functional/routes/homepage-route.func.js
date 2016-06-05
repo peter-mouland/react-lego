@@ -2,7 +2,7 @@ import { mount, expect } from '../../support/test.helper';
 import { history, router } from '../../../src/client-entry';
 import { copy } from '../../../src/app/containers/Homepage/homepage-copy';
 
-describe('Search Route', function () {
+describe('Homepage Route', function () {
 
   before(() => {
     this.wrapper = mount(router);
@@ -45,7 +45,7 @@ describe('Search Route', function () {
       expect(heading).to.have.text(copy.title);
     });
     it('should have a blurb', () => {
-      const blurb = this.wrapper.find('p');
+      const blurb = this.wrapper.find('p').first();
       expect(blurb).to.have.text(copy.blurb);
     });
   });
