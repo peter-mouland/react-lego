@@ -4,7 +4,6 @@ import debug from 'debug';
 import { copy } from './homepage-copy';
 import { LinkHelper } from '../../routes';
 
-
 debug('lego:Homepage.jsx');
 
 export default class Homepage extends React.Component {

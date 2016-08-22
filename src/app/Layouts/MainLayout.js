@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
+
 import { findRoute } from '../utils';
 import { routes, LinkHelper } from '../routes';
 

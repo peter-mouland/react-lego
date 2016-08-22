@@ -1,6 +1,5 @@
 import React from 'react';
 import { copy } from './notFound-copy';
-import { markup } from '../../utils';
 
 export default class NotFound extends React.Component {
   render() {
@@ -11,7 +10,9 @@ export default class NotFound extends React.Component {
         <aside >
           <p>{copy.try.blurb}</p>
           <ul>
-            {markup('li', copy.try.options)}
+            {copy.try.options.map((option, i) => (
+              <li key={i}>{option}</li>
+            ))}
           </ul>
         </aside>
       </section>
