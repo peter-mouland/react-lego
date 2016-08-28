@@ -14,14 +14,14 @@ const siteTitle = 'React Lego';
 export const routes = {
   homepage: {
     path: '/',
-    label: 'Homepage',
-    title: siteTitle,
+    label: 'About React Lego',
+    title: `${siteTitle} - About React Lego`,
     component: Homepage
   },
   game: {
     path: 'game',
-    label: 'Trivia Time',
-    title: `${siteTitle} - Trivia Time`,
+    label: 'Star Wars Trivia',
+    title: `${siteTitle} - Star Wars Trivia`,
     component: Game
   },
   notFound: {

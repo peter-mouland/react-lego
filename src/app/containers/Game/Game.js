@@ -1,13 +1,16 @@
 import React from 'react';
 import debug from 'debug';
 
-import { copy } from './game-copy';
-import { randomRange, getCardDetails } from '../../utils/game-helpers';
-import Card from '../../components/Card/Card';
+import { json } from '../../utils/index';
+import { randomRange, getQuestionAndAnswer } from './game-helpers';
+import Question from '../../components/Question/Question';
+import Answer from '../../components/Answer/Answer';
 
 debug('lego:Game');
 
 const DECK = 87;
+const Error = () => <p>Error Loading cards!</p>;
+const Dealing = () => <p>Loading cards....</p>;
 
 export default class Game extends React.Component {
 
@@ -15,58 +18,88 @@ export default class Game extends React.Component {
     super(props);
     this.state = {
       cards: [],
-      dealing: false
+      error: false,
+      dealing: false,
+      showAnswer: false,
+      attempt: null
     };
     this.deal = this.deal.bind(this);
+    this.viewAnswer = this.viewAnswer.bind(this);
+    this.setAttempt = this.setAttempt.bind(this);
   }
 
-  deal() {
-    this.setState({ cards: [], dealing: true });
+  componentDidMount() {
+    this.getCardsFromApi('people');
+  }
+
+  getCardsFromApi(api) {
     const dealtCards = randomRange(1, DECK, 2);
-    getCardDetails(dealtCards).then(cards => {
-      this.setState({
-        cards,
-        dealing: false
+    const promises = dealtCards.map(cardId => json.get(`//swapi.co/api/${api}/${cardId}/`));
+    return Promise.all(promises)
+      .then(cards => {
+        this.setState({
+          [api]: cards,
+          dealing: false
+        });
+      })
+      .catch(() => {
+        this.setState({
+          error: true,
+          dealing: false
+        });
       });
-    });
   }
 
-  getCardGameProps(cards) {
-    if (!cards.length) return {};
-    const randomCardI = randomRange(0, 1, 1)[0];
-    const randomFactI = randomRange(0, 7, 1)[0];
-    const wrongCard = cards[1 - randomCardI];
-    const correctCard = cards[randomCardI];
-    const randomFactKey = Object.keys(correctCard)[randomFactI];
-    return { cards, wrongCard, correctCard, randomFactKey };
+  deal(api) {
+    if (this.state[api]) {
+      const cards = this.state[api];
+      const answerInt = randomRange(0, 1, 1)[0];
+      const factInt = randomRange(0, 7, 1)[0];
+      this.setState({
+        QandA: getQuestionAndAnswer({ cards, answerInt, factInt }),
+        cards,
+        [api]: false,
+        dealing: false,
+        error: false,
+        showAnswer: false,
+        attempt: null
+      });
+      this.getCardsFromApi('people');
+    } else {
+      this.setState({ cards: [], dealing: true, error: false, showAnswer: false, attempt: null });
+      this.getCardsFromApi('people').then(() => {
+        this.setState({ cards: this.state.people, dealing: true, error: false, showAnswer: false });
+      });
+    }
+  }
+
+  setAttempt(attempt) {
+    this.setState({ attempt });
+  }
+
+  viewAnswer() {
+    this.setState({ showAnswer: true });
   }
 
   render() {
-    const { cards, dealing } = this.state;
-    const cardGameProps = this.getCardGameProps(cards);
+    const {
+      cards, dealing, error, showAnswer, attempt, QandA: { correctCard, question, answer } = {},
+    } = this.state;
 
     return (
       <div id="game">
         <banner className="header">
-          <h1>{copy.title}</h1>
-          <p>{copy.blurb}</p>
+          <h1>Star Wars Trivia</h1>
+          <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
         </banner>
-        <h2>Star Wars Trivia</h2>
-        <section className="game__options">
-          <button onClick={this.deal}>Deal!</button>
-        </section>
-        <div>
-          {!!dealing
-            ? 'Loading cards....'
-            : null
-          }
-          </div>
-        <section className="game__play-area">
-          {!!cards.length
-            ? <Card { ...cardGameProps } />
-            : null
-          }
-        </section>
+        <button onClick={() => this.deal('people')}>Deal 'People' cards!</button>
+        {error && <Error />}
+        {dealing && <Dealing />}
+        <Question { ...{ showAnswer, answer, cards, attempt, onClick: this.setAttempt } }>
+          {question}
+        </Question>
+        {!!cards.length && <button onClick={() => this.viewAnswer()}>View Answer</button>}
+        <Answer cards={ cards } correctCard={ correctCard } showAnswer={ showAnswer } />
       </div>
     );
   }

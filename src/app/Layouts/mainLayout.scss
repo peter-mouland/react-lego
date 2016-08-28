@@ -1,8 +1,8 @@
 @import '../../styles/utils/colours';
 @import '../../styles/utils/mixins';
 
-$nav-height: 65px;
-$footer-height: 65px;
+$nav-height: 2em;
+$footer-height: 2em;
 $content-height: calc(100vh - #{$nav-height + $footer-height});
 $col1-width: 33% !default;
 $col2-width: 66% !default;
@@ -12,17 +12,43 @@ $col2-width: 66% !default;
 }
 
 .layout__nav {
+  padding: 0 2.25%;
   height: $nav-height;
 }
 
+.layout__nav-header {
+  margin-right: 10px;
+  border-right: 6px double currentColor;
+  padding-right: 10px;
+}
+
 .layout__nav-link {
-  margin: 5px 10px;
+  margin: 0 6px;
+  line-height: 2em;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 }
 
 .layout__content {
-  height: $content-height;
+  min-height: $content-height;
+  padding: 0 2.25%;
+
+  &::before ,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 
 .layout__footer {
+  padding: 0 2.25%;
   height: $footer-height;
+  line-height: 2em;
 }

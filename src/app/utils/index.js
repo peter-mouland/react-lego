@@ -1,6 +1,8 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+
 import { routes } from '../routes';
+export { fetch, json } from './fetch';
 
 const navigator = get(global, 'navigator.userAgent');
 // hasWindow = true for tests + client
