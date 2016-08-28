@@ -1,5 +1,5 @@
 import { mount, expect } from '../support/test.helper';
-import { history, router } from '../../src/client-entry';
+import { history, router } from '../../src/app/Root';
 import Homepage from '../../src/app/containers/Homepage/Homepage';
 
 describe('Client Render', function () {

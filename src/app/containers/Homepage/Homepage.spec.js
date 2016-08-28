@@ -1,8 +1,8 @@
 import { expect, shallow, React } from '../../../../tests/support/test.helper';
 import Homepage from './Homepage';
-import { copy } from './homepage-copy';
 
-const baseProps = {}
+const baseProps = {};
+
 describe('Settings Container', () => {
   it('should have an id of homepage', () => {
     const wrapper = shallow(<Homepage { ...baseProps } />);

@@ -1,10 +1,14 @@
 @import '../../../styles/utils/colours';
 
-.card__options {
+.card-item-value {
+  display: block;
+}
+
+.question__options {
   padding: 0;
 }
 
-.card__option {
+.question__option {
   display: block;
   border: 1px dashed $item-color;
   padding: 4px;

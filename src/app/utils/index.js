@@ -1,5 +1,7 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import fetch from 'isomorphic-fetch';
+
 import { routes } from '../routes';
 
 const navigator = get(global, 'navigator.userAgent');
@@ -16,3 +18,18 @@ export function findRoute(pathname) {
       .replace(/^\//, '') === route.path
   );
 }
+
+export const iso = {
+  fetch: (url, options = {}) => (
+    fetch(url, options)
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error('Bad response from server');
+        }
+        return response.json();
+      })
+      .catch(() => {
+        throw new Error('Bad response from server');
+      })
+  )
+};

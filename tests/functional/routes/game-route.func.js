@@ -1,6 +1,5 @@
 import { mount, expect } from '../../support/test.helper';
-import { history, router } from '../../../src/client-entry';
-import { copy } from '../../../src/app/containers/game/game-copy';
+import { history, router } from '../../../src/app/Root';
 import { routes } from '../../../src/app/routes';
 
 describe('Game Route', function () {
@@ -38,16 +37,5 @@ describe('Game Route', function () {
       expect(this.wrapper.find('footer')).to.be.present();
     });
 
-  });
-
-  describe('should contain text', () => {
-    it('should have a heading ', () => {
-      const heading = this.wrapper.find('h1');
-      expect(heading).to.have.text(copy.title);
-    });
-    it('should have a blurb', () => {
-      const blurb = this.wrapper.find('p');
-      expect(blurb).to.have.text(copy.blurb);
-    });
   });
 });

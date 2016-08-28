@@ -1,6 +1,6 @@
 import { mount, expect } from '../../support/test.helper';
-import { history, router } from '../../../src/client-entry';
-import { copy } from '../../../src/app/containers/Homepage/homepage-copy';
+import { history, router } from '../../../src/app/Root';
+import { routes } from '../../../src/app/routes';
 
 describe('Homepage Route', function () {
 
@@ -26,7 +26,7 @@ describe('Homepage Route', function () {
     });
 
     it('Should contain a title', () => {
-      expect(document.title).to.equal(copy.title);
+      expect(document.title).to.equal(routes.homepage.title);
     });
 
     it('should have a nav', () => {
@@ -38,16 +38,4 @@ describe('Homepage Route', function () {
     });
 
   });
-
-  describe('should contain text', () => {
-    it('should have a heading', () => {
-      const heading = this.wrapper.find('h1');
-      expect(heading).to.have.text(copy.title);
-    });
-    it('should have a blurb', () => {
-      const blurb = this.wrapper.find('p').first();
-      expect(blurb).to.have.text(copy.blurb);
-    });
-  });
-
 });
