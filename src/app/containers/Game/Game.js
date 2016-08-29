@@ -83,7 +83,7 @@ export default class Game extends React.Component {
 
   render() {
     const {
-      cards, dealing, error, showAnswer, attempt, QandA: { correctCard, question, answer } = {},
+      cards, dealing, error, showAnswer, attempt, QandA: { answerCard, question, answer } = {},
     } = this.state;
 
     return (
@@ -99,7 +99,7 @@ export default class Game extends React.Component {
           {question}
         </Question>
         {!!cards.length && <button onClick={() => this.viewAnswer()}>View Answer</button>}
-        <Answer cards={ cards } correctCard={ correctCard } showAnswer={ showAnswer } />
+        <Answer cards={ cards } answerCard={ answerCard } showAnswer={ showAnswer } />
       </div>
     );
   }

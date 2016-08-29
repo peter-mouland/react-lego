@@ -12,15 +12,18 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
 
 **Branches available to compare:**
 
- * [ ] Universal React App (master)
- * [ ] DevTools
- * [ ] [Hot-reloading](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)
- * [ ] Redux
- * [ ] Selectors
- * [ ] Adding SVGs
- * [ ] Service Workers
+ * [Base Universal React App](#base-universal-react-app) (master)
+   * [x] [Redux](#redux) _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/redux)_
+      * [x] [with Promise middleware](#redux-with-promise-middleware) _[>> compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
+   * [ ] DevTools
+   * [ ] Hot-reloading _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
+   * [ ] Selectors
+   * [ ] Adding SVGs
+   * [ ] Service Workers
 
-### Universal React App (master)
+_All branches are written using es6 and babel with webpack._
+
+### Base Universal React App (master)
 
 The aim of the `Master` branch was to be production ready.
 This means _all_ other branches are also production ready. i.e. the have :
@@ -36,9 +39,40 @@ This means _all_ other branches are also production ready. i.e. the have :
   * [ ] [code coverage](/tests/README.md#code-coverage)
  * [x] code linting with [eslint](http://eslint.org/)
  * [x] CI integration with [CircleCI](https://circleci.com/)
- * [ ] continuous deployment with [Heroku](http://www.heroku.com/)
+ * [x] continuous deployment with [Heroku](http://www.heroku.com/)
 
 These have been chosen as _base_ technologies for the master branch because (Apart from them being easy to distinguish between),
 they are essential when building/deploying to make sure I don't break anything!
 
-_All branches are written using es6 and babel with webpack._
+### Redux
+
+ > Based on the `master` branch
+
+[Redux](https://github.com/reactjs/react-redux) was added.
+
+### Redux with Promise middleware
+
+ > Based on the `redux` branch
+
+The concept is that each container should be able to dictate what data it _needs_ while still on the server.
+
+This means that it:
+  * hooks in express to Redux
+  * Check if the component required needs data
+  * fetch only the data that is needed,
+  * wait for the promise to finish
+  * render the hydrated page on the server
+  * send the page and the initial data to the client
+
+A 'timeout' limit has also been set, which means if the server takes too long, the app is rendered without the data and instead fetched on the client.
+
+### DevTools
+
+_to be written_
+
+### Hot-Reloading
+
+ > Based on the `master` branch
+
+Hot reloading allows you to see changes made to any part of your app without having to restart the server.
+
