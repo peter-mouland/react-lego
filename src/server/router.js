@@ -11,7 +11,7 @@ export const routingApp = express();
 
 routingApp.on('mount', (parent) => {
   parent.use((err, req, res, next) => (
-    (err) ? res.render500() : next()
+    (err) ? res.render500(err) : next()
   ));
 });
 

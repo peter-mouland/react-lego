@@ -4,6 +4,8 @@ import fetch from 'isomorphic-fetch';
 
 import { routes } from '../routes';
 
+import './object.assign';
+
 const navigator = get(global, 'navigator.userAgent');
 // hasWindow = true for tests + client
 export const hasWindow = typeof window !== 'undefined';

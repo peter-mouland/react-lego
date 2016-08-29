@@ -31,6 +31,7 @@ export const routes = {
   }
 };
 
+// todo : make ie compatible
 const indexRoute = (route) => Object.assign({}, route, { path: null });
 
 export const LinkHelper = ({ to, ...props }) => {
