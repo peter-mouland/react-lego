@@ -1,11 +1,11 @@
-import { mount, expect } from '../../support/test.helper';
-import { history, router } from '../../../src/app/Root';
+import { React, mount, expect } from '../../support/test.helper';
+import Root, { history } from '../../../src/app/Root';
 import { routes } from '../../../src/app/routes';
 
 describe('Homepage Route', function () {
 
   before(() => {
-    this.wrapper = mount(router);
+    this.wrapper = mount(<Root />);
     history.push('/');
   });
 

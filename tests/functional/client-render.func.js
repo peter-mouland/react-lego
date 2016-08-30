@@ -1,10 +1,10 @@
-import { mount, expect } from '../support/test.helper';
-import { history, router } from '../../src/app/Root';
+import { React, mount, expect } from '../support/test.helper';
+import Root, { history } from '../../src/app/Root';
 import Homepage from '../../src/app/containers/Homepage/Homepage';
 
 describe('Client Render', function () {
   beforeEach(() => {
-    this.wrapper = mount(router);
+    this.wrapper = mount(<Root/>);
     history.push('/');
   });
 

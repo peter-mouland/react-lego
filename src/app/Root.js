@@ -9,7 +9,9 @@ debug('lego:Root');
 
 // exported to be used in tests
 export const history = isBrowser ? browserHistory : createMemoryHistory();
-export const router = <Router children={makeRoutes()} history={history} />;
 
-export default router;
-
+export default class Root extends React.Component {
+  render() {
+    return <Router children={makeRoutes()} history={history} />;
+  }
+}

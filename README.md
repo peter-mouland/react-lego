@@ -12,11 +12,11 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
 
 **Branches available to compare:**
 
- * [Base Universal React App](#base-universal-react-app) (master)
+ * [x] [Base Universal React App](#base-universal-react-app) (master)
+   * [x] [Hot-reloading](#hot-reloading) _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
    * [x] [Redux](#redux) _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/redux)_
       * [x] [with Promise middleware](#redux-with-promise-middleware) _[>> compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
    * [ ] DevTools
-   * [ ] Hot-reloading _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
    * [ ] Selectors
    * [ ] Adding SVGs
    * [ ] Service Workers
@@ -44,6 +44,12 @@ This means _all_ other branches are also production ready. i.e. the have :
 These have been chosen as _base_ technologies for the master branch because
 (Apart from them being easy to distinguish between),
 they are essential when building/deploying to make sure I don't break anything!
+
+### Hot-Reloading
+
+ > Based on the `master` branch
+
+Hot reloading allows you to see changes made to any part of your app without having to restart the server.
 
 ### Redux
 
@@ -74,9 +80,4 @@ A 'timeout' limit has also been set, which means if the server takes too long, t
 
 _to be written_
 
-### Hot-Reloading
-
- > Based on the `master` branch
-
-Hot reloading allows you to see changes made to any part of your app without having to restart the server.
 
