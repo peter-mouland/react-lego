@@ -1,8 +1,8 @@
 import React from 'react';
 import debug from 'debug';
 
-import { json } from '../../utils/index';
-import { randomRange, getQuestionAndAnswer } from './game-helpers';
+import { json, randomRange } from '../../utils/index';
+import { getQuestionAndAnswer } from './getQuestionAndAnswer';
 import Question from '../../components/Question/Question';
 import Answer from '../../components/Answer/Answer';
 
@@ -29,16 +29,16 @@ export default class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.getCardsFromApi('people');
+    this.fetchCards();
   }
 
-  getCardsFromApi(api) {
+  fetchCards() {
     const dealtCards = randomRange(1, DECK, 2);
-    const promises = dealtCards.map(cardId => json.get(`//swapi.co/api/${api}/${cardId}/`));
+    const promises = dealtCards.map(cardId => json.get(`//swapi.co/api/people/${cardId}/`));
     return Promise.all(promises)
       .then(cards => {
         this.setState({
-          [api]: cards,
+          people: cards,
           dealing: false
         });
       })
@@ -50,24 +50,24 @@ export default class Game extends React.Component {
       });
   }
 
-  deal(api) {
-    if (this.state[api]) {
-      const cards = this.state[api];
+  deal() {
+    if (this.state.people) {
+      const cards = this.state.people;
       const answerInt = randomRange(0, 1, 1)[0];
       const factInt = randomRange(0, 7, 1)[0];
       this.setState({
         QandA: getQuestionAndAnswer({ cards, answerInt, factInt }),
         cards,
-        [api]: false,
+        people: false,
         dealing: false,
         error: false,
         showAnswer: false,
         attempt: null
       });
-      this.getCardsFromApi('people');
+      this.fetchCards();
     } else {
       this.setState({ cards: [], dealing: true, error: false, showAnswer: false, attempt: null });
-      this.getCardsFromApi('people').then(() => {
+      this.fetchCards().then(() => {
         this.setState({ cards: this.state.people, dealing: true, error: false, showAnswer: false });
       });
     }
@@ -92,7 +92,7 @@ export default class Game extends React.Component {
           <h1>Star Wars Trivia</h1>
           <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
         </banner>
-        <button onClick={() => this.deal('people')}>Deal 'People' cards!</button>
+        <button onClick={() => this.deal()}>Deal 'People' cards!</button>
         {error && <Error />}
         {dealing && <Dealing />}
         <Question { ...{ showAnswer, answer, cards, attempt, onClick: this.setAttempt } }>

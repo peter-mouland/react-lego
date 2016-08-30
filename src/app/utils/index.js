@@ -3,6 +3,7 @@ import get from 'lodash/get';
 
 import { routes } from '../routes';
 export { fetch, json } from './fetch';
+export { randomRange } from './randomRange';
 
 const navigator = get(global, 'navigator.userAgent');
 // hasWindow = true for tests + client

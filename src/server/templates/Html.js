@@ -25,11 +25,11 @@ export default class Html extends React.Component {
         {stylesheets.map((stylesheet, i) => <link href={stylesheet} rel="stylesheet" key={ i } />)}
       </head>
       <body>
-        <script dangerouslySetInnerHTML={{
-          __html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}`
-        }} />
-        <div id="html" dangerouslySetInnerHTML={{ __html: app }} />
-        {scripts.map((script, i) => <script src={script} key={ i } />)}
+      <script dangerouslySetInnerHTML={{
+        __html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}`
+      }} />
+      <div id="html" dangerouslySetInnerHTML={{ __html: app }} />
+      {scripts.map((script, i) => <script src={script} key={ i } />)}
       </body>
       </html>
     );

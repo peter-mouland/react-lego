@@ -41,14 +41,18 @@ This means _all_ other branches are also production ready. i.e. the have :
  * [x] CI integration with [CircleCI](https://circleci.com/)
  * [x] continuous deployment with [Heroku](http://www.heroku.com/)
 
-These have been chosen as _base_ technologies for the master branch because (Apart from them being easy to distinguish between),
+These have been chosen as _base_ technologies for the master branch because
+(Apart from them being easy to distinguish between),
 they are essential when building/deploying to make sure I don't break anything!
 
 ### Redux
 
  > Based on the `master` branch
 
-[Redux](https://github.com/reactjs/react-redux) was added.
+[Redux](https://github.com/reactjs/react-redux) was added with data being hydrated on the server.
+
+The app now has an API which can be called to return the required data.
+This data is now formatted inside a reducer.
 
 ### Redux with Promise middleware
 
