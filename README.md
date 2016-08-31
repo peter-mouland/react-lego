@@ -15,8 +15,8 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
  * [x] [Base Universal React App](#base-universal-react-app) (master)
    * [x] [Hot-reloading](#hot-reloading) _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
    * [x] [Redux](#redux) _[>> compare with master](https://github.com/peter-mouland/react-lego/compare/redux)_
+      * [X] [DevTools](#devtools) _[>> compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-devtools)_
       * [x] [with Promise middleware](#redux-with-promise-middleware) _[>> compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
-   * [ ] DevTools
    * [ ] Selectors
    * [ ] Adding SVGs
    * [ ] Service Workers
@@ -78,6 +78,7 @@ A 'timeout' limit has also been set, which means if the server takes too long, t
 
 ### DevTools
 
-_to be written_
+ > Based on the `redux` branch
 
+Add Redux-DevTools to the app to help debugging
 
