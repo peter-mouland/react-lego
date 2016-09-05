@@ -10,16 +10,16 @@ The concept is to use GitHub's branch-comparison screens to quickly demo the cod
 
 The `Master` branch is a Universal React App, each other branch then adds one more technology, with the smallest possible changes.
 
-[More about the concept >>](https://github.com/peter-mouland/react-lego/wiki)
+[>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
 **Branches available to compare:**
 
  * [x] [Base Universal React App](#base-universal-react-app) (master)
-   * [x] [Hot-reloading](#hot-reloading) >> _[compare with master](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
-   * [x] [Redux](#redux) >> _[compare with master](https://github.com/peter-mouland/react-lego/compare/redux)_
-      * [x] [with Promise middleware](#redux-with-promise-middleware) >> _[compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
-      * [X] [DevTools](#devtools) >> _[compare with Redux](https://github.com/peter-mouland/react-lego/compare/redux...redux-devtools)_
-   * [x] [Importing SVGs](#importing-svgs) >> _[compare with master](https://github.com/peter-mouland/react-lego/compare/svg)_
+   * [x] [Hot-reloading](#hot-reloading)
+   * [x] [Redux](#redux)
+      * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
+      * [X] [Redux Dev Tools](#redux-dev-tools)
+   * [x] [Importing SVGs](#importing-svgs)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -54,7 +54,7 @@ they are essential when building/deploying to make sure I don't break anything!
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
 We are currently using [v3.beta2](https://github.com/gaearon/react-hot-loader/pull/240).
 
-[more about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
+[>> More about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
 
 ### Redux
 
@@ -65,32 +65,24 @@ We are currently using [v3.beta2](https://github.com/gaearon/react-hot-loader/pu
 The app now has an API which can be called to return the required data.
 This data is now formatted inside a reducer.
 
+[>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux)
+
 ### Redux with Promise middleware
 
  > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
 
-The concept is that each container should be able to dictate what data it _needs_ while still on the server.
+This branch allows you to make async requests on the server and hydrate your redux store before rendering the page. 
+The massive win here is that each container dictates what data it _needs_ while still on the server.
 
-This means that it:
-  * hooks in express to Redux
-  * Check if the component required needs data
-  * fetch only the data that is needed,
-  * wait for the promise to finish
-  * render the hydrated page on the server
-  * send the page and the initial data to the client
+[>> More about adding Promise middleware](https://github.com/peter-mouland/react-lego/wiki/Redux-Promise-Middleware)
 
-A 'timeout' limit has also been set, which means if the server takes too long, the app is rendered without the data and instead fetched on the client.
-
-I built this sollution after reading this [excellent article from Smashing Magazine](https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/)
-as well as this [blog post on Medium by Milo Mordaunt](https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4#.zeh2drhox)
-
-### DevTools
+### Redux Dev Tools
 
  > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux...redux-devtools)_
 
 Add [Redux-DevTools](https://github.com/gaearon/redux-devtools) to the app to help debugging.
 
-[More about adding redux-dev-tools](https://github.com/peter-mouland/react-lego/wiki/Redux-dev-tools)
+[>> More about adding redux-dev-tools](https://github.com/peter-mouland/react-lego/wiki/Redux-dev-tools)
 
 ### Importing SVGs
 
@@ -102,4 +94,4 @@ This has the added benefit of :
  * Reusing SVG files (without code duplication)
  * Keep SVGs inline and style them with CSS
 
-[More about importing SVGs >>](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
+[>> More about importing SVGs](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
