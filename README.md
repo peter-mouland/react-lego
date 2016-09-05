@@ -54,6 +54,8 @@ they are essential when building/deploying to make sure I don't break anything!
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
 We are currently using [v3.beta2](https://github.com/gaearon/react-hot-loader/pull/240).
 
+[more about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
+
 ### Redux
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux)_
@@ -87,6 +89,8 @@ as well as this [blog post on Medium by Milo Mordaunt](https://medium.com/front-
  > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux...redux-devtools)_
 
 Add [Redux-DevTools](https://github.com/gaearon/redux-devtools) to the app to help debugging.
+
+[More about adding redux-dev-tools](https://github.com/peter-mouland/react-lego/wiki/Redux-dev-tools)
 
 ### Importing SVGs
 
