@@ -3,6 +3,9 @@ import renderApp from './middleware/render-app';
 import express from 'express';
 import debug from 'debug';
 import slashes from 'connect-slashes';
+
+import apiRouter from './api';
+
 const log = debug('lego:router');
 const oneDay = 1000 * 60 * 60 * 24;
 import { DIST } from '../config/paths';
@@ -20,6 +23,7 @@ export function setRoutes(assets) {
 
   routingApp
     .use('/', express.static(DIST, { maxAge: oneDay }))
+    .use('/api', apiRouter)
     .use(slashes())
     .get('*', setRouterContext, renderApp(assets));
 }

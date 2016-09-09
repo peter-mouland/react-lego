@@ -1,10 +1,11 @@
 import React from 'react';
 import debug from 'debug';
 
-import { json, randomRange } from '../../utils/index';
+import { randomRange } from '../../utils';
 import { getQuestionAndAnswer } from './getQuestionAndAnswer';
 import Question from '../../components/Question/Question';
 import Answer from '../../components/Answer/Answer';
+import api from '../../api';
 
 debug('lego:Game');
 
@@ -33,9 +34,8 @@ export default class Game extends React.Component {
   }
 
   fetchCards() {
-    const dealtCards = randomRange(1, DECK, 2);
-    const promises = dealtCards.map(cardId => json.get(`//swapi.co/api/people/${cardId}/`));
-    return Promise.all(promises)
+    const cardsIds = randomRange(1, DECK, 2);
+    return api.fetchCards('people', cardsIds)
       .then(cards => {
         this.setState({
           people: cards,

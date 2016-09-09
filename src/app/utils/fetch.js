@@ -1,6 +1,7 @@
 import isoFetch from 'isomorphic-fetch';
 import debug from 'debug';
 
+import { localUrl } from '../utils';
 const log = debug('footy:api/index');
 
 export function checkStatus(response) {
@@ -21,16 +22,17 @@ const jsonOpts = (method, data) => ({
   body: JSON.stringify(data)
 });
 
-const fetchUrl = (url, opts) => (
-  isoFetch(url, opts)
+const fetchUrl = (url, opts) => {
+  const fullUrl = url.indexOf('//') > -1 ? url : `${localUrl}/${url}`;
+  return isoFetch(fullUrl, opts)
     .then(checkStatus)
     .then((res) => res.json())
     .then((json) => json)
     .catch((error) => {
       log('request failed', error);
       throw new Error('request failed');
-    })
-);
+    });
+};
 
 const getJSON = (url) => fetchUrl(url, jsonOpts('GET'));
 const postJSON = (url, data) => fetchUrl(url, jsonOpts('POST', data));
