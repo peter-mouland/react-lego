@@ -20,6 +20,7 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
       * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
       * [X] [Redux Dev Tools](#redux-dev-tools)
    * [x] [Importing SVGs](#importing-svgs)
+   * [x] [Webpack 2](#using-webpack-v2)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -95,3 +96,12 @@ This has the added benefit of :
  * Keep SVGs inline and style them with CSS
 
 [>> More about importing SVGs](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
+
+### Using Webpack v2
+
+ > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2)_
+
+This was added out of pure interest and I haven't used it in anger yet.
+Please take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
+
+[>> More about Webpack v2](https://github.com/peter-mouland/react-lego/wiki/Webpack-v2)
