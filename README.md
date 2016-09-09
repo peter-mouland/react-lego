@@ -21,6 +21,7 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
       * [X] [Redux Dev Tools](#redux-dev-tools)
    * [x] [Importing SVGs](#importing-svgs)
    * [x] [Webpack 2](#using-webpack-v2)
+     * [x] [Webpack 2 with React-Hot-loader 3](#using-webpack-2-with-react-hot-loader-3)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -105,3 +106,10 @@ This was added out of pure interest and I haven't used it in anger yet.
 Please take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
 
 [>> More about Webpack v2](https://github.com/peter-mouland/react-lego/wiki/Webpack-v2)
+
+### Using Webpack 2 with React-Hot-loader 3
+
+ > Based on the `webpack2` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)_
+
+ Just added as a quick demo to help out and show the 2 working together.
+ no changes required to either branch to get them to work together.
