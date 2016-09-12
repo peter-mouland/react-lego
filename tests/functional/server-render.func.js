@@ -44,9 +44,9 @@ describe('Server', function () {
       .end(done);
   });
 
-  it.skip('should render the ErrorPage when a server route throws', (done) => {
+  it('should render the ErrorPage when a server route throws', (done) => {
     supertest(server)
-      .get('/broken-route/')
+      .get('/broken-client-route/')
       .expect(500, /Man down!/)
       .end(done);
   });
@@ -62,6 +62,7 @@ describe('Server', function () {
     supertest(server)
       .get('/')
       .expect(200)
+      .expect('Content-Type', 'text/html; charset=utf-8')
       .expect(/<!doctype html>/)
       .expect(/<html lang="en"/)
       .expect(/<link href="\/app.css/)
@@ -69,10 +70,11 @@ describe('Server', function () {
       .end(done);
   });
 
-  it.skip('Should gzip static assets', (done) => {
-    supertest(server)
-      .get('/')
-      .expect('content-encoding', 'gzip')
+  it('Should gzip static assets', (done) => {
+    return supertest(server)
+      .get('/app.js')
+      .expect(200)
+      .expect('Content-Encoding', 'gzip')
       .end(done);
   });
 
