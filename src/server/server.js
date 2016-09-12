@@ -16,7 +16,7 @@ const server = express();
 const log = debug('lego:server.js');
 log('starting');
 
-server.set('etag', false);
+server.set('etag', true);
 server.use((req, res, next) => {
   res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.header('Pragma', 'no-cache');
