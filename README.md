@@ -20,8 +20,9 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
       * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
       * [X] [Redux Dev Tools](#redux-dev-tools)
    * [x] [Importing SVGs](#importing-svgs)
-   * [x] [Webpack 2](#using-webpack-v2)
-     * [x] [Webpack 2 with React-Hot-loader 3](#using-webpack-2-with-react-hot-loader-3)
+   * [x] [Webpack v2](#using-webpack-v2)
+     * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
+   * [x] [React-Router v4](#using-react-route-v4)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -107,9 +108,18 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 
 [>> More about Webpack v2](https://github.com/peter-mouland/react-lego/wiki/Webpack-v2)
 
-### Using Webpack 2 with React-Hot-loader 3
+### Using Webpack v2 with React-Hot-loader v3
 
  > Based on the `webpack2` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)_
 
  Just added as a quick demo to help out and show the 2 working together.
  no changes required to either branch to get them to work together.
+
+### Using React-Router v4
+
+ > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/react-router-4)_
+
+React Router 4 sees to be very close to being released so I was interested in how hard the upgrade would be.
+Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
+
+[>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
