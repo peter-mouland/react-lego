@@ -119,7 +119,7 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 
  > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/react-router-4)_
 
-React Router 4 sees to be very close to being released so I was interested in how hard the upgrade would be.
+[React Router](https://github.com/ReactTraining/react-router) v4 sees to be very close to being released so I was interested in how hard the upgrade would be.
 Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
 
 [>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
