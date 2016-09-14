@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
-import { renderToString } from 'react-dom/server';
 import DocumentMeta from 'react-document-meta';
-import isEmpty from 'lodash/isEmpty';
 import { hasWindow } from '../../app/utils';
 
 export default class Html extends React.Component {
@@ -14,7 +12,6 @@ export default class Html extends React.Component {
 
   render() {
     const { initialState, scripts, stylesheets, content } = this.props;
-    const app = (isEmpty(content)) ? null : renderToString(content);
     return (
       <html lang="en">
       <head>
@@ -28,7 +25,7 @@ export default class Html extends React.Component {
       <script dangerouslySetInnerHTML={{
         __html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}`
       }} />
-      <div id="html" dangerouslySetInnerHTML={{ __html: app }} />
+      <div id="html" dangerouslySetInnerHTML={{ __html: content }} />
       {scripts.map((script, i) => <script src={script} key={ i } />)}
       </body>
       </html>

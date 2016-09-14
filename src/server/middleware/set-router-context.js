@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import * as routes from '../../app/routes';
 
@@ -14,8 +16,8 @@ const setRouterContext = (req, res, next) => {
     } else {
       // path * will return a 404
       const isNotFound = renderProps.routes.find((route) => route.path === '*');
-      res.status(isNotFound ? 404 : 200); // eslint-disable-line
-      res.routerContext = <RouterContext {...renderProps} />; // eslint-disable-line
+      res.status(isNotFound ? 404 : 200);
+      res.routerContext = renderToString(<RouterContext {...renderProps} />);
       next();
     }
   });
