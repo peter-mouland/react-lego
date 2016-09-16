@@ -17,6 +17,7 @@
     "test:e2e": "npm run nightwatch -- --env local",
     "test:e2e-smoke": "npm run nightwatch -- --env chrome_win --tag smoke",
     "test:e2e-xb": "npm run nightwatch -- --env safari_osx,chrome_osx,firefox_win,firefox_osx,IE10,IE11,edge",
+    "prenightwatch": "selenium-standalone install --version=2.53.1",
     "nightwatch": "nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch.conf.js",
     "mocha": "mocha --opts ./tests/config/mocha.opts "
   },
@@ -69,6 +70,7 @@
     "yargs": "^4.7.1"
   },
   "devDependencies": {
+    "browserstack-local": "^1.1.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.2",
     "chromedriver": "2.21.2",
@@ -87,6 +89,7 @@
     "pre-push": "^0.1.1",
     "react-addons-test-utils": "^15.1.0",
     "sass-lint": "^1.5.1",
+    "selenium-standalone": "^5.6.4",
     "sinon": "^1.17.3",
     "supertest": "^1.2.0"
   }

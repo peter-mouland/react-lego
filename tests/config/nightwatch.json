@@ -6,7 +6,7 @@
   },
   "selenium" : {
     "start_process" : true,
-    "server_path" : "./bin/selenium-server-standalone-2.48.2.jar"
+    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/2.53.1-server.jar"
   },
   "custom_commands_path" : "./tests/support/nightwatch-commands",
 

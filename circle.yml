@@ -25,8 +25,10 @@ deployment:
   main:
     branch: master
     commands:
-      - bin/BrowserStackLocal-linux $BROWSERSTACK_KEY -force:
-          background: true
+      - wget "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+      - unzip BrowserStackLocal-linux-x64.zip
+      - ./BrowserStackLocal $BROWSERSTACK_KEY -force:
+        background: true
       - git push git@heroku.com:react-lego-preprod.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
       - npm run test:e2e-xb -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego-preprod.herokuapp.com --retries 4
       - git push git@heroku.com:react-lego.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
