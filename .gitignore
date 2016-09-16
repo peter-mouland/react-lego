@@ -1,6 +1,7 @@
 .idea/
 node_modules/
 dist
+compiled
 .DS_Store
 .swp
 .divshot-cache/
