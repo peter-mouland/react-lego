@@ -1,19 +1,10 @@
-/*
- * The .babel.js in the file name is what makes this work as es6
- * */
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import PurifyCssPlugin from 'purifycss-loader/PurifyCssPlugin';
-import cssnano from 'cssnano';
-import './environment';
-import { SRC, DIST } from './paths';
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const cssnano = require('cssnano');
+const { SRC, DIST } = require('./paths');
 
-export default {
-  entry: {
-    app: [
-      `${SRC}/client-entry.js`
-    ]
-  },
+module.exports = {
+  devtool: 'source-map',
   output: {
     path: DIST,
     filename: '[name].js',
@@ -21,15 +12,13 @@ export default {
   },
   plugins: [
     new ExtractTextPlugin('[name].css'),
-    new PurifyCssPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         PORT: JSON.stringify(process.env.PORT),
         DEBUG: JSON.stringify(process.env.DEBUG),
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     })
   ],
@@ -38,10 +27,6 @@ export default {
     extensions: ['', '.js', '.jsx', '.scss']
   },
   module: {
-    postLoaders: [{
-      test: /\.css$/,
-      loaders: ['postcss', 'purifycss']
-    }],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -50,10 +35,12 @@ export default {
       },
       {
         test: /\.scss$/,
+        include: [/src/],
         loader: ExtractTextPlugin.extract('style', [
-          'css',
-          'sass?outputStyle=compact'].join('!'))
-      },
+          'css?sourceMap',
+          'postcss',
+          'sass?sourceMap&outputStyle=expanded'])
+      }
     ]
   },
   postcss: [

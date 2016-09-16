@@ -5,7 +5,7 @@ import debug from 'debug';
 import compression from 'compression';
 import Error500 from './templates/Error500';
 import { routingApp, setRoutes } from './router';
-import webpackConfig from '../config/webpack.config.dev.babel';
+import webpackConfig from '../config/webpack.config.prod';
 
 const webpackEntries = Object.keys(webpackConfig.entry);
 const assets = {

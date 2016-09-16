@@ -8,7 +8,7 @@ import apiRouter from './api';
 
 const log = debug('lego:router');
 const oneDay = 1000 * 60 * 60 * 24;
-import { DIST } from '../config/paths';
+import { DIST, PUBLIC } from '../config/paths';
 
 export const routingApp = express();
 
@@ -23,6 +23,7 @@ export function setRoutes(assets) {
 
   routingApp
     .use('/', express.static(DIST, { maxAge: oneDay }))
+    .use('/', express.static(PUBLIC, { maxAge: oneDay }))
     .use('/api', apiRouter)
     .use(slashes())
     .get('*', setRouterContext, renderApp(assets));
