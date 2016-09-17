@@ -1,9 +1,9 @@
 import React from 'react';
 import { Router, browserHistory, createMemoryHistory } from 'react-router';
+import debug from 'debug';
 
 import { makeRoutes } from './routes';
 import { isBrowser } from './utils';
-import debug from 'debug';
 
 debug('lego:Root');
 

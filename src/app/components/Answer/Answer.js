@@ -20,7 +20,7 @@ const CardItemValue = ({ value }) => {
 
 const AnswerOption = ({ answer, card }) => (
   <dl className={`answer-option ${answer ? 'answer-option--answer' : ''}`}>
-    {Object.keys(card).map(info => (
+    {Object.keys(card).map((info) => (
       <span className="answer-option__item" key={info}>
         <dt className="answer-option__title">{info}</dt>
         <dd className="answer-option__value"><CardItemValue value={ card[info] }/></dd>

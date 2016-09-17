@@ -2,6 +2,7 @@ require('./environment');
 const fs = require('fs');
 const { SRC, COMPILED } = require('./paths');
 const defaultConfig = require('./webpack.common');
+
 const nodeModules = {};
 
 fs.readdirSync('node_modules')

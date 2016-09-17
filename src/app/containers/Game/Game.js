@@ -2,7 +2,7 @@ import React from 'react';
 import debug from 'debug';
 
 import { randomRange } from '../../utils';
-import { getQuestionAndAnswer } from './getQuestionAndAnswer';
+import getQuestionAndAnswer from './getQuestionAndAnswer';
 import Question from '../../components/Question/Question';
 import Answer from '../../components/Answer/Answer';
 import api from '../../api';
@@ -36,7 +36,7 @@ export default class Game extends React.Component {
   fetchCards() {
     const cardsIds = randomRange(1, DECK, 2);
     return api.fetchCards('people', cardsIds)
-      .then(cards => {
+      .then((cards) => {
         this.setState({
           people: cards,
           dealing: false

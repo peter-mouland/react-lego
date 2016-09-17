@@ -1,4 +1,4 @@
-const path = require('path'); // eslint-disable-line
+const path = require('path');
 
 const ROOT = path.join(process.cwd());
 const SRC = path.join(ROOT, 'src');

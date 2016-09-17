@@ -9,8 +9,8 @@ import webpackConfig from '../config/webpack.config.prod';
 
 const webpackEntries = Object.keys(webpackConfig.entry);
 const assets = {
-  javascript: webpackEntries.map(entry => `/${entry}.js`),
-  styles: webpackEntries.map(entry => `/${entry}.css`)
+  javascript: webpackEntries.map((entry) => `/${entry}.js`),
+  styles: webpackEntries.map((entry) => `/${entry}.css`)
 };
 const server = express();
 const log = debug('lego:server.js');

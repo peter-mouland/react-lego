@@ -1,5 +1,5 @@
 import { expect } from '../../../../tests/support/test.helper';
-import { getQuestionAndAnswer } from './getQuestionAndAnswer';
+import getQuestionAndAnswer from './getQuestionAndAnswer';
 
 describe('getQuestionAndAnswer', ()=>{
   const fakeCard1 = {

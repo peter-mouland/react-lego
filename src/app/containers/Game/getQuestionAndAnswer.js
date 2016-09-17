@@ -11,7 +11,7 @@ const getAnswer = ({ wrongCard, answerCard, answerKey }) => {
   }
 };
 
-export const getQuestionAndAnswer = ({ cards, answerInt, factInt }) => {
+export default ({ cards, answerInt, factInt }) => {
   if (!cards.length) return null;
 
   const wrongCard = cards[1 - answerInt];

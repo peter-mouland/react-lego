@@ -2,6 +2,7 @@ import isoFetch from 'isomorphic-fetch';
 import debug from 'debug';
 
 import { localUrl } from '../utils';
+
 const log = debug('footy:api/index');
 
 export function checkStatus(response) {

@@ -1,14 +1,14 @@
-import setRouterContext from './middleware/set-router-context';
-import renderApp from './middleware/render-app';
 import express from 'express';
 import debug from 'debug';
 import slashes from 'connect-slashes';
 
+import setRouterContext from './middleware/set-router-context';
+import renderApp from './middleware/render-app';
 import apiRouter from './api';
+import { DIST, PUBLIC } from '../config/paths';
 
 const log = debug('lego:router');
 const oneDay = 1000 * 60 * 60 * 24;
-import { DIST, PUBLIC } from '../config/paths';
 
 export const routingApp = express();
 

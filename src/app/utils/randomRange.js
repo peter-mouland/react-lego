@@ -1,4 +1,3 @@
-
 /* eslint-disable */
 export  function randomRange(from, to, length) {
   if (to < from) return [];
@@ -15,4 +14,3 @@ export  function randomRange(from, to, length) {
     }
   return returnArray;
 }
-/* eslint-disable */
