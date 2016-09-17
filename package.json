@@ -26,10 +26,11 @@
     "npm": "^3.9.3"
   },
   "pre-commit": [
-    "lint"
+    "lint",
+    "test"
   ],
   "pre-push": [
-    "test"
+    "test:e2e"
   ],
   "author": "Peter Mouland",
   "license": "ISC",
