@@ -17,9 +17,6 @@ export const localUrl = isBrowser
 
 export function findRoute(pathname) {
   return find(routes, (route) =>
-    pathname
-      .replace(/(\?.*)|(#.*)/g, '')
-      .replace(/\/$/, '')
-      .replace(/^\//, '') === route.path
+    pathname.replace(/(\?.*)|(#.*)/g, '') === route.path
   );
 }

@@ -25,7 +25,7 @@ describe('Client Render', function () {
 
   describe('game', () => {
     it('should render the game page', () => {
-      history.push('/game');
+      history.push('/game/');
       expect(this.wrapper.find('#game').length).to.equal(1);
     });
   });

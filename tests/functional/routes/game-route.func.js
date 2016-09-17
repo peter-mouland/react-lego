@@ -6,7 +6,7 @@ describe('Game Route', function () {
 
   before(() => {
     this.wrapper = mount(<Root />);
-    history.push('/game');
+    history.push('/game/');
   });
 
   after(() => {

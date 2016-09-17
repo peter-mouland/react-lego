@@ -19,15 +19,10 @@ export const routes = {
     component: Homepage
   },
   game: {
-    path: 'game',
+    path: '/game/',
     label: 'Star Wars Trivia',
     title: `${siteTitle} - Star Wars Trivia`,
     component: Game
-  },
-  notFound: {
-    path: '*', // path * will return a 404
-    title: `${siteTitle} - Page Not Found`,
-    component: NotFound
   }
 };
 
@@ -47,7 +42,7 @@ export function makeRoutes() {
     <Route path="/" component={ MainLayout }>
       <IndexRoute { ...indexRoute(routes.homepage) } />
       <Route { ...routes.game } />
-      <Route { ...routes.notFound } />
+      <Route path="*" title ={`${siteTitle} - Page Not Found`} component={ NotFound} />
     </Route>
   );
 }
