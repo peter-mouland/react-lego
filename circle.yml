@@ -1,4 +1,6 @@
 machine:
+  pre:
+    - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
   timezone:
     Europe/London
   node:
@@ -18,6 +20,7 @@ test:
   override:
     - npm run test:unit
     - npm run test:func
+    - npm run test:e2e
   post:
     - git config --global user.name "Peter Mouland"
     - git config --global user.email "peter.mouland@gmail.com"
@@ -28,7 +31,8 @@ deployment:
       - wget "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
       - unzip BrowserStackLocal-linux-x64.zip
       - ./BrowserStackLocal $BROWSERSTACK_KEY -force:
-        background: true
+          background: true
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
       - git push git@heroku.com:react-lego-preprod.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
       - npm run test:e2e-xb -- --sha=$CIRCLE_BUILD_NUM --target=http://react-lego-preprod.herokuapp.com --retries 4
       - git push git@heroku.com:react-lego.git $CIRCLE_SHA1:refs/heads/master -f --no-verify

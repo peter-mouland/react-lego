@@ -1,4 +1,4 @@
-# React Lego
+# React Lego [![CircleCI](https://circleci.com/gh/peter-mouland/react-lego.svg?style=svg)](https://circleci.com/gh/peter-mouland/react-lego)
 
 > The building blocks of a react app
 
