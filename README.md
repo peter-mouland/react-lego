@@ -40,7 +40,7 @@ This means _all_ other branches are also production ready. i.e. the have :
   * [x] [unit](/tests/README.md#unit-testing) with [Enzyme](https://github.com/airbnb/enzyme)
   * [x] [functional](/tests/README.md#functional-testing)
   * [x] [end-to-end](/tests/README.md#e2e-testing) with [Nightwatch](http://nightwatchjs.org/) and [BrowserStack](https://www.browserstack.com)
-  * [ ] [smoke](/tests/README.md#smoke-testing)
+  * [x] [smoke](/tests/README.md#smoke-testing)
   * [ ] [code coverage](/tests/README.md#code-coverage)
  * [x] Code linting with [eslint](http://eslint.org/)
  * [x] CI integration with [CircleCI](https://circleci.com/)
