@@ -12,7 +12,7 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
-**Branches available to compare:**
+## Branches available to compare:
 
  * [x] [Base Universal React App](#base-universal-react-app) (master)
    * [x] [Hot-reloading](#hot-reloading)
@@ -24,15 +24,15 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
      * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
    * [x] [React-Router v4](#using-react-route-v4)
    * CSS
-     * [x] [CSS imports](#css-imports)
-     * [ ] [CSS modules](#css-modules)
+     * [x] [CSS Imports](#css-imports)
+     * [x] [CSS Modules](#css-modules)
      * [ ] [CSS in JS](#css-in-js)
    * [ ] Selectors
    * [ ] Service Workers
 
 _All branches are written using es6 and babel with webpack._
 
-### Base Universal React App (master)
+## Base Universal React App (master)
 
 The aim of the `Master` branch was to be production ready.
 This means _all_ other branches are also production ready. i.e. the have :
@@ -133,6 +133,23 @@ Easy, it seems - the new syntax includes a lot for JSX which is friendly and mor
 In master, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
 these are some other ways to achieve more modular components:
 
-### CSS imports
+#### CSS Imports
 
  > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-imports)_
+
+Import your css into your component and use the class names as they are written.  
+This method is the least obtrusive and feels most like traditional css.
+You must manually take care of css scope using things like BEM or Smaccs.
+
+#### CSS Modules
+
+ > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-modules)_
+
+Import you css into your components and add the class names using js object notation.
+This method completely changes the css class names output.
+Scoping problems are gone, but you must specifically mark 'global' classes.
+
+#### CSS in JS
+
+ > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-in-js)_
+
