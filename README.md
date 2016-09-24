@@ -100,6 +100,7 @@ This has the added benefit of :
 
  * Reusing SVG files (without code duplication)
  * Keep SVGs inline and style them with CSS
+ * Serverside rendering of SVG's
 
 [>> More about importing SVGs](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
 
