@@ -8,8 +8,6 @@ require('babel-core/register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");
-const hook = require('node-hook').hook;
-hook('.scss', (source, filename) => `console.log("${filename}");`);
 
 const testServer = require('../../src/server/server.js');
 let openServer;

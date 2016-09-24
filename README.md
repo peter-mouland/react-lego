@@ -23,6 +23,10 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
    * [x] [Webpack v2](#using-webpack-v2)
      * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
    * [x] [React-Router v4](#using-react-route-v4)
+   * CSS
+     * [x] [CSS imports](#css-imports)
+     * [ ] [CSS modules](#css-modules)
+     * [ ] [CSS in JS](#css-in-js)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -70,7 +74,7 @@ This data is now formatted inside a reducer.
 
 [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux)
 
-### Redux with Promise middleware
+#### Redux with Promise middleware
 
  > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux...redux-promised)_
 
@@ -79,7 +83,7 @@ The massive win here is that each container dictates what data it _needs_ while 
 
 [>> More about adding Promise middleware](https://github.com/peter-mouland/react-lego/wiki/Redux-Promise-Middleware)
 
-### Redux Dev Tools
+#### Redux Dev Tools
 
  > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux...redux-devtools)_
 
@@ -108,7 +112,7 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 
 [>> More about Webpack v2](https://github.com/peter-mouland/react-lego/wiki/Webpack-v2)
 
-### Using Webpack v2 with React-Hot-loader v3
+#### Using Webpack v2 with React-Hot-loader v3
 
  > Based on the `webpack2` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)_
 
@@ -123,3 +127,12 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
 
 [>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
+
+### CSS
+
+In master, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
+these are some other ways to achieve more modular components:
+
+### CSS imports
+
+ > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-imports)_

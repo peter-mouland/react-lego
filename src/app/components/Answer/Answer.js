@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './answer.scss';
-
 const CardItemValue = ({ value }) => {
   const values = [].concat(value);
   const props = { className: 'card-item-value' };

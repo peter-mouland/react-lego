@@ -4,8 +4,6 @@ import DocumentMeta from 'react-document-meta';
 import { findRoute } from '../utils';
 import { routes, LinkHelper } from '../routes';
 
-import './mainLayout.scss';
-
 export default class MainLayout extends Component {
 
   static propTypes = {

@@ -8,7 +8,7 @@ defaultConfig.plugins.concat([
 ]);
 
 const prodConfig = Object.assign({}, defaultConfig, {
-  entry: { app: [`${SRC}/client-entry.js`] }
+  entry: { app: [`${SRC}/styles/app.scss`, `${SRC}/client-entry.js`] }
 });
 
 module.exports = prodConfig;

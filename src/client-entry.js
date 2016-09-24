@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import debug from 'debug';
 
 import Root from './app/Root';
-import './styles/app.scss';
 
 debug.enable(process.env.DEBUG);
 
