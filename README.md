@@ -8,7 +8,7 @@ This repo demonstrates how to plug in other technologies, one block at a time, i
 
 The concept is to use GitHub's branch-comparison screens to quickly demo the code changes that are needed for *only* the technology you are interested in.
 
-The `Master` branch is a Universal React App, each other branch then adds one more technology, with the smallest possible changes.
+The `Master` branch is a Universal React App, each other branch then adds one more technology, with the smallest possible changes.  This master branch, and therefore all branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
