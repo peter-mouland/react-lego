@@ -23,10 +23,10 @@ The `Master` branch is a Universal React App, each other branch then adds one mo
    * [x] [Webpack v2](#using-webpack-v2)
      * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
    * [x] [React-Router v4](#using-react-route-v4)
-   * CSS
+   * [CSS](#css)
      * [x] [CSS Imports](#css-imports)
      * [x] [CSS Modules](#css-modules)
-     * [ ] [CSS in JS](#css-in-js)
+     * [-] [CSS in JS](#css-in-js)
    * [ ] Selectors
    * [ ] Service Workers
 
@@ -133,6 +133,8 @@ Easy, it seems - the new syntax includes a lot for JSX which is friendly and mor
 In master, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
 these are some other ways to achieve more modular components:
 
+[>> More about the different CSS methods](https://github.com/peter-mouland/react-lego/wiki/CSS)
+
 #### CSS Imports
 
  > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-imports)_
@@ -145,7 +147,7 @@ You must manually take care of css scope using things like BEM or Smaccs.
 
  > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-modules)_
 
-Import you css into your components and add the class names using js object notation.
+Import your css into your components and add the class names using js object notation.
 This method completely changes the css class names output.
 Scoping problems are gone, but you must specifically mark 'global' classes.
 
@@ -153,3 +155,5 @@ Scoping problems are gone, but you must specifically mark 'global' classes.
 
  > Based on the `master` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-in-js)_
 
+import your css into your components as Javascript Objects.  
+Class names are a thing of the past as are scoping problems.
