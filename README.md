@@ -51,6 +51,14 @@ These have been chosen as _base_ technologies because
 (Apart from them being relatively easy to distinguish between),
 they are essential when building/deploying to make sure I don't break anything!
 
+### Preact client-side app
+
+ > Changed from the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...preact)_
+
+Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
+
+Turns out it was actually very easy!  After removing a few dependencies we swapped routers for [preact-router](https://github.com/developit/preact-router).
+
 ## Universal React App 
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
