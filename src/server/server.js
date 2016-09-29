@@ -1,43 +1,46 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import express from 'express';
-import debug from 'debug';
-import compression from 'compression';
-import Error500 from './templates/Error500';
-import { routingApp, setRoutes } from './router';
-import webpackConfig from '../config/webpack.config.prod';
+/* eslint-disable no-console,import/no-extraneous-dependencies */
 
-const webpackEntries = Object.keys(webpackConfig.entry);
-const assets = {
-  javascript: webpackEntries.map((entry) => `/${entry}.js`),
-  styles: webpackEntries.map((entry) => `/${entry}.css`)
-};
-const server = express();
-const log = debug('lego:server.js');
-log('starting');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const express = require('express');
+const path = require('path');
+const httpProxy = require('http-proxy');
 
-server.set('etag', true);
-server.use((req, res, next) => {
-  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.header('Pragma', 'no-cache');
-  res.header('Expires', 0);
-  next();
+require('../config/environment');
+const webpackConfig = require('../config/webpack.config.dev.js');
+
+const proxy = httpProxy.createProxyServer();
+const app = express();
+let bundleStart = null;
+const compiler = webpack(webpackConfig);
+compiler.plugin('compile', () => {
+  console.log('Bundling...');
+  bundleStart = Date.now();
 });
-server.use(compression());
-server.enable('view cache');
-server.enable('strict routing');
+compiler.plugin('done', () => {
+  console.log(`Bundled in ${Date.now() - bundleStart}ms!`);
+});
 
-Object.assign(express.response, {
-  renderPageToString(page) {
-    return `<!doctype html>${renderToString(page)}`;
-  },
-  render500(e) {
-    log('render500', e);
-    this.status(500).send(this.renderPageToString(<Error500 />));
+const bundler = new WebpackDevServer(compiler, {
+  publicPath: '/dist/',
+  hot: true,
+  quiet: false,
+  noInfo: true,
+  stats: {
+    colors: true
   }
 });
 
-setRoutes(assets);
-server.use('/', routingApp);
+app.use(express.static(path.resolve(__dirname, 'dist')));
 
-export default server;
+app.all('/dist/*', (req, res) => {
+  proxy.web(req, res, {
+    target: 'http://localhost:8080'
+  });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/index.html'));
+});
+
+module.exports = { app, bundler, compiler };

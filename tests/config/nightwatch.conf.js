@@ -9,7 +9,7 @@ require('babel-core/register')({
 });
 require("babel-polyfill");
 
-const testServer = require('../../src/server/server.js');
+const { app, bundler, compiler } = require('../../src/server/server.js');
 let openServer;
 
 module.exports = (function(settings) {
@@ -24,13 +24,21 @@ module.exports = (function(settings) {
   settings.test_settings.default.globals = {
     TARGET_PATH : argv.target || `http://localhost:${process.env.PORT}`,
     before: function(done) {
-      openServer = testServer.listen(process.env.PORT, () => {
-        console.log(`listening at http://localhost:${process.env.PORT}`); // eslint-disable-line
-        done()
+      bundler.listen(8080, 'localhost', () => {
+        console.log('Bundling project, please wait...');
+      });
+
+      compiler.plugin('done', () => {
+        openServer = app.listen(process.env.PORT, () => {
+          console.log(`Server running on port ${process.env.PORT}`);
+          done()
+        });
       });
     },
     after: function(done) {
-      return openServer.close(done);
+      return openServer.close(() => {
+        bundler.close(done);
+      });
     }
   };
   settings.test_settings.default.desiredCapabilities['browserstack.user'] = argv.bsuser || process.env.BROWSERSTACK_USER;
