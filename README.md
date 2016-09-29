@@ -47,15 +47,15 @@ The aim of the `master` branch was to be as close to production ready as possibl
  * [x] CI integration with [CircleCI](https://circleci.com/)
  * [x] Continuous deployment with [Heroku](http://www.heroku.com/)
 
-## Universal React App 
-
-The aim of the `universal` branch was to be production ready.
-This means _all_ other branches are also production ready. 
-This branch, plus all others based off this branch have the above (master) and universal rendering.
-
 These have been chosen as _base_ technologies because
 (Apart from them being relatively easy to distinguish between),
 they are essential when building/deploying to make sure I don't break anything!
+
+## Universal React App 
+
+ > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
+
+The Universal branch is production ready and _All_ other branches are also production ready. 
 
 ### Hot-Reloading
 
