@@ -67,7 +67,7 @@ The Universal branch is production ready and _All_ other branches are also produ
 
 ### Hot-Reloading
 
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/react-hot-loader)_
+ > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)_
 
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
 We are currently using [v3](https://github.com/gaearon/react-hot-loader/tree/next).
@@ -76,7 +76,7 @@ We are currently using [v3](https://github.com/gaearon/react-hot-loader/tree/nex
 
 ### Redux
 
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/redux)_
+ > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...redux)_
 
 [Redux](https://github.com/reactjs/react-redux) was added with data being hydrated on the server.
 
@@ -104,7 +104,7 @@ Add [Redux-DevTools](https://github.com/gaearon/redux-devtools) to the app to he
 
 ### Importing SVGs
 
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/svg)_
+ > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...svg)_
 
 Using [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) and [svg-inline-loader](https://github.com/sairion/svg-inline-loader) we are able to directly import SVGs into our JavaScript.
 This has the added benefit of :
@@ -117,7 +117,7 @@ This has the added benefit of :
 
 ### Using Webpack v2
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2)_
+ > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)_
 
 This was added out of pure interest and I haven't used it in anger yet.
 Please take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
@@ -133,7 +133,7 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 
 ### Using React-Router v4
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/react-router-4)_
+ > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...react-router-4)_
 
 [React Router](https://github.com/ReactTraining/react-router) v4 sees to be very close to being released so I was interested in how hard the upgrade would be.
 Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
@@ -149,7 +149,7 @@ these are some other ways to achieve more modular components:
 
 #### CSS Imports
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-imports)_
+ > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...css-imports)_
 
 Import your css into your component and use the class names as they are written.  
 This method is the least obtrusive and feels most like traditional css.
@@ -157,7 +157,7 @@ You must manually take care of css scope using things like BEM or Smaccs.
 
 #### CSS Modules
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-modules)_
+ > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...css-modules)_
 
 Import your css into your components and add the class names using js object notation.
 This method completely changes the css class names output.
@@ -165,7 +165,7 @@ Scoping problems are gone, but you must specifically mark 'global' classes.
 
 #### CSS in JS
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/css-in-js)_
+ > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...css-in-js)_
 
 import your css into your components as Javascript Objects.  
 Class names are a thing of the past as are scoping problems.
