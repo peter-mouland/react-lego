@@ -8,9 +8,8 @@ require('babel-core/register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");
-
-const { app, bundler, compiler } = require('../../src/server/server.js');
-let openServer;
+const HttpServer = require('http-server').HttpServer;
+let openServer = new HttpServer({ root: 'compiled'});
 
 module.exports = (function(settings) {
   var buildString = "";
@@ -24,21 +23,13 @@ module.exports = (function(settings) {
   settings.test_settings.default.globals = {
     TARGET_PATH : argv.target || `http://localhost:${process.env.PORT}`,
     before: function(done) {
-      bundler.listen(8080, 'localhost', () => {
-        console.log('Bundling project, please wait...');
-      });
-
-      compiler.plugin('done', () => {
-        openServer = app.listen(process.env.PORT, () => {
-          console.log(`Server running on port ${process.env.PORT}`);
-          done()
-        });
+      openServer.listen(process.env.PORT, 'localhost', () => {
+        console.log(`Server running on port ${process.env.PORT}`);
+        done()
       });
     },
     after: function(done) {
-      return openServer.close(() => {
-        bundler.close(done);
-      });
+      return openServer.close(done);
     }
   };
   settings.test_settings.default.desiredCapabilities['browserstack.user'] = argv.bsuser || process.env.BROWSERSTACK_USER;
