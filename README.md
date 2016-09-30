@@ -14,24 +14,25 @@ The default branch (`universal`) is a Universal React App, each other branch the
 
 ## Branches available to compare:
 
-* [x] Client-side app (React)
+* [x] [Client-side app (React)](#react-client-side-app)
   * [x] [Universal React App](#base-universal-react-app) (master)
-    * [x] [Hot-reloading](#hot-reloading)
-    * [x] [Redux](#redux)
-      * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
-      * [X] [Redux Dev Tools](#redux-dev-tools)
-    * [x] [Importing SVGs](#importing-svgs)
-    * [x] [Webpack v2](#using-webpack-v2)
-     * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
-    * [x] [React-Router v4](#using-react-route-v4)
-    * [CSS](#css)
-     * [x] [CSS Imports](#css-imports)
-     * [x] [CSS Modules](#css-modules)
-     * [-] [CSS in JS](#css-in-js)
+     * [x] [Hot-reloading](#hot-reloading)
+     * [x] [Redux](#redux)
+       * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
+       * [X] [Redux Dev Tools](#redux-dev-tools)
+     * [x] [Importing SVGs](#importing-svgs)
+     * [x] [Webpack v2](#using-webpack-v2)
+       * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
+     * [x] [React-Router v4](#using-react-route-v4)
+     * [X] [CSS](#css)
+       * [x] [CSS Imports](#css-imports)
+       * [x] [CSS Modules](#css-modules)
+       * [-] [CSS in JS](#css-in-js)
+* [x] [Client-side app (Preact)](#preact-client-side-app)
 
 _All branches are written using es6 and babel with webpack._
 
-## Client-side App 
+## React Client-side App 
 
 The aim of the `master` branch was to be as close to production ready as possible (minus universal rendering).
 
