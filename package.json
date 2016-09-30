@@ -20,8 +20,8 @@
     "mocha": "mocha --opts ./tests/config/mocha.opts "
   },
   "engines": {
-    "node": "^6.2.1",
-    "npm": "^3.9.3"
+    "node": "^6.6.0",
+    "npm": "^3.10.3"
   },
   "pre-commit": [
     "lint",
