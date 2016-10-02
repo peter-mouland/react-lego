@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "rm -rf compiled && npm run build && cp src/server/views/index.html compiled",
     "build": "NODE_ENV=production webpack --config src/config/webpack.config.prod.js -p",
-    "start": "http-server compiled",
+    "start": "NODE_ENV=production http-server compiled",
     "start:dev": "node src/dev-server-entry.js  ",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "npm run test:unit && npm run test:func",
@@ -47,6 +47,7 @@
     "babel-preset-react": "^6.5.0",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.3",
+    "cross-env": "^3.0.0",
     "css-loader": "^0.23.0",
     "cssnano": "^3.5.2",
     "debug": "^2.2.0",
