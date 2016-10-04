@@ -56,7 +56,6 @@
     "lodash": "^4.1.0",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.13.0",
-    "purifycss-webpack-plugin": "^2.0.3",
     "react": "^15.1.0",
     "react-document-meta": "^2.0.2",
     "react-dom": "^15.1.0",
