@@ -8,14 +8,19 @@ This repo demonstrates how to plug in other technologies, one block at a time, i
 
 The concept is to use GitHub's branch-comparison screens to quickly demo the code changes that are needed for *only* the technology you are interested in.
 
-The default branch (`universal`) is a Universal React App, each other branch then adds one more technology, with the smallest possible changes.  This master branch, and therefore all branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
+A client-side React app which is fully tested and production ready on the `master` branch.  
+From Master, `universal` was created which added Server-side Rendering (SSR) via Express.  
+Every other branch then adds one more technology, with the smallest possible changes.
+
+All branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
 ## Branches available to compare:
 
 * [x] [Client-side app (React)](#react-client-side-app)
-  * [x] [Universal React App](#base-universal-react-app) (master)
+  * [x] [Universal React App (Using Koa)](#universal-react-app)
+  * [x] [Universal React App (Using Express)](#universal-react-app)
      * [x] [Hot-reloading](#hot-reloading)
      * [x] [Redux](#redux)
        * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
@@ -60,11 +65,21 @@ Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https:
 
 Turns out it was actually very easy!  After removing a few dependencies we swapped routers for [preact-router](https://github.com/developit/preact-router).
 
-## Universal React App 
+[>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
+
+## Universal React App (Koa)
+
+ > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...koa)_
+
+Using Koa, the App now renders on the server.
+
+Some may find comparing the code [changes between Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa) interesting... 
+
+## Universal React App (Express)
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
 
-The Universal branch is production ready and _All_ other branches are also production ready. 
+Using Express, the App now renders on the server.
 
 ### Hot-Reloading
 
