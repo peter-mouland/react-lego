@@ -19,8 +19,8 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
 ## Branches available to compare:
 
 * [x] [Client-side app (React)](#react-client-side-app)
-  * [x] [Universal React App (Using Koa)](#universal-react-app)
-  * [x] [Universal React App (Using Express)](#universal-react-app)
+  * [x] [Universal React App (Using Koa)](#universal-react-app-koa)
+  * [x] [Universal React App (Using Express)](#universal-react-app-express)
      * [x] [Hot-reloading](#hot-reloading)
      * [x] [Redux](#redux)
        * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
@@ -28,7 +28,8 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
      * [x] [Importing SVGs](#importing-svgs)
      * [x] [Webpack v2](#using-webpack-v2)
        * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
-     * [x] [React-Router v4](#using-react-route-v4)
+         * [x] [Webpack v2 with React-Hot-loader v3 and React-Router v4](#using-webpack-v2-with-react-hot-loader-v3-and-react-router-v4)
+     * [x] [React-Router v4](#using-react-router-v4)
      * [X] [CSS](#css)
        * [x] [CSS Imports](#css-imports)
        * [x] [CSS Modules](#css-modules)
@@ -146,6 +147,13 @@ Please take a look at the comparison branch to see how to upgrade from webpack v
 
  Just added as a quick demo to help out and show the 2 working together.
  no changes required to either branch to get them to work together.
+
+
+##### Using Webpack v2 with React-Hot-loader v3 React-Router v4
+
+ > Based on the `webpack2-rhl` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...webpack2-rhl-rr4)_
+
+ Simply added React Router 4 to see if the `You cannot change <Router routes>` errors go away... and they do! 
 
 ### Using React-Router v4
 
