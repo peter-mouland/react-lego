@@ -20,6 +20,7 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
 
 * [x] [Client-side app (React)](#react-client-side-app)
   * [x] [Universal React App (Using Koa)](#universal-react-app-koa)
+     * [x] [Webpack 2 + React-Router v4 + React-Hot-Loader v3](#koa-with-webpack2-react-router-v4-and-react-hot-loader-v3)
   * [x] [Universal React App (Using Express)](#universal-react-app-express)
      * [x] [Hot-reloading](#hot-reloading)
      * [x] [Redux](#redux)
@@ -75,6 +76,13 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 Using Koa, the App now renders on the server.
 
 Some may find comparing the code [changes between Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa) interesting... 
+
+### Koa with Webpack2, React Router v4 and React-Hot-Loader v3
+
+ > Based on the `koa` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3)
+ 
+I simply rebased and rebased and rebased some more :) 
+Oh, I did swap in koa's hot middleware, but that was it. and it works, bonus.
 
 ## Universal React App (Express)
 
