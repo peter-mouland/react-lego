@@ -26,23 +26,24 @@ Each tech has its own branch, and in my experience, can be mixed and matched _al
 * [Client-side Only](#client-side-only)
     * [React](#react)
     * [Preact (w/ preact-router)](#preact)
-* Server-side Rendering (SSR) 
+* [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
    * Koa
    * Express
 * Build Tools
    * Webpack 2
-* Routers
-   * React-router 4
 * Hot-Reloading
    * React-hot-loader v3
+* Routers
+   * React-router 4
 * State Manangement
    * Redux
    * Redux with Promise middleware (async on the server)
    * Redux-Dev-tools
-* Styling
-   * [x] [CSS Imports](#css-imports)
-   * [x] [CSS Modules](#css-modules)
-   * [-] [CSS in JS](#css-in-js)
+* Importing Assets
+   * [SVGs](#importing-svgs)
+   * [CSS Imports](#css-imports)
+   * [CSS Modules](#css-modules)
+   * [CSS in JS](#css-in-js)
     
 
 
@@ -108,26 +109,51 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 Using Koa, the App now renders on the server.
 
 Also: 
- * [Compare Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa)
+ * [Compare Koa with Express](https://github.com/peter-mouland/react-lego/compare/universal...koa)
  * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2)
- * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4) to the above
- * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3) to the above
+   * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4) to the above
+     * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3) to the above
 
 I simply rebased and rebased and rebased some more :) 
-Oh, I did swap in koa's hot middleware, but that was it. and it works, bonus.
+Oh, I did swap in koa's hot middleware, but that was it. And it works, bonus.
 
-## Express
+### Express
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
 
 Using Express, the App now renders on the server.
 
-### Hot-Reloading
+Also: 
+ * [Compare Express with Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa)
+ * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)
+ * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2)
+   * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4) to the above
+     * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3) to the above
+
+## Build Tools
+
+### Webpack v2
+             
+> Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)_
+
+This was added out of pure interest and I haven't used it in anger yet.
+Take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
+
+Other Webpack v2 Branches:
+ * [Koa with Webpack v2](https://github.com/peter-mouland/react-lego/tree/koa-wp2)
+
+## Hot-Reloading
+
+### React-hot-loader v3
 
  > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)_
 
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
 We are currently using [v3](https://github.com/gaearon/react-hot-loader/tree/next).
+
+Other RHLv3 Branches:
+ * [Add RHLv3 to Koa with Webpack v2, React-Router v4](https://github.com/peter-mouland/react-lego/compare/koa-wp2-rr4...koa-wp2-rr4-rhl3)
+ * [Add RHLv3 to Express with Webpack v2](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)
 
 [>> More about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
 
