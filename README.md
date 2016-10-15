@@ -16,7 +16,7 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
-## Technologies:
+## Technology to Compare:
 
  > All apps use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unless otherwise stated.
  
