@@ -69,7 +69,7 @@ The react app uses [react-router](https://github.com/reactjs/react-router) v2 fo
 
 ### Preact
 
- > Branched from `master`: _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...preact)_
+ > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)_
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
 
@@ -104,8 +104,8 @@ Using Express, the App now renders on the server, [Compare Express with Koa](htt
 
  * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)
  * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)
-   * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4) to the above
-     * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3) to the above
+   * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl) to the above
+     * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/webpack2-rhl...webpack2-rhl-rr4) to the above
 
 ## Build Tools
 
