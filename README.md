@@ -9,19 +9,49 @@ This repo demonstrates how to plug in other technologies, one block at a time, i
 The concept is to use GitHub's branch-comparison screens to quickly demo the code changes that are needed for *only* the technology you are interested in.
 
 A client-side React app which is fully tested and production ready on the `master` branch.  
-From Master, `universal` was created which added Server-side Rendering (SSR) via Express.  
+From Master, `universal` was created which added *Server-side Rendering (SSR)* via Express.  
 Every other branch then adds one more technology, with the smallest possible changes.
 
 All branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
-## Branches available to compare:
+## Technologies:
+
+ > All apps use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unless otherwise stated.
+ 
+Below are the technologies available to compare.  
+Each tech has its own branch, and in my experience, can be mixed and matched _almost_ seamlessly!
+
+* [Client-side Only](#client-side-only)
+    * [React](#react)
+    * [Preact (w/ preact-router)](#preact)
+* Server-side Rendering (SSR) 
+   * Koa
+   * Express
+* Build Tools
+   * Webpack 2
+* Routers
+   * React-router 4
+* Hot-Reloading
+   * React-hot-loader v3
+* State Manangement
+   * Redux
+   * Redux with Promise middleware (async on the server)
+   * Redux-Dev-tools
+* Styling
+   * [x] [CSS Imports](#css-imports)
+   * [x] [CSS Modules](#css-modules)
+   * [-] [CSS in JS](#css-in-js)
+    
+
 
 * [x] [Client-side app (React)](#react-client-side-app)
-  * [x] [Universal React App (Using Koa)](#universal-react-app-koa)
-     * [x] [Webpack 2 + React-Router v4 + React-Hot-Loader v3](#koa-with-webpack2-react-router-v4-and-react-hot-loader-v3)
-  * [x] [Universal React App (Using Express)](#universal-react-app-express)
+  * [x] [Koa SSR React](#koa-ssr-react)
+     * [x] [Koa with Webpack 2](#koa-with-webpack2)
+       * [x] [Koa with Webpack 2 and React-Router v4](#koa-with-webpack2-react-router-v4)
+         * [x] [Webpack 2 + React-Router v4 + React-Hot-Loader v3](#koa-with-webpack2-react-router-v4-and-react-hot-loader-v3)
+  * [x] [Express SSR React](#express-ssr-react)
      * [x] [Hot-reloading](#hot-reloading)
      * [x] [Redux](#redux)
        * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
@@ -37,13 +67,10 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
        * [-] [CSS in JS](#css-in-js)
 * [x] [Client-side app (Preact)](#preact-client-side-app)
 
-_All branches are written using es6 and babel with webpack._
+## Client-side Only
 
-## React Client-side App 
+The client-side apps are production ready and fully tested, they both use the following :
 
-The aim of the `master` branch was to be as close to production ready as possible (minus universal rendering).
-
- * [x] Routing ([react-router](https://github.com/reactjs/react-router))
  * [x] CSS ([Sass-loader](https://github.com/jtangelder/sass-loader), [Autoprefixer](https://github.com/postcss/autoprefixer))
  * [x] [tests](/tests/README.md)
   * [x] [unit](/tests/README.md#unit-testing) with [Enzyme](https://github.com/airbnb/enzyme)
@@ -55,13 +82,16 @@ The aim of the `master` branch was to be as close to production ready as possibl
  * [x] CI integration with [CircleCI](https://circleci.com/)
  * [x] Continuous deployment with [Heroku](http://www.heroku.com/)
 
-These have been chosen as _base_ technologies because
-(Apart from them being relatively easy to distinguish between),
-they are essential when building/deploying to make sure I don't break anything!
+*All* other branches include the above and are also production ready.
 
-### Preact client-side app
+### React
+ > `master` branch
 
- > Changed from the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...preact)_
+The react app uses [react-router](https://github.com/reactjs/react-router) v2 for routing.
+
+### Preact
+
+ > Branched from `master`: _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...preact)_
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
 
@@ -69,22 +99,24 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
 
-## Universal React App (Koa)
+## Server-side Rendering (SSR)
+
+### Koa
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...koa)_
 
 Using Koa, the App now renders on the server.
 
-Some may find comparing the code [changes between Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa) interesting... 
+Also: 
+ * [Compare Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa)
+ * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2)
+ * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4) to the above
+ * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3) to the above
 
-### Koa with Webpack2, React Router v4 and React-Hot-Loader v3
-
- > Based on the `koa` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3)
- 
 I simply rebased and rebased and rebased some more :) 
 Oh, I did swap in koa's hot middleware, but that was it. and it works, bonus.
 
-## Universal React App (Express)
+## Express
 
  > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
 
