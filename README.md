@@ -9,41 +9,45 @@ This repo demonstrates how to plug in other technologies, one block at a time, i
 The concept is to use GitHub's branch-comparison screens to quickly demo the code changes that are needed for *only* the technology you are interested in.
 
 A client-side React app which is fully tested and production ready on the `master` branch.  
-From Master, `universal` was created which added Server-side Rendering (SSR) via Express.  
+From Master, `universal` was created which added *Server-side Rendering (SSR)* via Express.  
 Every other branch then adds one more technology, with the smallest possible changes.
 
 All branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
 
 [>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
 
-## Branches available to compare:
+_All branches use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unless otherwise stated_
 
-* [x] [Client-side app (React)](#react-client-side-app)
-  * [x] [Universal React App (Using Koa)](#universal-react-app-koa)
-     * [x] [Webpack 2 + React-Router v4 + React-Hot-Loader v3](#koa-with-webpack2-react-router-v4-and-react-hot-loader-v3)
-  * [x] [Universal React App (Using Express)](#universal-react-app-express)
-     * [x] [Hot-reloading](#hot-reloading)
-     * [x] [Redux](#redux)
-       * [x] [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
-       * [X] [Redux Dev Tools](#redux-dev-tools)
-     * [x] [Importing SVGs](#importing-svgs)
-     * [x] [Webpack v2](#using-webpack-v2)
-       * [x] [Webpack v2 with React-Hot-loader v3](#using-webpack-v2-with-react-hot-loader-v3)
-         * [x] [Webpack v2 with React-Hot-loader v3 and React-Router v4](#using-webpack-v2-with-react-hot-loader-v3-and-react-router-v4)
-     * [x] [React-Router v4](#using-react-router-v4)
-     * [X] [CSS](#css)
-       * [x] [CSS Imports](#css-imports)
-       * [x] [CSS Modules](#css-modules)
-       * [-] [CSS in JS](#css-in-js)
-* [x] [Client-side app (Preact)](#preact-client-side-app)
+## Technology to Compare:
+ 
+Each tech has its own branch, and in my experience, can be mixed and matched _almost_ seamlessly!
 
-_All branches are written using es6 and babel with webpack._
+* [Client-side](#client-side)
+    * [React](#react)
+    * [Preact (w/ preact-router)](#preact)
+* [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
+   * [Koa](#koa)
+   * [Express](#express)
+* [Build Tools](#build-tools)
+   * [Webpack v2](#webpack-v2)
+* [Hot-Reloading](hot-reloading)
+   * [React-hot-loader v3](#react-hot-loader-v3)
+* [Routing](#routing)
+   * [React-router v4](#react-router-v4)
+* [State Management](#state-management)
+   * [Redux](#redux)
+   * [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
+   * [Redux Dev Tools](#redux-dev-tools)
+* [Importing Assets](#importing-assets)
+   * [SVGs](#svgs)
+   * [CSS Imports](#css-imports)
+   * [CSS Modules](#css-modules)
+   * [CSS in JS](#css-in-js)
 
-## React Client-side App 
+## Client-side
 
-The aim of the `master` branch was to be as close to production ready as possible (minus universal rendering).
+The client-side apps are production ready and fully tested, they both use the following :
 
- * [x] Routing ([react-router](https://github.com/reactjs/react-router))
  * [x] CSS ([Sass-loader](https://github.com/jtangelder/sass-loader), [Autoprefixer](https://github.com/postcss/autoprefixer))
  * [x] [tests](/tests/README.md)
   * [x] [unit](/tests/README.md#unit-testing) with [Enzyme](https://github.com/airbnb/enzyme)
@@ -55,13 +59,16 @@ The aim of the `master` branch was to be as close to production ready as possibl
  * [x] CI integration with [CircleCI](https://circleci.com/)
  * [x] Continuous deployment with [Heroku](http://www.heroku.com/)
 
-These have been chosen as _base_ technologies because
-(Apart from them being relatively easy to distinguish between),
-they are essential when building/deploying to make sure I don't break anything!
+*All* other branches include the above and are also production ready.
 
-### Preact client-side app
+### React
+ > `master` branch
 
- > Changed from the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...preact)_
+The react app uses [react-router](https://github.com/reactjs/react-router) v2 for routing.
+
+### Preact
+
+ > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
 
@@ -69,39 +76,81 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
 
-## Universal React App (Koa)
+## Server-side Rendering (SSR)
 
- > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...koa)_
+### Koa
 
-Using Koa, the App now renders on the server.
+ > [Add Koa to React](https://github.com/peter-mouland/react-lego/compare/master...koa)
 
-Some may find comparing the code [changes between Express and Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa) interesting... 
+Using Koa, the App now renders on the server, [Compare Koa with Express](https://github.com/peter-mouland/react-lego/compare/universal...koa).
 
-### Koa with Webpack2, React Router v4 and React-Hot-Loader v3
+#### Koa Branches: 
 
- > Based on the `koa` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2-rr4-rhl3)
- 
+ * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2)
+   * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/koa-wp2...koa-wp2-rr4) to the above
+     * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa-wp2-rr4...koa-wp2-rr4-rhl3) to the above
+
 I simply rebased and rebased and rebased some more :) 
-Oh, I did swap in koa's hot middleware, but that was it. and it works, bonus.
+Oh, I did swap in koa's hot middleware, but that was it. And it works, bonus.
 
-## Universal React App (Express)
+### Express
 
- > Based on the `master` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/master...universal)_
+ > [Add Express to React](https://github.com/peter-mouland/react-lego/compare/master...universal)
 
-Using Express, the App now renders on the server.
+Using Express, the App now renders on the server, [Compare Express with Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa).
 
-### Hot-Reloading
+#### Express Branches:
 
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)_
+ * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)
+ * [Add Webpack 2](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)
+   * [Add React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl) to the above
+     * [Add React-router 4](https://github.com/peter-mouland/react-lego/compare/webpack2-rhl...webpack2-rhl-rr4) to the above
+
+## Build Tools
+
+### Webpack v2
+             
+This was added out of pure interest and I haven't used it in anger yet.
+Take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
+
+Other Webpack v2 Branches:
+ * [Koa with Webpack v2](https://github.com/peter-mouland/react-lego/compare/koa...koa-wp2)
+ * [Express with Webpack v2](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)
+
+## Hot-Reloading
+
+### React-hot-loader v3
 
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
 We are currently using [v3](https://github.com/gaearon/react-hot-loader/tree/next).
 
 [>> More about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
 
-### Redux
+#### RHLv3 Branches
 
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...redux)_
+ * [Express with React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/universal...react-hot-loader)
+ * [Express with Webpack v2  React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)
+ * [Koa with Webpack v2 and React-hot-loader v3](https://github.com/peter-mouland/react-lego/compare/koa-wp2-rr4...koa-wp2-rr4-rhl3)
+
+## Routing
+
+### React-Router v4
+
+[React Router](https://github.com/ReactTraining/react-router) v4 sees to be very close to being released so I was interested in how hard the upgrade would be.
+Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
+
+[>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
+
+#### React-router v4 Branches
+ 
+ * [Add React-router v4 to Express](https://github.com/peter-mouland/react-lego/compare/universal...react-router-4)
+ * [Add React-router v4 to Koa](https://github.com/peter-mouland/react-lego/compare/koa-wp2...koa-wp2-rr4)
+
+## State-Management
+
+### Redux
+ 
+ > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...redux)
 
 [Redux](https://github.com/reactjs/react-redux) was added with data being hydrated on the server.
 
@@ -127,7 +176,14 @@ Add [Redux-DevTools](https://github.com/gaearon/redux-devtools) to the app to he
 
 [>> More about adding redux-dev-tools](https://github.com/peter-mouland/react-lego/wiki/Redux-dev-tools)
 
-### Importing SVGs
+## Importing Assets
+
+In the base branches, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
+these are some other ways to achieve more modular components:
+
+[>> More about the different CSS methods](https://github.com/peter-mouland/react-lego/wiki/CSS)
+
+### SVGs
 
  > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...svg)_
 
@@ -139,45 +195,6 @@ This has the added benefit of :
  * Serverside rendering of SVG's
 
 [>> More about importing SVGs](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
-
-### Using Webpack v2
-
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...webpack2)_
-
-This was added out of pure interest and I haven't used it in anger yet.
-Please take a look at the comparison branch to see how to upgrade from webpack v1 to v2.
-
-[>> More about Webpack v2](https://github.com/peter-mouland/react-lego/wiki/Webpack-v2)
-
-#### Using Webpack v2 with React-Hot-loader v3
-
- > Based on the `webpack2` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/webpack2...webpack2-rhl)_
-
- Just added as a quick demo to help out and show the 2 working together.
- no changes required to either branch to get them to work together.
-
-
-##### Using Webpack v2 with React-Hot-loader v3 React-Router v4
-
- > Based on the `webpack2-rhl` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...webpack2-rhl-rr4)_
-
- Simply added React Router 4 to see if the `You cannot change <Router routes>` errors go away... and they do! 
-
-### Using React-Router v4
-
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...react-router-4)_
-
-[React Router](https://github.com/ReactTraining/react-router) v4 sees to be very close to being released so I was interested in how hard the upgrade would be.
-Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
-
-[>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
-
-### CSS
-
-In master, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
-these are some other ways to achieve more modular components:
-
-[>> More about the different CSS methods](https://github.com/peter-mouland/react-lego/wiki/CSS)
 
 #### CSS Imports
 
