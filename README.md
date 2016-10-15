@@ -69,7 +69,7 @@ The react app uses [react-router](https://github.com/reactjs/react-router) v2 fo
 
 ### Preact
 
- > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)_
+ > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
 
@@ -81,7 +81,7 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 ### Koa
 
- > [Add Koa to React branch](https://github.com/peter-mouland/react-lego/compare/master...koa)
+ > [Add Koa to React](https://github.com/peter-mouland/react-lego/compare/master...koa)
 
 Using Koa, the App now renders on the server, [Compare Koa with Express](https://github.com/peter-mouland/react-lego/compare/universal...koa).
 
@@ -96,7 +96,7 @@ Oh, I did swap in koa's hot middleware, but that was it. And it works, bonus.
 
 ### Express
 
- > [Add Express to React branch](https://github.com/peter-mouland/react-lego/compare/master...universal)
+ > [Add Express to React](https://github.com/peter-mouland/react-lego/compare/master...universal)
 
 Using Express, the App now renders on the server, [Compare Express with Koa](https://github.com/peter-mouland/react-lego/compare/universal...koa).
 
@@ -150,6 +150,8 @@ Easy, it seems - the new syntax includes a lot for JSX which is friendly and mor
 ## State-Management
 
 ### Redux
+ 
+ > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/universal...redux)
 
 [Redux](https://github.com/reactjs/react-redux) was added with data being hydrated on the server.
 
