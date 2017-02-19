@@ -10,6 +10,18 @@ require('babel-core/register')({
 require("babel-polyfill");
 const HttpServer = require('http-server').HttpServer;
 let openServer = new HttpServer({ root: 'compiled'});
+const needLocalServer = !argv.target;
+const startLocalServers = (done) => {
+  openServer.listen(process.env.PORT, 'localhost', () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+    done()
+  });
+};
+const stopLocalServers = (done) => {
+  console.log('Closing server...');
+  openServer.close(done);
+};
+const noop = (done) => { done(); };
 
 module.exports = (function(settings) {
   var buildString = "";
@@ -22,15 +34,8 @@ module.exports = (function(settings) {
 
   settings.test_settings.default.globals = {
     TARGET_PATH : argv.target || `http://localhost:${process.env.PORT}`,
-    before: function(done) {
-      openServer.listen(process.env.PORT, 'localhost', () => {
-        console.log(`Server running on port ${process.env.PORT}`);
-        done()
-      });
-    },
-    after: function(done) {
-      return openServer.close(done);
-    }
+    before:  needLocalServer ? startLocalServers : noop,
+    after: needLocalServer ? stopLocalServers : noop
   };
   settings.test_settings.default.desiredCapabilities['browserstack.user'] = argv.bsuser || process.env.BROWSERSTACK_USER;
   settings.test_settings.default.desiredCapabilities['browserstack.key'] = argv.bskey || process.env.BROWSERSTACK_KEY;
