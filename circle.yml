@@ -5,6 +5,8 @@ machine:
     Europe/London
   node:
     version: v6.6
+  java:
+    version: openjdk8
 general:
   artifacts:
     - test/reports

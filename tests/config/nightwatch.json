@@ -5,23 +5,23 @@
     "workers": "auto"
   },
   "selenium" : {
-    "start_process" : false,
-    "host" : "hub-cloud.browserstack.com",
-    "port" : 80
+    "start_process" : true,
+    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.0.1-server.jar"
   },
   "custom_commands_path" : "./tests/support/nightwatch-commands",
+
   "test_settings" : {
     "default" : {
-      "launch_url" : "hub-cloud.browserstack.com",
+      "launch_url" : "http://hub.browserstack.com",
+      "selenium_port"  : 80,
+      "selenium_host"  : "hub.browserstack.com",
       "silent": true,
       "screenshots" : {
-        "enabled" : true,
+        "enabled" : false,
         "path" : ""
       },
-      "selenium_port"  : 80,
-      "selenium_host"  : "hub-cloud.browserstack.com",
       "desiredCapabilities": {
-        "project": "React SSR Base",
+        "project": "React Lego",
         "build": "build ",
         "browserName": "firefox",
         "javascriptEnabled": true,
@@ -32,11 +32,6 @@
       }
     },
     "local": {
-      "selenium" : {
-        "start_process" : true,
-        "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/2.53.1-server.jar",
-        "port" : 4444
-      },
       "launch_url" : "http://localhost",
       "selenium_port"  : 4444,
       "selenium_host"  : "127.0.0.1",
@@ -46,64 +41,61 @@
       },
       "desiredCapabilities": {
         "build": "build local",
-        "browserName": "chrome",
-        "browserstack.local" : false
+        "browserName": "phantomjs",
+        "browserstack.local" : false,
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
       }
     },
     "chrome_win" : {
       "desiredCapabilities": {
         "os": "Windows",
-        "os_version": "10",
-        "browser": "Chrome",
-        "browser_version": "56.0"
+        "os_version": "7",
+        "browserName": "chrome"
       }
     },
     "safari_osx" : {
       "desiredCapabilities": {
         "os": "OS X",
-        "os_version": "Sierra",
-        "browser": "Safari",
-        "browser_version": "10.0"
+        "os_version": "El Capitan",
+        "browserName": "safari"
       }
     },
     "chrome_osx" : {
       "desiredCapabilities": {
         "os": "OS X",
-        "os_version": "Sierra",
-        "browser": "Chrome",
-        "browser_version": "56.0"
+        "os_version": "El Capitan",
+        "browserName": "chrome"
       }
     },
     "firefox_win" : {
       "desiredCapabilities": {
         "os": "Windows",
-        "os_version": "10",
-        "browser": "Firefox",
-        "browser_version": "51.0"
+        "os_version": "7",
+        "browserName": "firefox"
       }
     },
     "firefox_osx" : {
       "desiredCapabilities": {
         "os": "OS X",
-        "os_version": "Sierra",
-        "browser": "Firefox",
-        "browser_version": "51.0"
+        "os_version": "El Capitan",
+        "browserName": "firefox"
       }
     },
     "IE11" : {
       "desiredCapabilities": {
         "os": "Windows",
         "os_version": "8.1",
-        "browser": "IE",
+        "browserName": "IE",
         "browser_version": "11.0"
       }
     },
     "edge": {
       "desiredCapabilities": {
+        "browserName": "Edge",
+        "browser_version": "13.0",
         "os": "Windows",
-        "os_version": "10",
-        "browser": "Edge",
-        "browser_version": "14.0"
+        "os_version": "10"
       }
     }
   }
