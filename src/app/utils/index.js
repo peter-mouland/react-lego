@@ -12,9 +12,20 @@ export const hasWindow = typeof window !== 'undefined';
 // isBrowser = true for client only
 export const isBrowser = typeof navigator !== 'undefined' && navigator.indexOf('Node.js') === -1;
 
-export const localUrl = isBrowser
-  ? (new window.URL(window.location)).origin
-  : `http://localhost:${process.env.PORT}`;
+const getLocalUrl = () => {
+  if (isBrowser) {
+    const location = window.location;
+    if (!location.origin) { // Some browsers (mainly IE) does not have this property
+      location.origin = `${location.protocol}//${location.hostname}${location.port
+        ? (`:${location.port}`)
+        : ''}`;
+    }
+    return location.origin;
+  }
+  return `http://localhost:${process.env.PORT}`;
+};
+
+export const localUrl = getLocalUrl();
 
 export function findRoute(pathname) {
   return find(routes, (route) =>
