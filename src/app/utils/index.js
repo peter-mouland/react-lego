@@ -1,12 +1,10 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
-
+import './find';
 import { routes } from '../routes';
 
 export { fetch, json } from './fetch';
 export { randomRange } from './randomRange';
 
-const navigator = get(global, 'navigator.userAgent');
+const navigator = global.navigator && global.navigator.userAgent;
 // hasWindow = true for tests + client
 export const hasWindow = typeof window !== 'undefined';
 // isBrowser = true for client only
@@ -28,7 +26,10 @@ const getLocalUrl = () => {
 export const localUrl = getLocalUrl();
 
 export function findRoute(pathname) {
-  return find(routes, (route) =>
-    pathname.replace(/(\?.*)|(#.*)/g, '') === route.path
-  );
+  const routesArr = Object.keys(routes);
+  const match = routesArr.find((key) => {
+    const route = routes[key];
+    return pathname.replace(/(\?.*)|(#.*)/g, '') === route.path;
+  });
+  return routes[match];
 }
