@@ -26,7 +26,7 @@ _All branches use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unl
 * [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
    * [Koa](#koa)
    * [Koa v2](#koa-v2)
-   * Express _see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)
+   * Express _see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)_
 * [Importing CSS](#importing-css)
    * [CSS Imports](#css-imports)
    * [CSS Modules](#css-modules)
