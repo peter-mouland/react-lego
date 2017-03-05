@@ -26,7 +26,7 @@ _All branches use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unl
 * [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
    * [Koa](#koa)
    * [Koa v2](#koa-v2)
-   * [Express](#express)
+   * Express _see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)
 * [Importing CSS](#importing-css)
    * [CSS Imports](#css-imports)
    * [CSS Modules](#css-modules)
@@ -92,12 +92,6 @@ With Async/Await around the corner and likely to be in Node v8, Koa 2 will soon 
 I've created a Koa v2 app to see how _all_ the branches already mentioned come together in that setup.
 
 [koa-v2-app](https://github.com/peter-mouland/react-lego/tree/koa-app)
-
-### Express
-
- > [Adding Express to React code comparison](https://github.com/peter-mouland/react-lego/compare/master...express)
-
-Using Express, the App now renders on the server, [Compare Express with Koa](https://github.com/peter-mouland/react-lego/compare/express...koa).
 
 ## Importing CSS
 
