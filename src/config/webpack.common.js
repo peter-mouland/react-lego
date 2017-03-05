@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: DIST,
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: '/dist/'
   },
   plugins: [
     new ProgressBarPlugin(),
