@@ -1,18 +1,20 @@
+const chai = require('chai');
+const chaiEnzyme = require('chai-enzyme');
+const sinonChai = require("sinon-chai");
+
 require('babel-core/register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");
 const jsdom = require('jsdom');
+
 // setup the simplest document possible
 const doc = jsdom.jsdom(`
 <!doctype html>
-<html>
-  <body>
-    <div id="html"></div>
-  </body>
+  <html> <body> <div id="html"></div> </body>
 </html>`);
 
-// get the window object out of the document and set globals for mocha 
+// get the window object out of the document and set globals for mocha
 const win = doc.defaultView;
 global.document = doc;
 global.window = win;
@@ -28,3 +30,9 @@ function propagateToGlobal(window) {
   }
 }
 
+
+// setup chai
+chai.should();
+chai.expect();
+chai.use(chaiEnzyme());
+chai.use(sinonChai);

@@ -1,10 +1,25 @@
 {
   "sourceMaps": true,
-  "presets": ["react", "es2015"],
+  "presets": ["react", ["env", {
+    "targets": {
+      "browsers": [
+        "safari >= 9",
+        "ie 11",
+        "last 2 Chrome versions",
+        "last 2 Firefox versions",
+        "edge 13",
+        "ios_saf 9.0-9.2",
+        "ie_mob 11",
+        "Android >= 4"
+      ],
+      "debug": false,
+      "loose": false,
+      "modules": false,
+      "useBuiltIns": true
+    }
+  }]],
   "plugins": [
-    "add-module-exports",
     "transform-class-properties",
-    "transform-object-rest-spread",
-    "transform-object-assign"
+    "transform-object-rest-spread"
   ]
 }

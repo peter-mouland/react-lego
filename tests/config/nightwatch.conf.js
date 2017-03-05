@@ -3,24 +3,11 @@ const argv = require('yargs')
   .usage('Usage: $0 --target=[string] --sha=[string] --bskey=[string] --bsuser=[string]')
   .argv;
 process.env.PORT = 3210;
-require('../../src/config/environment');
-require('babel-core/register')({
-  only: [/src/, /tests/, /config/]
-});
-require("babel-polyfill");
-const HttpServer = require('http-server').HttpServer;
-let openServer = new HttpServer({ root: 'compiled'});
-const needLocalServer = !argv.target;
-const startLocalServers = (done) => {
-  openServer.listen(process.env.PORT, 'localhost', () => {
-    console.log(`Server running on port ${process.env.PORT}`);
-    done()
-  });
-};
-const stopLocalServers = (done) => {
-  console.log('Closing server...');
-  openServer.close(done);
-};
+
+const testServer = require('./test-server/test-server-entry');
+
+const TARGET_PATH = argv.target || `http://localhost:${process.env.PORT}`;
+const needLocalServer = TARGET_PATH.indexOf('localhost') > -1;
 const noop = (done) => { done(); };
 
 module.exports = (function(settings) {
@@ -33,9 +20,27 @@ module.exports = (function(settings) {
   }
 
   settings.test_settings.default.globals = {
-    TARGET_PATH : argv.target || `http://localhost:${process.env.PORT}`,
-    before:  needLocalServer ? startLocalServers : noop,
-    after: needLocalServer ? stopLocalServers : noop
+    TARGET_PATH : TARGET_PATH,
+    before:  needLocalServer ? testServer.start : noop,
+    after: needLocalServer ? testServer.stop : noop,
+    afterEach: function (client, done) {
+      var weHaveFailures = client.currentTest.results.errors > 0 || client.currentTest.results.failed > 0;
+      if (weHaveFailures && !client.sessionId) {
+        console.log('Session already ended.');
+        done();
+        return;
+      }
+      if (weHaveFailures) {
+        client.saveScreenshot(`${client.currentTest.name}.png`, function(result) {
+          if (!result || result.status !== 0)  {
+            console.log('Error saving screenshot...', result);
+          }
+          client.deleteCookies().end(done);
+        });
+      } else {
+        client.deleteCookies().end(done);
+      }
+    }
   };
   settings.test_settings.default.desiredCapabilities['browserstack.user'] = argv.bsuser || process.env.BROWSERSTACK_USER;
   settings.test_settings.default.desiredCapabilities['browserstack.key'] = argv.bskey || process.env.BROWSERSTACK_KEY;

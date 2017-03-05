@@ -1,4 +1,4 @@
-import { expect } from '../../../../tests/support/test.helper';
+import { expect } from 'chai';
 import getQuestionAndAnswer from './getQuestionAndAnswer';
 
 describe('getQuestionAndAnswer', ()=>{
