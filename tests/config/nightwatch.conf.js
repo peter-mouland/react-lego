@@ -3,7 +3,9 @@ const argv = require('yargs')
   .usage('Usage: $0 --target=[string] --sha=[string] --bskey=[string] --bsuser=[string]')
   .argv;
 process.env.PORT = 3210;
-
+require('babel-core/register')({
+  only: [/src/, /tests/]
+});
 const testServer = require('./test-server/test-server-entry');
 
 const TARGET_PATH = argv.target || `http://localhost:${process.env.PORT}`;

@@ -1,4 +1,6 @@
-# React Lego [![CircleCI](https://circleci.com/gh/peter-mouland/react-lego.svg?style=svg)](https://circleci.com/gh/peter-mouland/react-lego)
+_This version is currently being update for 2017.  The original react-lego, with older version of tech and upgrade paths, can be found [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)_
+
+# React Lego 2017 [![CircleCI](https://circleci.com/gh/peter-mouland/react-lego.svg?style=svg)](https://circleci.com/gh/peter-mouland/react-lego)
 
 > The building blocks of a react app
 
@@ -9,24 +11,21 @@ This repo demonstrates how to plug in other technologies, one block at a time, i
 The concept is to use GitHub's branch-comparison screens to quickly demo the code changes that are needed for *only* the technology you are interested in.
 
 A client-side React app which is fully tested and production ready on the `master` branch.  
-From Master, *Server-side Rendering (SSR)* has been added in the `Koa` and `Express` branches.  
+From Master, *Server-side Rendering (SSR)* has been added with  `Koa v2` (for `Express` see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)).  
 Every other branch then adds one more technology, with the smallest possible changes.
 
 All branches, have been setup with [continuous deployment](https://github.com/peter-mouland/react-lego/wiki/Continuous-Deployement).
 
-[>> More about the concept](https://github.com/peter-mouland/react-lego/wiki)
+[>> More about the react-lego concept](https://github.com/peter-mouland/react-lego/wiki)
 
 ## Technology to Compare:
 
-_All branches use babel v6, es2015, React v15.1, React-router v1, Webpack v1 unless otherwise stated_
+_All branches use babel v6, es2015, React v15.4, React-router v4 (beta.7), Webpack v2.2 unless otherwise stated_
  
 * [Client-side](#client-side)
     * [React](#react)
-    * [Preact (w/ preact-router)](#preact)
+    * [Preact](#preact)
 * [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
-   * [Koa](#koa)
-   * [Koa v2](#koa-v2)
-   * Express _see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)_
 * [Importing CSS](#importing-css)
    * [CSS Imports](#css-imports)
    * [CSS Modules](#css-modules)
@@ -40,9 +39,9 @@ Each tech has its own branch, and in my experience, can be mixed and matched _al
    * [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
    * [Redux Dev Tools](#redux-dev-tools)
 * [Importing SVGs](#importing-svgs)
-* [Webpack v2](#webpack-v2)
-* [React-hot-loader v3](#react-hot-loader-v3)
-* [React-router v4](#react-router-v4)
+* React-hot-loader v3
+* Responsive Images
+* GraphQL
 
 ## Client-side
 
@@ -65,7 +64,7 @@ The client-side apps are production ready and fully tested, they both use the fo
 
  > `master` branch
 
-The react app uses [react-router](https://github.com/reactjs/react-router) v2 for routing.
+The react app uses [react-router](https://github.com/reactjs/react-router) v4 (beta 7) for routing.
 
 ### Preact
 
@@ -87,11 +86,7 @@ Using Koa, the App now renders on the server, [Compare Koa with Express](https:/
 
 ### Koa v2
 
-With Async/Await around the corner and likely to be in Node v8, Koa 2 will soon come out of Alpha.  
-
-I've created a Koa v2 app to see how _all_ the branches already mentioned come together in that setup.
-
-[koa-v2-app](https://github.com/peter-mouland/react-lego/tree/koa-app)
+With Async/Await released in Node v7.6, Koa 2 is now live.  
 
 ## Importing CSS
 
@@ -126,12 +121,6 @@ Class names are a thing of the past as are scoping problems.
 
 ## Technologies to Add
 
-### Webpack v2
-
-See [how to upgrade from webpack v1 to v2](https://github.com/peter-mouland/react-lego/compare/express...express--webpack-v2)
-
-There are no code differences between Koa or Express when adding Webpack v2.
-
 ### React-hot-loader v3
 
 [react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
@@ -142,17 +131,6 @@ See the code changes needed to :
  * [add react-hot-loader v3 to koa](https://github.com/peter-mouland/react-lego/compare/koa...koa--react-hot-loader-v3)
 
 [>> More about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
-
-### React-Router v4
-
-[React Router](https://github.com/ReactTraining/react-router) v4 sees to be very close to being released so I was interested in how hard the upgrade would be.
-Easy, it seems - the new syntax includes a lot for JSX which is friendly and more flexible.
-
-See the code changes needed to :
- * [Add React-router v4 to Express](https://github.com/peter-mouland/react-lego/compare/express...express--react-router-v4)
- * [Add React-router v4 to Koa](https://github.com/peter-mouland/react-lego/compare/koa...koa--react-router-v4)
- 
-[>> More about React-Router v4](https://github.com/peter-mouland/react-lego/wiki/React-Router-v4)
 
 #### Redux
  

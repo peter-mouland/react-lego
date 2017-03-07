@@ -1,7 +1,5 @@
 require('../../../src/config/environment');
-require('babel-core/register')({
-  only: [/tests/]
-});
+
 const HttpServer = require('http-server').HttpServer;
 let openServer = new HttpServer({ root: 'compiled'});
 
