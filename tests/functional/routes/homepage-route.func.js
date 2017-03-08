@@ -1,16 +1,14 @@
-import { React, mount, expect } from '../../support/test.helper';
-import Root, { history } from '../../../src/app/Root';
-import { routes } from '../../../src/app/routes';
+import React from 'react';
+import { mount } from 'enzyme';
+import { expect } from 'chai';
+
+import Root from '../../../src/app/Root';
+import { findRoute } from '../../../src/app/routes';
 
 describe('Homepage Route', function () {
 
   before(() => {
-    this.wrapper = mount(<Root />);
-    history.push('/');
-  });
-
-  after(() => {
-    this.wrapper.unmount();
+    this.wrapper = mount(<Root initialEntries={[ '/' ]} />);
   });
 
   describe(`should contain  markup`, () => {
@@ -26,7 +24,7 @@ describe('Homepage Route', function () {
     });
 
     it('Should contain a title', () => {
-      expect(document.title).to.equal(routes.homepage.title);
+      expect(document.title).to.equal(findRoute('homepage').meta.title);
     });
 
     it('should have a nav', () => {

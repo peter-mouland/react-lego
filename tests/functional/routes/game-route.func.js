@@ -1,16 +1,14 @@
-import { React, mount, expect } from '../../support/test.helper';
+import React from 'react';
+import { mount } from 'enzyme';
+import { expect } from 'chai';
+
 import Root, { history } from '../../../src/app/Root';
-import { routes } from '../../../src/app/routes';
+import { findRoute } from '../../../src/app/routes';
 
 describe('Game Route', function () {
 
   before(() => {
-    this.wrapper = mount(<Root />);
-    history.push('/game/');
-  });
-
-  after(() => {
-    this.wrapper.unmount();
+    this.wrapper = mount(<Root initialEntries={[ '/game/' ]} />);
   });
 
   describe(`should contain  markup`, () => {
@@ -26,7 +24,7 @@ describe('Game Route', function () {
     });
 
     it('Should contain a title', () => {
-      expect(document.title).to.equal(routes.game.title);
+      expect(document.title).to.equal(findRoute('game').meta.title);
     });
 
     it('should have a nav', () => {

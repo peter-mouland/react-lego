@@ -6,9 +6,14 @@
   },
   "selenium" : {
     "start_process" : true,
-    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.0.1-server.jar"
+    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.0.1-server.jar",
+    "cli_args" : {
+      "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.27-x64-chromedriver"
+    }
   },
-  "custom_commands_path" : "./tests/support/nightwatch-commands",
+  "custom_commands_path" : "./tests/config/nightwatch-commands",
+  "page_objects_path" : "./tests/config/nightwatch-pages",
+  "globals_path": "./tests/config/nightwatch-globals.js",
 
   "test_settings" : {
     "default" : {
@@ -17,8 +22,10 @@
       "selenium_host"  : "hub.browserstack.com",
       "silent": true,
       "screenshots" : {
-        "enabled" : false,
-        "path" : ""
+        "enabled" : true,
+        "on_failure" : true,
+        "on_error" : true,
+        "path" : "tests/e2e/tests_screenshots"
       },
       "desiredCapabilities": {
         "project": "React Lego",
@@ -35,16 +42,10 @@
       "launch_url" : "http://localhost",
       "selenium_port"  : 4444,
       "selenium_host"  : "127.0.0.1",
-      "screenshots" : {
-        "enabled" : false,
-        "path" : ""
-      },
       "desiredCapabilities": {
         "build": "build local",
         "browserName": "phantomjs",
-        "browserstack.local" : false,
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "browserstack.local" : false
       }
     },
     "chrome_win" : {

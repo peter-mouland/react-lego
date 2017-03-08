@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 
+import './app/utils/polyfills'; // for ie 11 support or include these separately in html
 import Root from './app/Root';
 
 debug.enable(process.env.DEBUG);

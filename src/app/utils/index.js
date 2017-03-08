@@ -1,6 +1,3 @@
-import './find';
-import { routes } from '../routes';
-
 export { fetch, json } from './fetch';
 export { randomRange } from './randomRange';
 
@@ -24,12 +21,3 @@ const getLocalUrl = () => {
 };
 
 export const localUrl = getLocalUrl();
-
-export function findRoute(pathname) {
-  const routesArr = Object.keys(routes);
-  const match = routesArr.find((key) => {
-    const route = routes[key];
-    return pathname.replace(/(\?.*)|(#.*)/g, '') === route.path;
-  });
-  return routes[match];
-}

@@ -1,36 +1,28 @@
-import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import React from 'react';
+import bemHelper from 'react-bem-helper';
+import debug from 'debug';
 
-import { findRoute } from '../utils';
-import { routes, LinkHelper } from '../routes';
+import { NamedLink } from '../routes';
 
-export default class MainLayout extends Component {
+const log = debug('base:mainLayout');
 
-  static propTypes = {
-    location: PropTypes.object
-  };
+export default class MainLayout extends React.Component {
 
   render() {
-    const { children, location } = this.props;
-    const cfg = findRoute(location.pathname);
-    const route = cfg || routes.homepage;
-    const navLinkProps = {
-      className: 'layout__nav-link',
-      activeClassName: 'layout__nav-link--selected'
-    };
+    const bem = bemHelper({ name: 'layout' });
+    const { children } = this.props;
 
     return (
-      <div className="layout layout--main">
-        <DocumentMeta title={ route.title } />
-        <nav className="layout__nav">
-          <span className="layout__nav-header">React Lego</span>
-          <LinkHelper to='homepage' { ...navLinkProps } />
-          <LinkHelper to="game" { ...navLinkProps } />
+      <div {...bem(null, 'main')}>
+        <nav {...bem('nav')}>
+          <span {...bem('nav', 'header')}>React SSR Base</span>
+          <NamedLink to='homepage' {...bem('nav', 'link')} />
+          <NamedLink to="game" {...bem('nav', 'link')} />
         </nav>
-        <div className="layout__content">
+        <main {...bem('content')}>
           {children}
-        </div>
-        <footer className="layout__footer">
+        </main>
+        <footer {...bem('footer')}>
           Hosted at <a href="http://github.com/peter-mouland/react-lego">github.com/peter-mouland/react-lego</a>
         </footer>
       </div>

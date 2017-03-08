@@ -1,12 +1,13 @@
-import { routes } from '../../src/app/routes';
+import { findRoute } from '../../src/app/routes';
+let homePage;
+let pageLayout;
 
 module.exports = {
-  '@tags': ['smoke'],
+  '@tags': ['staging', 'production'],
   before(browser) {
-    browser.pageLoaded(routes.homepage.path, 'body');
-  },
-  after(browser) {
-    browser.end();
+    homePage = browser.page.homepage();
+    pageLayout = browser.page.layout();
+    browser.pageLoaded(findRoute('homepage').path, { selector : '#homepage' });
   },
 
   ['homepage layout should include nav, footer and content blocks'](browser) {
@@ -17,7 +18,7 @@ module.exports = {
   },
 
   ['homepage can navigate to the game page'](browser) {
-    browser.safeClick('[href="#/game/"]');
+    browser.safeClick('[href="/game/"]');
     browser.expect.element('#game').to.be.present;
   }
 };

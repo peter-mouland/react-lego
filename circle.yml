@@ -4,28 +4,23 @@ machine:
   timezone:
     Europe/London
   node:
-    version: v6.6
+    version: v6.10
   java:
     version: openjdk8
 general:
   artifacts:
-    - test/reports
-    - test/nightwatch/report
-    - test/nightwatch/screenshots
+    - tests/e2e/tests_output
+    - tests/e2e/tests_screenshots
 dependencies:
   cache_directories:
     - browserstack
     - node_modules
-  post:
-    - npm run build
 test:
   override:
     - npm run test:unit
     - npm run test:func
+    - npm run build
     - npm run test:e2e
-  post:
-    - git config --global user.name "Peter Mouland"
-    - git config --global user.email "peter.mouland@gmail.com"
 deployment:
   main:
     branch: master
