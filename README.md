@@ -60,7 +60,7 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 *All* other branches include the above and are also production ready.
 
-### React
+### React (11kb app | 214kb node_modules)
 
  > `master` branch
 

@@ -8,7 +8,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const { SRC, DIST } = require('./paths');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   cache: true,
   context: SRC,
   output: {
@@ -22,7 +22,6 @@ module.exports = {
     new Visualizer({
       filename: '../webpack-stats.html'
     }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: Infinity }),
     new ExtractTextPlugin('[name].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
