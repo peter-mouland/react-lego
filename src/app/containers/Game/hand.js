@@ -15,7 +15,7 @@ export default class Hand {
     this.answerKey = Object.keys(this.answerCard)[factIndex];
   }
 
-  question() {
+  get question() {
     const fact = this.answerCard[this.answerKey];
     const extra = fact > this.wrongCard[this.answerKey] ? 'taller' : 'smaller';
     const answerText = this.answerKey === 'height'
@@ -24,11 +24,11 @@ export default class Hand {
     return `Who's ${this.answerKey} is ${answerText}?`;
   }
 
-  answerId() {
+  get answerId() {
     return this.answerCard.url;
   }
 
-  answer() {
+  get answer() {
     const wrongAnswer = this.wrongCard[this.answerKey];
     const answer = this.answerCard[this.answerKey];
     switch (true) {

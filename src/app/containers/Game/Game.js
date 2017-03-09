@@ -46,9 +46,9 @@ export default class Game extends React.Component {
         this.setState({
           hand: {
             cards,
-            question: hand.question(),
-            answerId: hand.answerId(),
-            answer: hand.answer()
+            question: hand.question,
+            answerId: hand.answerId,
+            answer: hand.answer
           },
           loading: false
         });

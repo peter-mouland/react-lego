@@ -46,75 +46,75 @@ describe('Hand', ()=>{
 
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([2]);
-    expect(new Hand(cards).question()).to.equal(`Who's key2 is 2?`);
+    expect(new Hand(cards).question).to.equal(`Who's key2 is 2?`);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([2]);
-    expect(new Hand(cards).question()).to.equal(`Who's key2 is 21?`);
+    expect(new Hand(cards).question).to.equal(`Who's key2 is 21?`);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([3]);
-    expect(new Hand(cards).question()).to.equal(`Who's key3 is 31?`);
+    expect(new Hand(cards).question).to.equal(`Who's key3 is 31?`);
   });
 
   it('should return taller/smaller when the answer key is height', () => {
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([6]);
-    expect(new Hand(cards).question()).to.equal(`Who's height is smaller, card1 or card2?`);
+    expect(new Hand(cards).question).to.equal(`Who's height is smaller, card1 or card2?`);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([6]);
-    expect(new Hand(cards).question()).to.equal(`Who's height is taller, card1 or card2?`);
+    expect(new Hand(cards).question).to.equal(`Who's height is taller, card1 or card2?`);
   });
 
   it('should return answer `both` when both cards matches the answer and fact', () => {
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([4]);
-    expect(new Hand(cards).answer()).to.equal(`both`);
+    expect(new Hand(cards).answer).to.equal(`both`);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([4]);
-    expect(new Hand(cards).answer()).to.equal(`both`);
+    expect(new Hand(cards).answer).to.equal(`both`);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([5]);
-    expect(new Hand(cards).answer()).to.equal(`both`);
+    expect(new Hand(cards).answer).to.equal(`both`);
   });
 
   it('should return answer key `name`', () => {
 
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([1]);
-    expect(new Hand(cards).answer()).to.equal(`card1`)
+    expect(new Hand(cards).answer).to.equal(`card1`)
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([2]);
-    expect(new Hand(cards).answer()).to.equal(`card2`)
+    expect(new Hand(cards).answer).to.equal(`card2`)
   });
 
   it('should return answer unknown when wrong answer value is unknown', () => {
 
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([1]);
-    expect(new Hand(cards).answer()).to.equal(`card1`)
+    expect(new Hand(cards).answer).to.equal(`card1`)
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([1]);
-    expect(new Hand(cards).answer()).to.equal(`unknown`)
+    expect(new Hand(cards).answer).to.equal(`unknown`)
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([7]);
-    expect(new Hand(cards).answer()).to.equal(`both`)
+    expect(new Hand(cards).answer).to.equal(`both`)
   });
 
   it('should return the correct answer card', () => {
 
     stub.withArgs(0,1,1).returns([0]);
     stub.withArgs(0,7,1).returns([1]);
-    expect(new Hand(cards).answerId()).to.equal(fakeCard1.url);
+    expect(new Hand(cards).answerId).to.equal(fakeCard1.url);
 
     stub.withArgs(0,1,1).returns([1]);
     stub.withArgs(0,7,1).returns([1]);
-    expect(new Hand(cards).answerId()).to.equal(fakeCard2.url);
+    expect(new Hand(cards).answerId).to.equal(fakeCard2.url);
   });
 });
