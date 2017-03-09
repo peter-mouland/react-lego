@@ -8,7 +8,7 @@ import { findRoute } from '../../../src/app/routes';
 describe('Homepage Route', function () {
 
   before(() => {
-    this.wrapper = mount(<Root initialEntries={[ '/' ]} />);
+    this.wrapper = mount(<Root location={ '/' } />);
   });
 
   describe(`should contain  markup`, () => {

@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 
 const { SRC } = require('./paths');
 const defaultConfig = require('./webpack.common');

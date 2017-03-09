@@ -8,7 +8,7 @@ import { findRoute } from '../../../src/app/routes';
 describe('Game Route', function () {
 
   before(() => {
-    this.wrapper = mount(<Root initialEntries={[ '/game/' ]} />);
+    this.wrapper = mount(<Root location={ '/game/' } />);
   });
 
   describe(`should contain  markup`, () => {
