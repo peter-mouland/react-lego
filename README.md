@@ -66,6 +66,12 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 The react app uses [react-router](https://github.com/reactjs/react-router) v4 (beta 7) for routing.
 
+
+__________
+**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
+__________
+
+
 ### Preact
 
  > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
