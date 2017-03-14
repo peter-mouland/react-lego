@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardItemValue = ({ value }) => {
+export const CardItemValue = ({ value }) => {
   const values = [].concat(value);
   const props = { className: 'card-item-value' };
   return (
@@ -8,16 +8,17 @@ const CardItemValue = ({ value }) => {
       values
         .map((val, i) => {
           props.key = `${i}-${val}`;
+          const text = val.replace('http://swapi.co/api/', '');
           return val.indexOf('http://swapi.co/api/') === 0
-            ? <a href={val} target="_blank" { ...props }>{val.replace('http://swapi.co/api/', '')}</a>
-            : <span { ...props }>{val}</span>;
+            ? <a href={val} target="_blank" { ...props }>{ text }</a>
+            : <span { ...props }>{ text }</span>;
         })
     }</div>
   );
 };
 
-const AnswerOption = ({ answer, card }) => (
-  <dl className={`answer-option ${answer ? 'answer-option--answer' : ''}`}>
+export const AnswerOption = ({ isAnswer, card }) => (
+  <dl className={`answer-option ${isAnswer ? 'answer-option--answer' : ''}`}>
     {Object.keys(card).map((info) => (
       <span className="answer-option__item" key={info}>
         <dt className="answer-option__title">{info}</dt>
@@ -27,11 +28,11 @@ const AnswerOption = ({ answer, card }) => (
   </dl>
 );
 
-export default ({ cards, answerId, showAnswer, ...props }) => (
+export default ({ cards = [], answerId, showAnswer, ...props }) => (
   !cards.length ? null : (
       <section className={`answer ${showAnswer ? 'visible' : 'hidden'}`} { ...props }>
-        <AnswerOption answer={answerId === cards[0].url} card={cards[0]}/>
-        <AnswerOption answer={answerId === cards[1].url} card={cards[1]}/>
+        <AnswerOption isAnswer={answerId === cards[0].url} card={cards[0]}/>
+        <AnswerOption isAnswer={answerId === cards[1].url} card={cards[1]}/>
       </section>
     )
 );

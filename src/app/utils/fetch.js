@@ -19,7 +19,6 @@ const jsonOpts = (method, data) => ({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    credentials: 'same-origin',
   },
   data: data && JSON.stringify(data)
 });
