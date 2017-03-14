@@ -1,13 +1,13 @@
-import isoFetch from 'isomorphic-fetch';
+import axios from 'axios';
 import debug from 'debug';
 
 import { localUrl } from '../utils';
 
-const log = debug('lego:api/index');
+const log = debug('base:fetch');
 
 export function checkStatus(response) {
-  if (response.status < 200 || response.status >= 300) {
-    const error = new Error(response.statustext);
+  if (response.status < 200 || response.status >= 500) {
+    const error = new Error(response.statusText);
     error.response = response;
     throw error;
   }
@@ -18,28 +18,28 @@ const jsonOpts = (method, data) => ({
   method,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    credentials: 'same-origin',
   },
-  body: JSON.stringify(data)
+  data: data && JSON.stringify(data)
 });
 
-const fetchUrl = (url, opts) => {
-  const fullUrl = url.indexOf('//') > -1 ? url : `${localUrl}/${url}`;
-  return isoFetch(fullUrl, opts)
+const fetchUrl = (endpoint, opts = {}) => {
+  const url = endpoint.indexOf('//') > -1 ? endpoint : `${localUrl}${endpoint}`;
+  return axios({ url, ...opts })
     .then(checkStatus)
-    .then((res) => res.json())
-    .then((json) => json)
+    .then((response) => response.data)
     .catch((error) => {
       log('request failed', error);
       throw new Error('request failed');
     });
 };
 
-const getJSON = (url) => fetchUrl(url, jsonOpts('GET'));
-const postJSON = (url, data) => fetchUrl(url, jsonOpts('POST', data));
+const getJSON = (url, options) => fetchUrl(url, jsonOpts('GET', null, options));
+const postJSON = (url, data, options) => fetchUrl(url, jsonOpts('POST', data, options));
 
 export const fetch = {
-  url: fetchUrl
+  url: fetchUrl,
 };
 export const json = {
   get: getJSON,
