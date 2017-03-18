@@ -16,6 +16,7 @@ chai.use(sinonChai);
 
 export {
   React,
+  assert,
   expect,
   sinon,
   shallow,

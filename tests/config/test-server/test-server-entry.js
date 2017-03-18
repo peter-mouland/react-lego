@@ -1,19 +1,31 @@
+/* eslint-disable */
+require('babel-core/register')({
+  only: [/src/, /tests/, /config/]
+});
+require("babel-polyfill");
+const webpackAssets = require('../../../compiled/webpack-assets.json');
+const mapWebpackAssets = require('../../../src/server/utils/mapWebpackAssets');
 require('../../../src/config/environment');
 
-const HttpServer = require('http-server').HttpServer;
-let openServer = new HttpServer({ root: 'compiled'});
+const assets = mapWebpackAssets(webpackAssets);
+let openServer;
 
 const startLocalServers = (done) => {
-  openServer.listen(process.env.PORT, 'localhost', () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+  const createServer = require('../../../src/server/server');
+  const server = createServer(assets);
+  openServer = server.listen(process.env.PORT, () => {
+    console.log(`Test Server Listening at http://localhost:${process.env.PORT}`);
     done()
   });
+  return openServer
 };
 const stopLocalServers = (done) => {
   console.log('Closing server...');
-  openServer.close(done);
+  openServer.close(() => {
+      done();
+      process.exit(0);
+  });
 };
-
 
 module.exports = {
   start: startLocalServers,

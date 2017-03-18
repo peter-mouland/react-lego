@@ -15,6 +15,16 @@ const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.js
 const sandbox = sinon.sandbox.create();
 
 describe('Game Route', function () {
+
+  const promise = Promise.resolve(fixtures);
+
+  before(() => {
+    sandbox.stub(json, 'get', () => promise)
+  });
+  after(() => {
+    sandbox.restore();
+  });
+
   describe(`should contain  markup`, () => {
 
     before(() => {
@@ -53,21 +63,13 @@ describe('Game Route', function () {
   describe(`be able to deal a hand`, () => {
 
     let wrapper;
-    const promise = Promise.resolve(fixtures);
 
-    before(() => {
-      sandbox.stub(json, 'get', () => promise)
-    });
     beforeEach(() => {
       wrapper = mount(<Root location={ '/game/' } />);
     });
 
     afterEach(() => {
       wrapper.unmount();
-    });
-
-    after(() => {
-      sandbox.restore();
     });
 
     it(`is not loading before it gets mounted`, () => {

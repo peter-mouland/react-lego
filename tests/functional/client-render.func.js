@@ -1,4 +1,6 @@
 import React from 'react';
+import sinon from 'sinon';
+import fs from 'fs';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
 
@@ -6,8 +8,21 @@ import Root from '../../src/app/Root';
 import Homepage from '../../src/app/containers/Homepage/Homepage';
 import NotFound from '../../src/app/containers/NotFound/NotFound';
 import Game from '../../src/app/containers/Game/Game';
+import { json } from '../../src/app/utils';
+
+const fixtures = JSON.parse(fs.readFileSync(__dirname + '/fixtures/card-80.json', 'utf8'));
+const sandbox = sinon.sandbox.create();
 
 describe('Client Render', function () {
+  const promise = Promise.resolve(fixtures);
+
+  before(() => {
+    sandbox.stub(json, 'get', () => promise)
+  });
+  after(() => {
+    sandbox.restore();
+  });
+
   it('Should render the Homepage', () => {
     this.wrapper = mount(<Root location={ '/' } />);
     expect(this.wrapper.find(Homepage).length).to.equal(1);

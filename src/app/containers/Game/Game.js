@@ -2,7 +2,6 @@ import React from 'react';
 import debug from 'debug';
 
 import { randomRange, json } from '../../utils';
-import Hand from './hand';
 import Question from '../../components/Question/Question';
 import Answer from '../../components/Answer/Answer';
 
@@ -11,7 +10,7 @@ debug('lego:Game');
 const DECK = 87;
 export const Error = ({ error }) => <p className="error">Error Loading cards!<span>{error}</span></p>;
 export const Loading = () => <p className="loading">Loading hand....</p>;
-const getCard = (api, cardId) => json.get(`http://swapi.co/api/${api}/${cardId}/`);
+const getHand = (api, cardId1, cardId2) => json.get(`/api/game/${api}/${cardId1}/${cardId2}`);
 
 export default class Game extends React.Component {
 
@@ -35,21 +34,14 @@ export default class Game extends React.Component {
   deal() {
     const cardsIds = randomRange(1, DECK, 2);
     const gameType = 'people';
-    const promises = [getCard(gameType, cardsIds[0]), getCard(gameType, cardsIds[1])];
     this.setState({
       error: false,
       loading: true
     });
-    return Promise.all(promises)
-      .then((cards) => {
-        const hand = new Hand(cards);
+    return getHand(gameType, cardsIds[0], cardsIds[1])
+      .then((hand) => {
         this.setState({
-          hand: {
-            cards,
-            question: hand.question,
-            answerId: hand.answerId,
-            answer: hand.answer
-          },
+          hand,
           loading: false
         });
       })
@@ -73,7 +65,6 @@ export default class Game extends React.Component {
     const {
       error, loading, showAnswer, attempt, hand: { cards = [], question, answer, answerId } = {}
     } = this.state;
-
     return (
       <div id="game">
         <banner className="header">
