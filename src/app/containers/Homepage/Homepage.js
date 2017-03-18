@@ -1,11 +1,12 @@
-import React from 'react';
+import { h, Component } from 'preact';
 import debug from 'debug';
 
 debug('lego:Homepage.jsx');
 
-export default class Homepage extends React.Component {
+export default class Homepage extends Component {
 
   render() {
+    console.log('homepage')
     return (
       <div id="homepage">
         <banner className="header">

@@ -1,4 +1,4 @@
-import React from 'react';
+import { h, Component } from 'preact';
 import debug from 'debug';
 
 import { randomRange, json } from '../../utils';
@@ -13,7 +13,7 @@ export const Error = ({ error }) => <p className="error">Error Loading cards!<sp
 export const Loading = () => <p className="loading">Loading hand....</p>;
 const getCard = (api, cardId) => json.get(`http://swapi.co/api/${api}/${cardId}/`);
 
-export default class Game extends React.Component {
+export default class Game extends Component {
 
   constructor(props) {
     super(props);
@@ -69,10 +69,9 @@ export default class Game extends React.Component {
     this.setState({ showAnswer: true });
   }
 
-  render() {
-    const {
-      error, loading, showAnswer, attempt, hand: { cards = [], question, answer, answerId } = {}
-    } = this.state;
+  render({ ...props }, {
+    error, loading, showAnswer, attempt, hand: { cards = [], question, answer, answerId } = {}
+  }) {
 
     return (
       <div id="game">

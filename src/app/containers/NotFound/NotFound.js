@@ -1,7 +1,7 @@
-import React from 'react';
+import { h, Component } from 'preact';
 import { copy } from './notFound-copy';
 
-export default class NotFound extends React.Component {
+export default class NotFound extends Component {
   render() {
     return (
       <section id="not-found">

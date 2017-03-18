@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import React from 'react';
+import { h } from 'preact';
 import { shallow } from 'enzyme';
 
 import NotFound from './NotFound';

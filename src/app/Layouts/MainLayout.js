@@ -1,28 +1,24 @@
-import React from 'react';
-import bemHelper from 'react-bem-helper';
+import { h, Component } from 'preact';
 import debug from 'debug';
 
 import { NamedLink } from '../routes';
 
 const log = debug('base:mainLayout');
 
-export default class MainLayout extends React.Component {
+export default class MainLayout extends Component {
 
-  render() {
-    const bem = bemHelper({ name: 'layout' });
-    const { children } = this.props;
-
+  render({ children, ...props }) {
     return (
-      <div {...bem(null, 'main')}>
-        <nav {...bem('nav')}>
-          <span {...bem('nav', 'header')}>React SSR Base</span>
-          <NamedLink to='homepage' {...bem('nav', 'link')} />
-          <NamedLink to="game" {...bem('nav', 'link')} />
+      <div className={'layout__main'}>
+        <nav className={'layout__nav'}>
+          <span className={'layout__nav-header'}>React SSR Base</span>
+          <NamedLink to='homepage' className={'layout__nav-link'} />
+          <NamedLink to="game" className={'layout__nav-link'} />
         </nav>
-        <main {...bem('content')}>
+        <main className={'layout__content'}>
           {children}
         </main>
-        <footer {...bem('footer')}>
+        <footer className={'layout__footer'}>
           Hosted at <a href="http://github.com/peter-mouland/react-lego">github.com/peter-mouland/react-lego</a>
         </footer>
       </div>

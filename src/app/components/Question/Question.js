@@ -1,4 +1,4 @@
-import React from 'react';
+import { h, Component } from 'preact';
 
 const QuestionOption = ({ onClick, attempt, children, answer, showAnswer }) => {
   const classNames = ['question__option'];
@@ -11,10 +11,9 @@ const QuestionOption = ({ onClick, attempt, children, answer, showAnswer }) => {
   return <li className={classNames.join(' ')} onClick={onClick} >{children}</li>;
 };
 
-export default class Question extends React.Component {
+export default class Question extends Component {
 
-  render() {
-    const { children, showAnswer, answer, cards, attempt, onClick, ...props } = this.props;
+  render({ children, showAnswer, answer, cards, attempt, onClick, ...props }) {
     if (!cards.length) return null;
 
     const options = [cards[0].name, cards[1].name, 'both', 'unknown'];
@@ -24,8 +23,8 @@ export default class Question extends React.Component {
       <section className="question" { ...props }>
         <p className="question__text" >{children}</p>
         <ul className="question__options">
-          {options.map((option, i) => (
-            <QuestionOption {...optionProps} onClick={() => onClick(option)} key={i}>
+          {options.map((option) => (
+            <QuestionOption {...optionProps} onClick={() => onClick(option)} >
               {option}
             </QuestionOption>
           ))}

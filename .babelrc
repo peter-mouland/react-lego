@@ -1,6 +1,6 @@
 {
   "sourceMaps": true,
-  "presets": ["react", ["env", {
+  "presets": [["env", {
     "targets": {
       "browsers": [
         "safari >= 9",
@@ -19,6 +19,7 @@
     }
   }]],
   "plugins": [
+    ["transform-react-jsx", { "pragma":"h" }],
     "add-module-exports",
     "transform-class-properties",
     "transform-object-rest-spread"

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Chance from 'chance';
-import React from 'react';
+import { h } from 'preact';
 import { shallow } from 'enzyme';
 
 import Answer, { AnswerOption, CardItemValue } from './Answer';

@@ -20,7 +20,7 @@
     "arrow-parens": ["error", "always"],
     "class-methods-use-this": 0,
     "comma-dangle": 0,
-    "no-unused-vars": ["error", {"varsIgnorePattern": "^log"}],
+    "no-unused-vars": ["error", {"varsIgnorePattern": "^(log|h)$"}],
     "id-length": [2, {"exceptions": ["e", "i"]}]
   }
 }
