@@ -13,12 +13,6 @@ let baseProps = {};
 
 describe('Answer Component', () => {
 
-  it('should return null if no cards are passed', () => {
-    baseProps = {  };
-    const wrapper = shallow(<Answer { ...baseProps } />);
-    expect(wrapper.get(0)).to.equal(null);
-  });
-
   it('is visible if showAnswer is passed', () => {
     const card1 = fakeCard();
     const card2 = fakeCard();

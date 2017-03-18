@@ -9,8 +9,8 @@ import Answer from '../../components/Answer/Answer';
 debug('lego:Game');
 
 const DECK = 87;
-const Error = ({ error }) => <p>Error Loading cards!<span>{error}</span></p>;
-const Loading = () => <p>Loading hand....</p>;
+export const Error = ({ error }) => <p className="error">Error Loading cards!<span>{error}</span></p>;
+export const Loading = () => <p className="loading">Loading hand....</p>;
 const getCard = (api, cardId) => json.get(`http://swapi.co/api/${api}/${cardId}/`);
 
 export default class Game extends React.Component {
@@ -88,8 +88,14 @@ export default class Game extends React.Component {
             {question}
           </Question>
         }
-        {!!cards.length && <button onClick={() => this.viewAnswer()}>View Answer</button>}
-        <Answer cards={ cards } answerId={ answerId } showAnswer={ showAnswer } />
+        {!!cards.length && (
+          <button className="game__btn--show-answer" onClick={() => this.viewAnswer()}>
+            View Answer
+          </button>
+        ) }
+        {!!cards.length && (
+          <Answer cards={ cards } answerId={ answerId } showAnswer={ showAnswer } />
+        ) }
       </div>
     );
   }

@@ -22,7 +22,7 @@ export default class Question extends React.Component {
 
     return (
       <section className="question" { ...props }>
-        <p>{children}</p>
+        <p className="question__text" >{children}</p>
         <ul className="question__options">
           {options.map((option, i) => (
             <QuestionOption {...optionProps} onClick={() => onClick(option)} key={i}>

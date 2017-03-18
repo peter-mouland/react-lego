@@ -29,10 +29,8 @@ export const AnswerOption = ({ isAnswer, card }) => (
 );
 
 export default ({ cards = [], answerId, showAnswer, ...props }) => (
-  !cards.length ? null : (
-      <section className={`answer ${showAnswer ? 'visible' : 'hidden'}`} { ...props }>
-        <AnswerOption isAnswer={answerId === cards[0].url} card={cards[0]}/>
-        <AnswerOption isAnswer={answerId === cards[1].url} card={cards[1]}/>
-      </section>
-    )
-);
+    <section className={`answer ${showAnswer ? 'visible' : 'hidden'}`} { ...props }>
+      <AnswerOption isAnswer={answerId === cards[0].url} card={cards[0]}/>
+      <AnswerOption isAnswer={answerId === cards[1].url} card={cards[1]}/>
+    </section>
+  );

@@ -1,7 +1,3 @@
-const chai = require('chai');
-const chaiEnzyme = require('chai-enzyme');
-const sinonChai = require("sinon-chai");
-
 require('babel-core/register')({
   only: [/src/, /tests/, /config/]
 });
@@ -30,6 +26,9 @@ function propagateToGlobal(window) {
   }
 }
 
+const chai = require('chai');
+const chaiEnzyme = require('chai-enzyme');
+const sinonChai = require("sinon-chai");
 
 // setup chai
 chai.should();
