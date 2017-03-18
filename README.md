@@ -62,18 +62,16 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 ### React 
 
- > `master` branch (11kb app | 214kb node_modules)
+ > App Size : 11kb + 214kb node_modules
+ > `master` branch 
 
 The react app uses [react-router](https://github.com/reactjs/react-router) v4 for routing.
 
 
-__________
-**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
-__________
-
-
 ### Preact
 
+ > App Size : 11kb + 47kb node_modules
+ > `preact` branch 
  > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
@@ -81,6 +79,10 @@ Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https:
 Turns out it was actually very easy!  After removing a few dependencies we swapped routers for [preact-router](https://github.com/developit/preact-router).
 
 [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
+
+__________
+**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
+__________
 
 ## Server-side Rendering (SSR)
 
