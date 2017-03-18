@@ -63,6 +63,7 @@ The client-side apps are production ready and fully tested, they both use the fo
 ### React 
 
  > App Size : 11kb + 214kb node_modules
+ >
  > `master` branch 
 
 The react app uses [react-router](https://github.com/reactjs/react-router) v4 for routing.
@@ -71,7 +72,9 @@ The react app uses [react-router](https://github.com/reactjs/react-router) v4 fo
 ### Preact
 
  > App Size : 11kb + 47kb node_modules
+ >
  > `preact` branch 
+ >
  > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
 
 Because of [Ben Fletcher](https://github.com/bjfletcher) and [this tweet](https://twitter.com/bjfletcher/status/776481240065114112) I thought i'd give [Preact](https://github.com/developit/preact) a shot.
