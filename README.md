@@ -83,21 +83,21 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
 
-__________
-**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
-__________
-
 ## Server-side Rendering (SSR)
-
-### Koa
-
- > [Adding Koa to React code comparison](https://github.com/peter-mouland/react-lego/compare/master...koa)
-
-Using Koa, the App now renders on the server, [Compare Koa with Express](https://github.com/peter-mouland/react-lego/compare/express...koa).
 
 ### Koa v2
 
+ > App Size : 11kb + 279kb
+ >
+ > `ssr` branch
+ >
+ > [Adding Koa to React code comparison](https://github.com/peter-mouland/react-lego/compare/master...ssr)
+
 With Async/Await released in Node v7.6, Koa 2 is now live.  
+
+__________
+**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
+__________
 
 ## Importing CSS
 
