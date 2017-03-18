@@ -20,7 +20,7 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
 
 ## Technology to Compare:
 
-_All branches use babel v6, es2015, React v15.4, React-router v4 (beta.7), Webpack v2.2 unless otherwise stated_
+_All branches use babel v6, es2015, React v15.4, React-router v4, Webpack v2.2 unless otherwise stated_
  
 * [Client-side](#client-side)
     * [React](#react)
@@ -60,11 +60,11 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 *All* other branches include the above and are also production ready.
 
-### React (11kb app | 214kb node_modules)
+### React 
 
- > `master` branch
+ > `master` branch (11kb app | 214kb node_modules)
 
-The react app uses [react-router](https://github.com/reactjs/react-router) v4 (beta 7) for routing.
+The react app uses [react-router](https://github.com/reactjs/react-router) v4 for routing.
 
 
 __________
