@@ -71,13 +71,8 @@ describe('Game Route', function () {
       wrapper.unmount();
     });
 
-    it(`is not loading before it gets mounted`, () => {
-        wrapper = shallow(<Root location={ '/game/' } />);
+    it(`is loaded by the server, so not loading when the page is mounted`, () => {
         expect(wrapper.find(Loading)).not.to.be.present();
-    });
-
-    it(`starts loading as soon as the page is mounted`, () => {
-        expect(wrapper.find(Loading)).to.be.present();
     });
 
     it(`removes loading once the json results are returned`, () => {

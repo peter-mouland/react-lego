@@ -8,26 +8,26 @@ const log = debug('lego:reducers/index');
 
 export function game(state = {}, action) {
   switch (action.type) {
-    case actions.FETCH_HAND_PENDING:
+    case `${actions.FETCH_HAND}_PENDING`:
       return {
         ...state,
         loading: true,
         error: false,
         status: action.status
       };
-    case actions.FETCH_HAND_FULFILLED:
+    case `${actions.FETCH_HAND}_FULFILLED`:
       return {
         ...state,
         loading: false,
         error: false,
-        hand: action.data,
+        hand: action.payload,
         status: action.status
       };
-    case actions.FETCH_HAND_REJECTED:
+    case `${actions.FETCH_HAND}_REJECTED`:
       return {
         ...state,
         loading: false,
-        error: action.data,
+        error: action.payload,
         status: action.status
       };
     default:

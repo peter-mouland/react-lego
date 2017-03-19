@@ -19,6 +19,8 @@ export const Loading = () => <p className="loading">Loading hand....</p>;
 
 class Game extends React.Component {
 
+  static needs = [fetchHand];
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +33,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.hand) return;
     this.deal();
   }
 
@@ -61,7 +64,9 @@ class Game extends React.Component {
           <h1>Star Wars Trivia</h1>
           <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
         </banner>
-        <button onClick={() => this.deal()}>Deal cards!</button>
+        <button className="game__btn--deal" onClick={() => this.deal()}>
+          Deal cards!
+        </button>
         {error && <Errors errors={ error } />}
         {loading ?
           <Loading /> :

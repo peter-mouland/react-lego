@@ -37,6 +37,7 @@ describe('reducers/index', () => {
       expect(result.loading).to.deep.equal(false, 'State should be updated');
       expect(result[fakeKey]).to.deep.equal(fakeValue, 'State should be loading');
       expect(result.status).to.deep.equal(status, 'State should be updated');
+      expect(result.hand).to.deep.equal(payload, 'State should be updated');
     });
   });
 
