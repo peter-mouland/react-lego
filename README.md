@@ -28,7 +28,7 @@ _All branches use babel v6, es2015, React v15.4, [react-router v4](https://githu
  | [Server-side Rendering](#server-side-rendering-SSR) | [Koa v2](#koa-v2) | 10kb (+ 214kb) |  
  | [CSS](#css) | [CSS Imports](#css-imports)  | 10kb (+ 214kb) |   CSS Modules 
  | State Management | [Redux](#redux) | 12kb (+ 250kb) | 
- | State Management | [Async routes](#redux-with-promise-middleware) |
+ | State Management | [Async routes](#redux-with-promise-middleware) | 12kb (+ 252kb) | 
  | State Management | [Redux Dev Tools](#redux-dev-tools)
  | Assests | [Importing SVGs](#importing-svgs) |
  | Assests | Responsive Images with PNGs |
@@ -104,6 +104,17 @@ This data is now formatted inside a reducer.
 
 [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux)
 
+
+## Async routes
+
+ > `ssr-css-redux-async` branch
+ >
+ > [See code needed to add async routes](https://github.com/peter-mouland/react-lego/compare/ssr-css-redux...ssr-css-redux-async)
+ 
+This branch uses Promise middleware to allow you to make async requests on the server and hydrate your redux store before rendering the page.
+The massive win here is that each container dictates what data it _needs_ while still on the server.
+
+[>> More about adding Promise middleware](https://github.com/peter-mouland/react-lego/wiki/Redux-Promise-Middleware)
 
 __________
 ** Something missing?  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016) or submit a feature request!**
