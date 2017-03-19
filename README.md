@@ -18,43 +18,29 @@ All branches, have been setup with [continuous deployment](https://github.com/pe
 
 [>> More about the react-lego concept](https://github.com/peter-mouland/react-lego/wiki)
 
-## Technology to Compare:
-
-_All branches use babel v6, es2015, React v15.4, React-router v4, Webpack v2.2 unless otherwise stated_
- 
-* [Client-side](#client-side)
-    * [React](#react)
-    * [Preact](#preact)
-* [Server-side Rendering (SSR)](#server-side-rendering-SSR) 
-* [Importing CSS](#importing-css)
-   * [CSS Imports](#css-imports)
-   * [CSS Modules](#css-modules)
-   * [CSS in JS](#css-in-js)
-
 ## Technology to Add:
+
+_All branches use babel v6, es2015, React v15.4, [react-router v4](https://github.com/reactjs/react-router), Webpack v2.2 unless otherwise stated_
  
-Each tech has its own branch, and in my experience, can be mixed and matched _almost_ seamlessly!
-
-* [Redux](#redux)
-   * [Redux with Promise middleware (async on the server)](#redux-with-promise-middleware)
-   * [Redux Dev Tools](#redux-dev-tools)
-* [Importing SVGs](#importing-svgs)
-* React-hot-loader v3
-* Responsive Images
-* GraphQL
-
+ | category | upgrade path | Client-side App (kb) | comparator 1 | kb | comparator 2 |  kb | 
+ | --- | --- | --- | --- | --- | --- | --- |
+ | [Client-side Rendering](#client-side) | [React](#react) | 11kb (+ 215kb node_modules) | [Preact](#preact) | 16kb (+ 35kb)
+ | [Server-side Rendering](#server-side-rendering-SSR) | [Koa v2](#koa-v2) | 10kb (+ 214kb) |  
+ | CSS | [CSS Imports](#css-imports) | [CSS Modules](#css-modules) | [CSS in JS](#css-in-js)
+ | State Management | [Redux](#redux) |
+ | State Management | [Async routes](#redux-with-promise-middleware) |
+ | State Management | [Redux Dev Tools](#redux-dev-tools)
+ | Assests | [Importing SVGs](#importing-svgs) |
+ | Assests | Responsive Images with PNGs |
+ | Data API | GraphQL
+ 
 ## Client-side
 
 The client-side apps are production ready and fully tested, they both use the following :
 
  * [x] CSS ([Sass-loader](https://github.com/jtangelder/sass-loader), [Autoprefixer](https://github.com/postcss/autoprefixer))
- * [x] [tests](/tests/README.md)
-  * [x] [unit](/tests/README.md#unit-testing) with [Enzyme](https://github.com/airbnb/enzyme)
-  * [x] [functional](/tests/README.md#functional-testing)
-  * [x] [end-to-end](/tests/README.md#e2e-testing) with [Nightwatch](http://nightwatchjs.org/) and [BrowserStack](https://www.browserstack.com)
-  * [x] [smoke](/tests/README.md#smoke-testing)
-  * [ ] [code coverage](/tests/README.md#code-coverage)
- * [x] Code linting with [eslint](http://eslint.org/)
+ * [x] [tests](/tests/README.md) (unit, functional, end-to-end + smoke)
+ * [x] Code linting with [eslint](http://eslint.org/) (CSS + JS linting)
  * [x] CI integration with [CircleCI](https://circleci.com/)
  * [x] Continuous deployment with [Heroku](http://www.heroku.com/)
 
@@ -62,17 +48,10 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 ### React 
 
- > App Size : 11kb + 215kb node_modules
- >
  > `master` branch 
-
-The react app uses [react-router](https://github.com/reactjs/react-router) v4 for routing.
-
 
 ### Preact
 
- > App Size : 16kb + 35kb node_modules
- >
  > `preact` branch 
  >
  > [Compare Preact with React](https://github.com/peter-mouland/react-lego/compare/master...preact)
@@ -87,8 +66,6 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 ### Koa v2
 
- > App Size : 10kb + 214kb
- >
  > `ssr` branch
  >
  > [Adding Koa to React code comparison](https://github.com/peter-mouland/react-lego/compare/master...ssr)
