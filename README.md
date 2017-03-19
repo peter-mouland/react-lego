@@ -71,7 +71,7 @@ The react app uses [react-router](https://github.com/reactjs/react-router) v4 fo
 
 ### Preact
 
- > App Size : 11kb + 47kb node_modules
+ > App Size : 16kb + 35kb node_modules
  >
  > `preact` branch 
  >
