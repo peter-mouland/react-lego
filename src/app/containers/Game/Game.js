@@ -1,24 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import debug from 'debug';
 
-import { randomRange, json } from '../../utils';
 import Question from '../../components/Question/Question';
 import Answer from '../../components/Answer/Answer';
+import { fetchHand } from '../../actions';
 
-debug('lego:Game');
+const log = debug('lego:Game');
 
-const DECK = 87;
 export const Error = ({ error }) => <p className="error">Error Loading cards!<span>{error}</span></p>;
-export const Loading = () => <p className="loading">Loading hand....</p>;
-const getHand = (api, cardId1, cardId2) => json.get(`/api/game/${api}/${cardId1}/${cardId2}`);
 
-export default class Game extends React.Component {
+export const Errors = ({ errors }) => { // eslint-disable-line arrow-body-style
+  return Array.isArray(errors)
+    ? errors.map((error) => <Error error={ error } />)
+    : <Error error={ errors } />;
+};
+export const Loading = () => <p className="loading">Loading hand....</p>;
+
+class Game extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      error: false,
-      loading: false,
       showAnswer: false,
       attempt: null
     };
@@ -32,25 +35,11 @@ export default class Game extends React.Component {
   }
 
   deal() {
-    const cardsIds = randomRange(1, DECK, 2);
-    const gameType = 'people';
     this.setState({
-      error: false,
-      loading: true
+      showAnswer: false,
+      attempt: null
     });
-    return getHand(gameType, cardsIds[0], cardsIds[1])
-      .then((hand) => {
-        this.setState({
-          hand,
-          loading: false
-        });
-      })
-      .catch((e) => {
-        this.setState({
-          error: e,
-          loading: false
-        });
-      });
+    return this.props.fetchHand();
   }
 
   setAttempt(attempt) {
@@ -63,8 +52,9 @@ export default class Game extends React.Component {
 
   render() {
     const {
-      error, loading, showAnswer, attempt, hand: { cards = [], question, answer, answerId } = {}
-    } = this.state;
+      error, loading, hand: { cards = [], question, answer, answerId } = {}
+    } = this.props;
+    const { showAnswer, attempt } = this.state;
     return (
       <div id="game">
         <banner className="header">
@@ -72,7 +62,7 @@ export default class Game extends React.Component {
           <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
         </banner>
         <button onClick={() => this.deal()}>Deal cards!</button>
-        {error && <Error error={ error } />}
+        {error && <Errors errors={ error } />}
         {loading ?
           <Loading /> :
           <Question { ...{ showAnswer, answer, cards, attempt, onClick: this.setAttempt } }>
@@ -91,3 +81,12 @@ export default class Game extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { ...state.game };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchHand }
+)(Game);

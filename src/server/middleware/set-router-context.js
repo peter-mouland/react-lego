@@ -2,8 +2,12 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import matchPath from 'react-router-dom/matchPath';
+import { Provider } from 'react-redux';
 
+import configureStore from '../../app/store/configure-store';
 import { makeRoutes, getRoutesConfig } from '../../app/routes';
+
+const store = configureStore();
 
 function getMatch(routesArray, url) {
   return routesArray
@@ -11,10 +15,12 @@ function getMatch(routesArray, url) {
 }
 
 const Markup = ({ req, context }) => (
+  <Provider store={store}>
     <StaticRouter location={req.url} context={ context }>
       {makeRoutes()}
     </StaticRouter>
-  );
+  </Provider>
+);
 
 function setRouterContext() {
   const routesArray = getRoutesConfig();
@@ -26,6 +32,7 @@ function setRouterContext() {
       ctx.status = 301;
       ctx.redirect(routerContext.location.pathname + routerContext.location.search);
     } else {
+      ctx.initialState = store.getState();
       ctx.status = match ? 200 : 404;
       ctx.markup = markup;
     }

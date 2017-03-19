@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Game from './Game';
+import unwrappped from './Game';
+const Game = unwrappped.WrappedComponent;
 
 const baseProps = {};
 

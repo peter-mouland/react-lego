@@ -3,6 +3,7 @@ require('babel-core/register')({
 });
 require("babel-polyfill");
 const jsdom = require('jsdom');
+require('../../src/config/environment');
 require('../../src/server/utils/assets-helper');
 
 require('../../src/config/environment')

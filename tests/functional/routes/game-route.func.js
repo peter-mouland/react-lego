@@ -15,7 +15,6 @@ const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.js
 const sandbox = sinon.sandbox.create();
 
 describe('Game Route', function () {
-
   const promise = Promise.resolve(fixtures);
 
   before(() => {
