@@ -87,7 +87,7 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
 ### Koa v2
 
- > App Size : 11kb + 279kb
+ > App Size : 10kb + 214kb
  >
  > `ssr` branch
  >
