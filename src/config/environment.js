@@ -1,22 +1,32 @@
 const debug = require('debug');
 
-const setEnvs = {};
-const setEnvDefault = (key, val) => {
-  if (!process.env[key]) {
-    process.env[key] = val;
+const log = debug('lego: Environment:');
+let config = {};
+
+const setConfig = () => {
+// explicitly check vars so that webpack can help us
+  if (process.env.ENV === 'dev') {
+    // set dev envs here
+    if (!process.env.NODE_ENV) { process.env.NODE_ENV = 'development'; }
   }
-  setEnvs[key] = process.env[key];
+
+  // set prod / default env here
+  if (!process.env.NODE_ENV) { process.env.NODE_ENV = 'production'; }
+  if (!process.env.DEBUG) { process.env.DEBUG = 'lego:*'; }
+  if (!process.env.PORT) { process.env.PORT = 3000; }
+
+  debug.enable(process.env.DEBUG);
+
+  config = {
+    NODE_ENV: process.env.NODE_ENV,
+    DEBUG: process.env.DEBUG,
+    PORT: process.env.PORT
+  };
 };
 
-setEnvDefault('DEBUG', 'lego:*');
-setEnvDefault('PORT', 3000);
+if (Object.keys(config).length === 0) {
+  setConfig();
+  log(config);
+}
 
-debug.enable(process.env.DEBUG);
-const log = debug('lego: Environment:');
-
-// explicitly check vars that webpack can help us with
-if (!process.env.NODE_ENV) { setEnvDefault('NODE_ENV', 'development'); }
-
-log(setEnvs);
-
-module.exports = setEnvs;
+module.exports = config;

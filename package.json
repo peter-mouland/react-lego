@@ -2,12 +2,13 @@
   "name": "react-lego",
   "version": "2.0.0",
   "description": "",
-  "main": "src/dev-server-entry.js",
+  "main": "src/server-entry.js",
   "scripts": {
-    "prestart": "rm -rf compiled && npm run build && cp src/index.html compiled",
-    "build": "NODE_ENV=production webpack --config src/config/webpack.config.prod.js -p",
-    "start": "NODE_ENV=production http-server compiled",
-    "start:dev": "node src/dev-server-entry.js  ",
+    "postinstall": "npm run build",
+    "build": "rm -rf compiled && npm run compile && cp src/index.html compiled",
+    "compile": "webpack --config src/config/webpack.config.prod.js -p",
+    "start": "http-server compiled",
+    "start:dev": "ENV=dev node src/server-entry.js",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "npm run test:unit && npm run test:func",
     "test:unit": "npm run mocha -- 'src/**/*.spec.js'",
@@ -16,19 +17,20 @@
     "test:e2e-local": "npm run nightwatch -- --env local --tag staging",
     "test:e2e-production": "npm run nightwatch -- --env chrome_win --tag production",
     "test:e2e-staging": "npm run nightwatch -- --env safari_osx,chrome_osx,firefox_win,firefox_osx,IE11,edge --tag staging",
-    "prenightwatch": "selenium-standalone install --version=3.0.1 && npm run prestart",
-    "nightwatch": "NODE_ENV=production nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch.conf.js",
+    "prenightwatch": "selenium-standalone install --version=3.0.1",
+    "nightwatch": "nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch.conf.js",
     "mocha": "mocha --opts ./tests/config/mocha.opts "
   },
   "engines": {
-    "node": "^6.10.0",
-    "npm": "^3.10.10"
+    "node": "^7.6.0",
+    "npm": "^4.1.0"
   },
   "pre-commit": [
     "lint",
     "test"
   ],
   "pre-push": [
+    "build",
     "test:e2e"
   ],
   "author": "Peter Mouland",
@@ -61,6 +63,7 @@
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-eslint": "^7.0.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.2.1",

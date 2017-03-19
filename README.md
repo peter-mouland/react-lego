@@ -62,7 +62,7 @@ The client-side apps are production ready and fully tested, they both use the fo
 
 ### React 
 
- > App Size : 11kb + 214kb node_modules
+ > App Size : 11kb + 215kb node_modules
  >
  > `master` branch 
 
