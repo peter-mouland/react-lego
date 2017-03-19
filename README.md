@@ -26,7 +26,7 @@ _All branches use babel v6, es2015, React v15.4, [react-router v4](https://githu
  | --- | --- | --- | --- | --- | --- | --- |
  | [Client-side Rendering](#client-side) | [React](#react) | 11kb (+ 215kb node_modules) | [Preact](#preact) | 16kb (+ 35kb)
  | [Server-side Rendering](#server-side-rendering-SSR) | [Koa v2](#koa-v2) | 10kb (+ 214kb) |  
- | CSS | [CSS Imports](#css-imports) | [CSS Modules](#css-modules) | [CSS in JS](#css-in-js)
+ | [CSS](#css) | [CSS Imports](#css-imports)  | 10kb (+ 214kb) |   CSS Modules 
  | State Management | [Redux](#redux) |
  | State Management | [Async routes](#redux-with-promise-middleware) |
  | State Management | [Redux Dev Tools](#redux-dev-tools)
@@ -68,15 +68,11 @@ Turns out it was actually very easy!  After removing a few dependencies we swapp
 
  > `ssr` branch
  >
- > [Adding Koa to React code comparison](https://github.com/peter-mouland/react-lego/compare/master...ssr)
+ > [See code needed to add SSR](https://github.com/peter-mouland/react-lego/compare/master...ssr)
 
 With Async/Await released in Node v7.6, Koa 2 is now live.  
 
-__________
-**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
-__________
-
-## Importing CSS
+## CSS
 
 In the base branches, we have simply added the CSS into webpack `entry` array to get it to convert Scss into CSS.
 these are some other ways to achieve more modular components:
@@ -85,11 +81,18 @@ these are some other ways to achieve more modular components:
 
 ### CSS Imports
 
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/express...css-imports)_
+ > `ssr-css` branch
+ >
+ > [See code needed to add CSS](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)
+
 
 Import your css into your component and use the class names as they are written.  
 This method is the least obtrusive and feels most like traditional css.
 You must manually take care of css scope using things like BEM or Smaccs.
+
+__________
+**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
+__________
 
 ### CSS Modules
 
