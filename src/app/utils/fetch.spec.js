@@ -1,4 +1,6 @@
 import { expect, sinon } from '../../../tests/config/test.helper';
+import config from '../../config/environment';
+
 import Chance from 'chance';
 import proxyquire from 'proxyquire';
 
@@ -30,10 +32,10 @@ describe('fetch', ()=>{
 
   context(' URL ', ()=>{
     it('should return url with localhost by default', (done) => {
-      const endpoint = chance.word();
+      const endpoint = '/' + chance.word();
       fetch.url(endpoint).then(() => {
         expect(axiosStubArguments).to.deep.equal({
-          url: `http://localhost:undefined${endpoint}`
+          url: `http://localhost:${config.PORT}${endpoint}`
         });
         done();
       }).catch((e) => {

@@ -4,6 +4,7 @@ require('babel-core/register')({
 require("babel-polyfill");
 const jsdom = require('jsdom');
 
+require('../../src/config/environment')
 // setup the simplest document possible
 const doc = jsdom.jsdom(`
 <!doctype html>
