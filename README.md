@@ -27,7 +27,7 @@ _All branches use babel v6, es2015, React v15.4, [react-router v4](https://githu
  | [Client-side Rendering](#client-side) | [React](#react) | 11kb (+ 215kb node_modules) | [Preact](#preact) | 16kb (+ 35kb)
  | [Server-side Rendering](#server-side-rendering-SSR) | [Koa v2](#koa-v2) | 10kb (+ 214kb) |  
  | [CSS](#css) | [CSS Imports](#css-imports)  | 10kb (+ 214kb) |   CSS Modules 
- | State Management | [Redux](#redux) |
+ | State Management | [Redux](#redux) | 12kb (+ 250kb) | 
  | State Management | [Async routes](#redux-with-promise-middleware) |
  | State Management | [Redux Dev Tools](#redux-dev-tools)
  | Assests | [Importing SVGs](#importing-svgs) |
@@ -90,78 +90,22 @@ Import your css into your component and use the class names as they are written.
 This method is the least obtrusive and feels most like traditional css.
 You must manually take care of css scope using things like BEM or Smaccs.
 
-__________
-**Everything below here will be updated soon.  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016)**
-__________
 
-### CSS Modules
-
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/express...css-modules)_
-
-Import your css into your components and add the class names using js object notation.
-This method completely changes the css class names output.
-Scoping problems are gone, but you must specifically mark 'global' classes.
-
-### CSS in JS
-
- > Based on the `universal` branch _[compare branches](https://github.com/peter-mouland/react-lego/compare/express...css-in-js)_
-
-import your css into your components as Javascript Objects.  
-Class names are a thing of the past as are scoping problems.
-
-
-## Technologies to Add
-
-### React-hot-loader v3
-
-[react-hot-loader](https://github.com/gaearon/react-hot-loader/) allows you to see changes made to any part of your app without having to restart the server.
-We are currently using [v3](https://github.com/gaearon/react-hot-loader/tree/next).
-
-See the code changes needed to :
- * [add react-hot-loader v3 to express](https://github.com/peter-mouland/react-lego/compare/express...express--react-hot-loader-v3)
- * [add react-hot-loader v3 to koa](https://github.com/peter-mouland/react-lego/compare/koa...koa--react-hot-loader-v3)
-
-[>> More about adding react-hot-loader](https://github.com/peter-mouland/react-lego/wiki/react-hot-loader-v3)
-
-#### Redux
+## Redux
+ 
+ > `ssr-css-redux` branch
+ >
+ > [See code needed to add redux](https://github.com/peter-mouland/react-lego/compare/ssr-css...ssr-css-redux)
  
 [Redux](https://github.com/reactjs/react-redux) was added with data being hydrated on the server.
 
 With Redux, the example app now has an API which can be called to return the required data.
 This data is now formatted inside a reducer.
 
-See the code changes needed to :
- * [Add Redux to Express](https://github.com/peter-mouland/react-lego/compare/express...express--redux)
- * [Add Redux to Koa](https://github.com/peter-mouland/react-lego/compare/koa...koa--redux)
-
 [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux)
 
-##### Redux with Promise middleware
 
- > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/express--redux...express--redux-promised)_
+__________
+** Something missing?  Please see [react-lego-2016](https://github.com/peter-mouland/react-lego-2016) or submit a feature request!**
+__________
 
-This branch allows you to make async requests on the server and hydrate your redux store before rendering the page.
-The massive win here is that each container dictates what data it _needs_ while still on the server.
-
-[>> More about adding Promise middleware](https://github.com/peter-mouland/react-lego/wiki/Redux-Promise-Middleware)
-
-##### Redux Dev Tools
-
- > Based on the `redux` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/express--redux...express--redux-devtools)_
-
-Add [Redux-DevTools](https://github.com/gaearon/redux-devtools) to the app to help debugging.
-
-[>> More about adding redux-dev-tools](https://github.com/peter-mouland/react-lego/wiki/Redux-dev-tools)
-
-#### Importing SVG's
-
- > Based on the `universal` branch. _[compare branches](https://github.com/peter-mouland/react-lego/compare/express...svg)_
-
-Using [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) and [svg-inline-loader](https://github.com/sairion/svg-inline-loader) we are able to directly import SVGs into our JavaScript.
-This has the added benefit of :
-
- * Reusing SVG files (without code duplication)
- * Keep SVGs inline and style them with CSS
- * Serverside rendering of SVG's
-
-[>> More about importing SVGs](https://github.com/peter-mouland/react-lego/wiki/Importing-SVGs)
