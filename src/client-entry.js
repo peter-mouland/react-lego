@@ -6,6 +6,7 @@ import './config/environment';
 import './app/polyfills/find'; // for ie 11 support or include these separately in html
 
 import Root from './app/Root';
+import './styles/app.scss';
 
 const log = debug('lego:client-entry');
 

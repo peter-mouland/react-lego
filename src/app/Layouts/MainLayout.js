@@ -4,6 +4,8 @@ import debug from 'debug';
 
 import { NamedLink } from '../routes';
 
+import './mainLayout.scss';
+
 const log = debug('base:mainLayout');
 
 export default class MainLayout extends React.Component {

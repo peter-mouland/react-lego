@@ -4,7 +4,7 @@ const defaultConfig = require('./webpack.common');
 
 const prodConfig = Object.assign({}, defaultConfig, {
   entry: {
-    app: [`${SRC}/styles/app.scss`, `${SRC}/client-entry.js`],
+    app: [`${SRC}/client-entry.js`],
     'promise-polyfill': [`${SRC}/promise-polyfill.js`]
   }
 });

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './question.scss';
+
 const QuestionOption = ({ onClick, attempt, children, answer, showAnswer }) => {
   const classNames = ['question__option'];
   if (attempt === children) {
