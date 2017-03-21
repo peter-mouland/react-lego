@@ -47,7 +47,7 @@ The `Code changes` column is where you go if you want to see how the code change
  | State Management | Redux Dev Tools
  | Assets | Importing SVGs |
  | Assets | Responsive Images with PNGs |
- | Data API | GraphQL
+ | Data API | [GraphQL](https://github.com/peter-mouland/react-lego/tree/ssr-css-redux-async-graphql) |  [add GraphQL](https://github.com/peter-mouland/react-lego/compare/ssr-css-redux-async...ssr-css-redux-async-graphql) | 12kb (+ 253kb) |
  
  
 ## What else ?
