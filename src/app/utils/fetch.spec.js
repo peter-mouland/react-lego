@@ -65,4 +65,46 @@ describe('fetch', ()=>{
       })
     });
   });
+  context(' graphQL ', ()=>{
+    it('should return request options', (done) => {
+      fetch.graphQL().then(() => {
+        expect(axiosStubArguments.method).to.equal('POST')
+        expect(axiosStubArguments.headers['Content-Type']).to.equal('application/graphql')
+        done()
+      }).catch((e) => {
+        done(e)
+      })
+    });
+
+    it('should return request options with local graphQL endpoint', (done) => {
+      fetch.graphQL().then(() => {
+        expect(axiosStubArguments.url).to.equal("http://localhost:3000/graphql");
+        done()
+      }).catch((e) => {
+        done(e)
+      })
+    });
+
+    it('should return request options with data', (done) => {
+      const data = chance.sentence();
+      fetch.graphQL(data).then(()=>{
+        expect(axiosStubArguments.data).to.equal(data)
+        done()
+      }).catch((e)=>{
+        done(e)
+      })
+    });
+
+    it('should return graphQL request options with params', (done) => {
+      const data = chance.sentence();
+      const params = chance.sentence();
+      fetch.graphQL(data, params).then(()=>{
+        expect(axiosStubArguments.params).to.equal(params)
+        done()
+      }).catch((e)=>{
+        done(e)
+      })
+    });
+
+  });
 });

@@ -20,7 +20,7 @@ export function game(state = {}, action) {
         ...state,
         loading: false,
         error: false,
-        hand: action.payload,
+        hand: action.payload && action.payload.getHand,
         status: action.status
       };
     case `${actions.FETCH_HAND}_REJECTED`:

@@ -1,5 +1,5 @@
-import { expect, sinon } from '../../../../tests/config/test.helper';
-import * as utils from '../../../app/utils/randomRange';
+import { expect, sinon } from '../../../../../tests/config/test.helper';
+import * as utils from '../../../../app/utils/randomRange';
 import { Hand } from './';
 
 const sanbox = sinon.sandbox.create();

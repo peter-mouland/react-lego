@@ -1,6 +1,41 @@
-import { randomRange, json } from '../../../app/utils';
+import { randomRange, json } from '../../../../app/utils';
 
 const getSwapiData = (api, id) => json.get(`http://swapi.co/api/${api}/${id}/`);
+
+const schema = (`
+  type GameCard {
+    birth_year : String
+    created : String
+    edited : String
+    eye_color : String
+    films : [String]
+    gender : String
+    hair_color : String
+    height : String
+    homeworld : String 
+    mass : String
+    name : String
+    skin_color : String
+    species : [String]
+    starships : [String]
+    url : String
+    vehicles : [String] 
+  }
+
+  type Hand {
+    gameType: String!
+    question: String
+    answer: String
+    cards: [GameCard]
+    question: String
+    answerId: String,
+    answer: String
+  }
+`);
+
+export const handQuery = `
+  getHand(gameType: String, card1: Int, card2: Int): Hand
+`;
 
 export class Hand {
   constructor(cards = []) {
@@ -44,10 +79,9 @@ export class Hand {
   }
 }
 
-export default ({ gameType, card1, card2 }) => {
+export const getHand = ({ gameType, card1, card2 }) => {
   const promises = [getSwapiData(gameType, card1), getSwapiData(gameType, card2)];
-  return Promise.all(promises).then((cards) => {
-    const hand = new Hand(cards);
-    return { cards, question: hand.question, answerId: hand.answerId, answer: hand.answer };
-  });
+  return Promise.all(promises).then((cards) => new Hand(cards));
 };
+
+export default schema;

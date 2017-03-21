@@ -32,12 +32,12 @@ describe('reducers/index', () => {
     it('will return update state and payload if action is fulfilled', () => {
       const type = `${actions.FETCH_HAND}_FULFILLED`;
       const status = chance.integer();
-      const payload = { data: { getDashboard: { message: chance.sentence() } } };
+      const payload = { getHand: { message: chance.sentence() } };
       const result = reducers.game(fakeState, { type, status, payload });
       expect(result.loading).to.deep.equal(false, 'State should be updated');
       expect(result[fakeKey]).to.deep.equal(fakeValue, 'State should be loading');
       expect(result.status).to.deep.equal(status, 'State should be updated');
-      expect(result.hand).to.deep.equal(payload, 'State should be updated');
+      expect(result.hand).to.deep.equal(payload.getHand, 'State should be updated');
     });
   });
 

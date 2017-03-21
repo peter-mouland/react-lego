@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import fs from 'fs';
@@ -9,16 +9,18 @@ import Question from '../../../src/app/components/Question/Question';
 import Answer from '../../../src/app/components/Answer/Answer';
 import Root from '../../../src/app/Root';
 import { findRoute } from '../../../src/app/routes';
-import { json } from '../../../src/app/utils';
+import { json, fetch } from '../../../src/app/utils';
 
 const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
 const sandbox = sinon.sandbox.create();
 
 describe('Game Route', function () {
-  const promise = Promise.resolve(fixtures);
+  const promise = Promise.resolve({ getHand: fixtures });
+  let wrapper;
 
   before(() => {
     sandbox.stub(json, 'get', () => promise)
+    sandbox.stub(fetch, 'graphQL', () => promise)
   });
   after(() => {
     sandbox.restore();
@@ -27,22 +29,22 @@ describe('Game Route', function () {
   describe(`should contain  markup`, () => {
 
     before(() => {
-      this.wrapper = mount(<Root location={ '/game/' } />);
+      wrapper = mount(<Root location={ '/game/' } context={{}} />);
     });
 
     after(() => {
-      this.wrapper.unmount();
+      wrapper.unmount();
     });
 
     it(`should contain the Game container`, () => {
-      expect(this.wrapper.find(Game)).to.be.present();
+      expect(wrapper.find(Game)).to.be.present();
     });
 
     it(`should contain the 'main' layout`, () => {
-      expect(this.wrapper.find('.layout.layout--main')).to.be.present();
-      expect(this.wrapper.find('.layout__nav')).to.be.present();
-      expect(this.wrapper.find('.layout__content')).to.be.present();
-      expect(this.wrapper.find('.layout__footer')).to.be.present();
+      expect(wrapper.find('.layout.layout--main')).to.be.present();
+      expect(wrapper.find('.layout__nav')).to.be.present();
+      expect(wrapper.find('.layout__content')).to.be.present();
+      expect(wrapper.find('.layout__footer')).to.be.present();
     });
 
     it('Should contain a title', () => {
@@ -50,29 +52,23 @@ describe('Game Route', function () {
     });
 
     it('should have a nav', () => {
-      expect(this.wrapper.find('nav')).to.be.present();
+      expect(wrapper.find('nav')).to.be.present();
     });
 
     it('should have a footer', () => {
-      expect(this.wrapper.find('footer')).to.be.present();
+      expect(wrapper.find('footer')).to.be.present();
     });
 
   });
 
   describe(`be able to deal a hand`, () => {
 
-    let wrapper;
-
     beforeEach(() => {
-      wrapper = mount(<Root location={ '/game/' } />);
+      wrapper = mount(<Root location={ '/game/' } context={{}} />);
     });
 
     afterEach(() => {
       wrapper.unmount();
-    });
-
-    it(`is loaded by the server, so not loading when the page is mounted`, () => {
-        expect(wrapper.find(Loading)).not.to.be.present();
     });
 
     it(`removes loading once the json results are returned`, () => {

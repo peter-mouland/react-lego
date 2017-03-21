@@ -34,11 +34,24 @@ const fetchUrl = (endpoint, opts = {}) => {
     });
 };
 
+const graphQLOpts = (data, params = {}) => ({
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/graphql',
+    credentials: 'same-origin',
+  },
+  data,
+  params
+});
+
 const getJSON = (url, options) => fetchUrl(url, jsonOpts('GET', null, options));
 const postJSON = (url, data, options) => fetchUrl(url, jsonOpts('POST', data, options));
+const graphQL = (data, variables) => fetchUrl('/graphql', graphQLOpts(data, variables));
 
 export const fetch = {
   url: fetchUrl,
+  graphQL
 };
 export const json = {
   get: getJSON,
