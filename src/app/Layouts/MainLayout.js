@@ -17,6 +17,9 @@ export default class MainLayout extends React.Component {
       <div {...bem(null, 'main')}>
         <nav {...bem('nav')}>
           <span {...bem('nav', 'header')}>React SSR Base</span>
+          <a href='/?bookTitle=Railway-Children-by-E-Nesbit' {...bem('nav', 'link')} >
+            Railway-Children-by-E-Nesbit
+          </a>
           <a href='/?bookTitle=Dracula-by-Bram-Stoker' {...bem('nav', 'link')} >
             Dracula-by-Bram-Stoker
           </a>
