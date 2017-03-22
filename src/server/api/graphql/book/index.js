@@ -28,9 +28,13 @@ export const bookQuery = `
 `;
 
 export class Book {
-  constructor(bookTitle, bookText) {
+  constructor(bookTitle, bookText = '') {
     this.bookTitle = bookTitle;
     this.raw = bookText;
+  }
+
+  get wordCount() {
+    return this.raw.split(' ').filter((word) => !!word).length;
   }
 
   get title() {

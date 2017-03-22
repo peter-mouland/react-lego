@@ -10,7 +10,7 @@ let stub;
 let promise;
 let title;
 
-describe('Book', ()=>{
+describe.only('Book', ()=>{
 
   beforeEach(()=>{
     sandbox.stub(fetch, 'graphQL', () => promise);
@@ -28,9 +28,13 @@ describe('Book', ()=>{
     expect(new Book(title).title).to.equal(formatBookTitle(title));
   });
 
+  it('doesnt fail without bookText being passed', () => {
+    expect(new Book(title).wordCount).to.equal(0);
+  });
+
   it('should return a word count', () => {
-
-
+    const bookText = 'one, two, miss a few, one hundred';
+    expect(new Book(title, bookText).wordCount).to.equal(7);
   });
 
   it('should return the raw text', () => {
