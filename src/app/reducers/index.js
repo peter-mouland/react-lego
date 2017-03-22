@@ -35,10 +35,10 @@ export function book(state = {}, action) {
       return {
         ...state,
         loading: false,
-        error: false,
+        error: !payload.getBook,
         book: {
           ...payload.getBook,
-          wordCounts: wordCounts(payload.getBook.text)
+          wordCounts: payload.getBook ? wordCounts(payload.getBook.text) : {}
         },
         status: action.status
       };

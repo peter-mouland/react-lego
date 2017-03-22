@@ -9,6 +9,8 @@ debug('lego:Homepage.jsx');
 
 class Homepage extends React.Component {
 
+  static needs = [fetchBook]
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,31 +19,32 @@ class Homepage extends React.Component {
     this.displayCount = this.displayCount.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchBook('Dracula-by-Bram-Stoker');
-  }
-
   displayCount(e) {
     const count = this.props.book.wordCounts[e.target.value];
     this.setState({ count });
   }
 
   render() {
-    const { book } = this.props;
+    const { book, error } = this.props;
     const { count } = this.state;
-
     return (
       <div id="homepage">
-        {!book && (
-          <div>
-            Loading 'Dracula-by-Bram-Stoker'...
-          </div>
-        )}
         <section className="word-count">
           <label htmlFor="wordCount">Check Word Count: </label>
           <input type="text" id="wordCount" name="wordCount" onChange={this.displayCount} />
           Result: { count }
         </section>
+
+        {!book && (
+          <div>
+            Loading 'Dracula-by-Bram-Stoker'...
+          </div>
+        )}
+        {error && (
+          <div>
+            Error Loading book. please try another.
+          </div>
+        )}
         {!!book && (
           <Book book={ book } />
         )}

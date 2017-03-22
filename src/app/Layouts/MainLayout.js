@@ -1,8 +1,7 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
+// import { Link } from 'react-router-dom';
 import debug from 'debug';
-
-import { NamedLink } from '../routes';
 
 import './mainLayout.scss';
 
@@ -18,7 +17,12 @@ export default class MainLayout extends React.Component {
       <div {...bem(null, 'main')}>
         <nav {...bem('nav')}>
           <span {...bem('nav', 'header')}>React SSR Base</span>
-          <NamedLink to='homepage' {...bem('nav', 'link')} />
+          <a href='/?bookTitle=Dracula-by-Bram-Stoker' {...bem('nav', 'link')} >
+            Dracula-by-Bram-Stoker
+          </a>
+          <a href='/?bookTitle=words' {...bem('nav', 'link')} >
+            Gary Provost
+          </a>
         </nav>
         <main {...bem('content')}>
           {children}

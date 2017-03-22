@@ -1,5 +1,6 @@
 export { fetch, json } from './fetch';
 export { randomRange } from './randomRange';
+export { searchQueryToJson } from './searchToJson';
 
 const navigator = global.navigator && global.navigator.userAgent;
 // hasWindow = true for tests + client

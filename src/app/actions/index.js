@@ -8,7 +8,7 @@ query ($bookTitle: String!) { getBook(bookTitle: $bookTitle){
 }} 
 `;
 
-export function fetchBook(bookTitle) {
+export function fetchBook({ bookTitle = 'words' }) {
   return {
     type: FETCH_BOOK,
     payload: fetch.graphQL(getBookQuery, { bookTitle })
