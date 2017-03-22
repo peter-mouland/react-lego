@@ -3,24 +3,29 @@ import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import matchPath from 'react-router-dom/matchPath';
 import { Provider } from 'react-redux';
+import url from 'url';
 
+import { searchQueryToJson } from '../../app/utils';
 import configureStore from '../../app/store/configure-store';
 import { makeRoutes, getRoutesConfig } from '../../app/routes';
 
-function getMatch(routesArray, url) {
+function getMatch(routesArray, path) {
   return routesArray
-    .find((route) => matchPath(url, { path: route.path, exact: true, strict: false }));
+    .find((route) => matchPath(path, { path: route.path, exact: true, strict: false }));
 }
 
-async function getRouteData(routesArray, url, dispatch) {
+async function getRouteData(routesArray, req, dispatch) {
+  const path = url.parse(req.url);
+  const searchObj = searchQueryToJson(path.search);
+
   const needs = [];
   routesArray
     .filter((route) => route.component.needs)
     .forEach((route) => {
-      const match = matchPath(url, { path: route.path, exact: true, strict: false });
+      const match = matchPath(path.pathname, { path: route.path, exact: true, strict: false });
       if (match) {
         route.component.needs.forEach((need) => {
-          const result = need(match.params);
+          const result = need({ ...match.params, ...searchObj });
           needs.push(dispatch(result));
         });
       }
@@ -42,7 +47,7 @@ function setRouterContext() {
   return async (ctx, next) => {
     const store = configureStore();
     const routerContext = {};
-    await getRouteData(routesArray, ctx.request.url, store.dispatch);
+    await getRouteData(routesArray, ctx.request, store.dispatch);
     const markup = renderToString(Markup({ req: ctx.request, store, context: routerContext }));
     const match = getMatch(routesArray, ctx.request.url);
     if (routerContext.url) {

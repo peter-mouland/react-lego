@@ -1,0 +1,9 @@
+{
+  "app": {
+    "js": "/app-fixtures.js",
+    "css": "/app-fixtures.css"
+  },
+  "vendor": {
+    "js": "/vendor-fixtures.js"
+  }
+}

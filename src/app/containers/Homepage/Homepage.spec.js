@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Homepage from './Homepage';
+import { WrappedComponent as Homepage } from './Homepage';
 
 const baseProps = {};
 
-describe('Settings Container', () => {
+describe('Homepage Container', () => {
   it('should have an id of homepage', () => {
     const wrapper = shallow(<Homepage { ...baseProps } />);
     expect(wrapper.at(0)).to.have.prop('id', 'homepage');
