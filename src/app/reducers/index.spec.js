@@ -17,14 +17,14 @@ describe('reducers/index', () => {
     fakeState = { [fakeKey]: fakeValue };
   });
 
-  context('game reducer', () => {
+  context('book reducer', () => {
     it('will always return given state by default', () => {
-      expect(reducers.game(fakeState, {})).to.equal(fakeState, 'State should always be returned');
+      expect(reducers.book(fakeState, {})).to.equal(fakeState, 'State should always be returned');
     });
 
     it('will return loading state if action is pending', () => {
       const type = `${actions.FETCH_HAND}_PENDING`;
-      const result = reducers.game(fakeState, { type });
+      const result = reducers.book(fakeState, { type });
       expect(result.loading).to.deep.equal(true, 'State should be loading');
       expect(result[fakeKey]).to.deep.equal(fakeValue, 'State should still contain existing keys');
     });
@@ -33,7 +33,7 @@ describe('reducers/index', () => {
       const type = `${actions.FETCH_HAND}_FULFILLED`;
       const status = chance.integer();
       const payload = { getHand: { message: chance.sentence() } };
-      const result = reducers.game(fakeState, { type, status, payload });
+      const result = reducers.book(fakeState, { type, status, payload });
       expect(result.loading).to.deep.equal(false, 'State should be updated');
       expect(result[fakeKey]).to.deep.equal(fakeValue, 'State should be loading');
       expect(result.status).to.deep.equal(status, 'State should be updated');

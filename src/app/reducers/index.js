@@ -6,7 +6,7 @@ import * as actions from '../actions';
 
 const log = debug('lego:reducers/index');
 
-export function game(state = {}, action) {
+export function book(state = {}, action) {
   switch (action.type) {
     case `${actions.FETCH_HAND}_PENDING`:
       return {
@@ -36,6 +36,6 @@ export function game(state = {}, action) {
 }
 
 export default combineReducers({
-  game,
+  book,
   routing
 });

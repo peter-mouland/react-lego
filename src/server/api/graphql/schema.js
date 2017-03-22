@@ -1,18 +1,18 @@
 import { buildSchema } from 'graphql';
 
 // maybe use babel-plugin-import-glob  in the future
-import handSchema, { getHand, handQuery } from './game';
+import bookSchema, { getBook, bookQuery } from './book';
 
 // The root provides the top-level API endpoints
 export const root = {
-  getHand,
+  getBook,
 };
 
 export default buildSchema(`
-  ${handSchema}
+  ${bookSchema}
   
   type Query {
-    ${handQuery}
+    ${bookQuery}
   }
 `);
 

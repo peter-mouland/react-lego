@@ -8,14 +8,13 @@ import debug from 'debug';
 
 import MainLayout from './Layouts/MainLayout';
 import Homepage from './containers/Homepage/Homepage';
-import Game from './containers/Game/Game';
 import NotFound from './containers/NotFound/NotFound';
 
 debug('lego:routes');
 
 const baseMetaData = {
   title: 'React Lego',
-  description: 'React Lego : incrementally add more cool stuff to your react app',
+  description: 'React Lego - CTM',
   meta: {
     charset: 'utf-8',
     name: {
@@ -30,21 +29,11 @@ export const getRoutesConfig = () => [
     path: '/',
     meta: {
       ...baseMetaData,
-      title: 'About React SSR Base'
+      title: 'oh my word!'
     },
-    label: 'About SSR Base',
+    label: 'Oh my word',
     component: Homepage
   },
-  {
-    name: 'game',
-    path: '/game/',
-    label: 'Star Wars Trivia',
-    meta: {
-      ...baseMetaData,
-      title: 'Star Wars Trivia',
-    },
-    component: Game
-  }
 ];
 
 export const findRoute = (to) => getRoutesConfig().find((rt) => rt.name === to);
