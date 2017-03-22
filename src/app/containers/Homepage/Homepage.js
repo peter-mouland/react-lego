@@ -1,39 +1,61 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import debug from 'debug';
+
+import { fetchBook } from '../../actions';
+import Book from '../../components/Book/Book';
 
 debug('lego:Homepage.jsx');
 
-export default class Homepage extends React.Component {
+class Homepage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    this.displayCount = this.displayCount.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchBook('Dracula-by-Bram-Stoker');
+  }
+
+  displayCount(e) {
+    const count = this.props.book.wordCounts[e.target.value];
+    this.setState({ count });
+  }
 
   render() {
+    const { book } = this.props;
+    const { count } = this.state;
+
     return (
       <div id="homepage">
-        <banner className="header">
-          <h1>About React Lego</h1>
-          <p>Iteratively add more technologies to React Applications.</p>
-        </banner>
-        <section>
-          <h2>The 'Base' App</h2>
-          <p>This demo is the '<strong>base</strong>' app, which includes :</p>
-          <ul>
-            <li>Rendering Universal Javascript (rendered on the server + client)</li>
-            <li>Importing stylesheets</li>
-            <li>
-              Fully tested app :
-              <ul>
-                <li>Unit tests</li>
-                <li>Functional tests</li>
-                <li>End-to-end tests</li>
-              </ul>
-            </li>
-          </ul>
-          <h2>It could be simpler...</h2>
-          <p>This app isn't aimed to be the simplest 'base' React app,
-            it's aimed at <em>adding new technologies</em> simple.</p>
-          <p>But, this means that when it comes to adding Redux for example,
-            much less changes are required.</p>
+        {!book && (
+          <div>
+            Loading 'Dracula-by-Bram-Stoker'...
+          </div>
+        )}
+        <section className="word-count">
+          <label htmlFor="wordCount">Check Word Count: </label>
+          <input type="text" id="wordCount" name="wordCount" onChange={this.displayCount} />
+          Result: { count }
         </section>
+        {!!book && (
+          <Book book={ book } />
+        )}
       </div>
     );
   }
 }
+
+
+function mapStateToProps(state) {
+  return { ...state.book };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchBook }
+)(Homepage);

@@ -9,7 +9,7 @@ import Homepage from '../../src/app/containers/Homepage/Homepage';
 import NotFound from '../../src/app/containers/NotFound/NotFound';
 import { fetch } from '../../src/app/utils';
 
-const fixtures = fs.readFileSync(__dirname + '/fixtures/words.text', 'utf8');
+const fixtures = fs.readFileSync(__dirname + '/fixtures/words.txt', 'utf8');
 const sandbox = sinon.sandbox.create();
 
 describe('Client Render', function () {

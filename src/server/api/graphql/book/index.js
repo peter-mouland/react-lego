@@ -1,34 +1,18 @@
-/* eslint-disable no-param-reassign */
-// import { GraphQLScalarType } from 'graphql/type';
+import fs from 'fs';
+import path from 'path';
 
-import { json } from '../../../../app/utils';
-import config from '../../../../config/environment';
+// import { json } from '../../../../app/utils';
+// import config from '../../../../config/environment';
 
 export const formatBookTitle = (title) => title.replace(/ /ig, '-');
-const getBookText = (title) => json.get(`${config.CTM_BASE_URL_BOOK}${formatBookTitle(title)}`);
-
-class WordCounts {
-  constructor(text) {
-    const wordsArray = text.toLowerCase().split(/[,.;?']*\s/);
-    return wordsArray.reduce((prev, curr) => {
-      const word = curr.trim();
-      if (word && prev[word]) {
-        prev[word] += 1;
-      } else if (word) {
-        prev[word] = 1;
-      }
-      return prev;
-    }, {});
-  }
-}
+// const getBookText = (title) => json.get(`${config.CTM_BASE_URL_BOOK}${formatBookTitle(title)}`);
+const getBookText = (title) => Promise.resolve(fs.readFileSync(path.join(process.cwd(), 'tests', 'functional', 'fixtures', `${formatBookTitle(title)}.txt`), 'utf8'));
 
 const schema = (`
-  scalar WordCounts
   type Book {
     bookTitle: String!,
     text: String!,
-    wordCount: Int,
-    wordCounts: WordCounts
+    wordCount: Int
   }
 `);
 
@@ -39,19 +23,15 @@ export const bookQuery = `
 export class Book {
   constructor(bookTitle, bookText = '') {
     this.bookTitle = bookTitle;
-    this.raw = bookText;
+    this.text = bookText;
   }
 
   get wordCount() {
-    return this.raw.split(' ').filter((word) => !!word).length;
+    return this.text.split(' ').filter((word) => !!word).length;
   }
 
   get title() {
     return formatBookTitle(this.bookTitle);
-  }
-
-  get wordCounts() {
-    return new WordCounts(this.raw);
   }
 }
 
