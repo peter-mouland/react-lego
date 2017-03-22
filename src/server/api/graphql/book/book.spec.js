@@ -63,6 +63,16 @@ describe.only('Book', ()=>{
       expect(wordCounts.the).to.equal(2);
       expect(wordCounts.quick).to.equal(1);
     });
+
+    it('counts hyphenated words ', () => {
+      const bookText = 'the front-end developer using back-end tools';
+      const wordCounts = new Book(title, bookText).wordCounts;
+      expect(Object.keys(wordCounts).length).to.equal(6);
+      expect(wordCounts['front-end']).to.equal(1);
+      expect(wordCounts.front).to.equal(undefined);
+      expect(wordCounts['back-end']).to.equal(1);
+      expect(wordCounts.back).to.equal(undefined);
+    });
   })
 
 });

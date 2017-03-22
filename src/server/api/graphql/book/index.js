@@ -11,10 +11,11 @@ class WordCounts {
   constructor(text) {
     const wordsArray = text.toLowerCase().split(/,* /);
     return wordsArray.reduce((prev, curr) => {
-      if (prev[curr]) {
-        prev[curr] += 1;
-      } else {
-        prev[curr] = 1;
+      const word = curr.trim();
+      if (word && prev[word]) {
+        prev[word] += 1;
+      } else if (word) {
+        prev[word] = 1;
       }
       return prev;
     }, {});
