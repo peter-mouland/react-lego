@@ -38,6 +38,8 @@ describe.only('Book', ()=>{
   });
 
   it('should return the raw text', () => {
+    const bookText = chance.sentence();
+    expect(new Book(title, bookText).raw).to.equal(bookText);
 
   });
 
