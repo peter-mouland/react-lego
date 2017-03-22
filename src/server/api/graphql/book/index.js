@@ -9,7 +9,7 @@ const getBookText = (title) => json.get(`${config.CTM_BASE_URL_BOOK}${formatBook
 
 class WordCounts {
   constructor(text) {
-    const wordsArray = text.toLowerCase().split(/,* /);
+    const wordsArray = text.toLowerCase().split(/[,.;?']*\s/);
     return wordsArray.reduce((prev, curr) => {
       const word = curr.trim();
       if (word && prev[word]) {

@@ -73,6 +73,14 @@ describe.only('Book', ()=>{
       expect(wordCounts['back-end']).to.equal(1);
       expect(wordCounts.back).to.equal(undefined);
     });
+
+    it('ignores multiple types of punctuation ', () => {
+      const bookText = `a word; another word. what is going on?`;
+      const wordCounts = new Book(title, bookText).wordCounts;
+      expect(Object.keys(wordCounts).length).to.equal(7);
+      expect(wordCounts.word).to.equal(2);
+      expect(wordCounts.what).to.equal(1);
+    });
   })
 
 });
