@@ -1,4 +1,5 @@
-import { GraphQLScalarType } from 'graphql/type';
+/* eslint-disable no-param-reassign */
+// import { GraphQLScalarType } from 'graphql/type';
 
 import { json } from '../../../../app/utils';
 import config from '../../../../config/environment';
@@ -6,20 +7,27 @@ import config from '../../../../config/environment';
 export const formatBookTitle = (title) => title.replace(/ /ig, '-');
 const getBookText = (title) => json.get(`${config.CTM_BASE_URL_BOOK}${formatBookTitle(title)}`);
 
-const WordCounts = new GraphQLScalarType({
-  name: 'WordCounts',
-  serialize(value) {
-    return value;
-  },
-});
+class WordCounts {
+  constructor(text) {
+    const wordsArray = text.toLowerCase().split(/,* /);
+    return wordsArray.reduce((prev, curr) => {
+      if (prev[curr]) {
+        prev[curr] += 1;
+      } else {
+        prev[curr] = 1;
+      }
+      return prev;
+    }, {});
+  }
+}
 
 const schema = (`
   scalar WordCounts
   type Book {
     bookTitle: String!,
     text: String!,
-    totalWordCount: Int,
-    individualWordCount: WordCounts
+    wordCount: Int,
+    wordCounts: WordCounts
   }
 `);
 
@@ -41,7 +49,7 @@ export class Book {
     return formatBookTitle(this.bookTitle);
   }
 
-  get individualWordCount() {
+  get wordCounts() {
     return new WordCounts(this.raw);
   }
 }
