@@ -39,6 +39,14 @@ The `Code changes` column is where you go if you want to see how the code change
  
  | Category | New Tech | Code changes | Client-side App (kb) | Comparator | kb |  |
  | --- | --- | --- | --- | --- | --- | --- | 
+ | | | | | | | |
+ 
+ 
+ ### _Previous branches still to be updated_
+ > These branches are from React Lego 2017 and are on my 'todo' list to update!
+ 
+ | Category | New Tech | Code changes | Client-side App (kb) | Comparator | kb |  |
+ | --- | --- | --- | --- | --- | --- | --- | 
  | Client-side Rendering | [React](https://github.com/peter-mouland/react-lego/tree/master/) | - | tbc | Preact > [Preact code vs React](https://github.com/peter-mouland/react-lego/compare/master...preact) | tbc | [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
  | Server-side Rendering | [Koa v2](https://github.com/peter-mouland/react-lego/tree/ssr) | [add SSR](https://github.com/peter-mouland/react-lego/compare/master...ssr) | tbc |  
  | CSS | [CSS Imports](https://github.com/peter-mouland/react-lego/tree/ssr-css)  | [add CSS](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)| tbc |   CSS Modules  | | [>> More about adding CSS](https://github.com/peter-mouland/react-lego/wiki/CSS) |
