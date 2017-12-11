@@ -5,11 +5,11 @@ const navigator = global.navigator && global.navigator.userAgent;
 // hasWindow = true for tests + client
 export const hasWindow = typeof window !== 'undefined';
 // isBrowser = true for client only
-export const isBrowser = typeof navigator !== 'undefined' && navigator.indexOf('Node.js') === -1;
+export const isBrowser = typeof navigator !== 'undefined' && navigator.indexOf('jsdom/') === -1;
 
 const getLocalUrl = () => {
   if (isBrowser) {
-    const location = window.location;
+    const { location } = window;
     if (!location.origin) { // Some browsers (mainly IE) does not have this property
       location.origin = `${location.protocol}//${location.hostname}${location.port
         ? (`:${location.port}`)

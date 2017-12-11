@@ -56,8 +56,9 @@ describe('Game Route', function () {
     const promise = Promise.resolve(fixtures);
 
     before(() => {
-      sandbox.stub(json, 'get', () => promise)
+      sandbox.stub(json, 'get').callsFake(() => promise)
     });
+
     beforeEach(() => {
       wrapper = mount(<Root location={ '/game/' } />);
     });

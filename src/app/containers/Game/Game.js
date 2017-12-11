@@ -9,12 +9,16 @@ import Answer from '../../components/Answer/Answer';
 debug('lego:Game');
 
 const DECK = 87;
-export const Error = ({ error }) => <p className="error">Error Loading cards!<span>{error}</span></p>;
+export const Error = ({ error }) => {
+  if (typeof error !== 'string') {
+    return <p className="error">{String(error)} <strong>needs to be handled, was not a string</strong></p>;
+  }
+  return <p className="error">Error Loading cards!<span>{String(error)}</span></p>;
+};
 export const Loading = () => <p className="loading">Loading hand....</p>;
 const getCard = (api, cardId) => json.get(`http://swapi.co/api/${api}/${cardId}/`);
 
 export default class Game extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -71,20 +75,24 @@ export default class Game extends React.Component {
 
   render() {
     const {
-      error, loading, showAnswer, attempt, hand: { cards = [], question, answer, answerId } = {}
+      error, loading, showAnswer, attempt, hand: {
+        cards = [], question, answer, answerId
+      } = {}
     } = this.state;
 
     return (
       <div id="game">
-        <banner className="header">
+        <header className="header">
           <h1>Star Wars Trivia</h1>
           <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
-        </banner>
+        </header>
         <button onClick={() => this.deal()}>Deal cards!</button>
         {error && <Error error={ error } />}
         {loading ?
           <Loading /> :
-          <Question { ...{ showAnswer, answer, cards, attempt, onClick: this.setAttempt } }>
+          <Question { ...{
+            showAnswer, answer, cards, attempt, onClick: this.setAttempt
+          } }>
             {question}
           </Question>
         }

@@ -4,14 +4,13 @@ import debug from 'debug';
 debug('lego:Homepage.jsx');
 
 export default class Homepage extends React.Component {
-
   render() {
     return (
       <div id="homepage">
-        <banner className="header">
+        <header className="header">
           <h1>About React Lego</h1>
           <p>Iteratively add more technologies to React Applications.</p>
-        </banner>
+        </header>
         <section>
           <h2>The 'Base' App</h2>
           <p>This demo is the '<strong>base</strong>' app, which includes :</p>

@@ -9,4 +9,6 @@ const ICONS = path.join(SRC, 'icons');
 const STYLES = path.join(SRC, 'styles');
 const TESTS = path.join(ROOT, 'tests');
 
-module.exports = { ROOT, SRC, DIST, COMPILED, APP, ICONS, STYLES, TESTS };
+module.exports = {
+  ROOT, SRC, DIST, COMPILED, APP, ICONS, STYLES, TESTS
+};

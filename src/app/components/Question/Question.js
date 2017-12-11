@@ -1,6 +1,8 @@
 import React from 'react';
 
-const QuestionOption = ({ onClick, attempt, children, answer, showAnswer }) => {
+const QuestionOption = ({
+  onClick, attempt, children, answer, showAnswer
+}) => {
   const classNames = ['question__option'];
   if (attempt === children) {
     classNames.push('question__option--selected');
@@ -12,9 +14,10 @@ const QuestionOption = ({ onClick, attempt, children, answer, showAnswer }) => {
 };
 
 export default class Question extends React.Component {
-
   render() {
-    const { children, showAnswer, answer, cards, attempt, onClick, ...props } = this.props;
+    const {
+      children, showAnswer, answer, cards, attempt, onClick, ...props
+    } = this.props;
     if (!cards.length) return null;
 
     const options = [cards[0].name, cards[1].name, 'both', 'unknown'];

@@ -5,6 +5,7 @@ const { SRC } = require('./paths');
 const defaultConfig = require('./webpack.common');
 
 const devConfig = Object.assign({}, defaultConfig, {
+  mode: 'development',
   entry: {
     app: [`webpack-dev-server/client?http://localhost:${config.PORT}/`, `${SRC}/styles/app.scss`, `${SRC}/client-entry.js`],
     'promise-polyfill': [`${SRC}/promise-polyfill.js`]

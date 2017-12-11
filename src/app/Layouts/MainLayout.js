@@ -7,7 +7,6 @@ import { NamedLink } from '../routes';
 const log = debug('base:mainLayout');
 
 export default class MainLayout extends React.Component {
-
   render() {
     const bem = bemHelper({ name: 'layout' });
     const { children } = this.props;

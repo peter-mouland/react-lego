@@ -8,8 +8,6 @@ export default class Hand {
     const answerIndex = randomRange(0, 1, 1)[0];
     const factIndex = randomRange(0, 7, 1)[0];
     this.cards = cards;
-    this.card1 = this.cards[0];
-    this.card2 = this.cards[1];
     this.wrongCard = this.cards[1 - answerIndex];
     this.answerCard = this.cards[answerIndex];
     this.answerKey = Object.keys(this.answerCard)[factIndex];
@@ -32,11 +30,11 @@ export default class Hand {
     const wrongAnswer = this.wrongCard[this.answerKey];
     const answer = this.answerCard[this.answerKey];
     switch (true) {
-      case (wrongAnswer === 'unknown' && wrongAnswer !== answer) :
+      case (wrongAnswer === 'unknown' && wrongAnswer !== answer):
         return 'unknown';
-      case (wrongAnswer === answer) :
+      case (wrongAnswer === answer):
         return 'both';
-      default :
+      default:
         return this.answerCard.name;
     }
   }
