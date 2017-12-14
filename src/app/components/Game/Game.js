@@ -1,7 +1,7 @@
 import React from 'react';
 import debug from 'debug';
 
-import { randomRange, json } from '../../utils/index';
+import { randomRange, getJSON } from '../../utils/index';
 import Hand from './hand';
 import Question from '../Question/Question';
 import Answer from '../Answer/Answer';
@@ -17,7 +17,7 @@ export const Error = ({ error }) => {
   return <p className="error">Error Loading cards!<span>{String(error)}</span></p>;
 };
 export const Loading = () => <p className="loading">Loading hand....</p>;
-const getCard = (api, cardId) => json.get(`${config.api.host}${api}/${cardId}/`);
+const getCard = (api, cardId) => getJSON(`${config.api.host}${api}/${cardId}/`);
 
 export default class Game extends React.Component {
   constructor(props) {

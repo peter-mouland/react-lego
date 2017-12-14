@@ -1,24 +1,31 @@
 import Chance from 'chance';
 
 import config from '../../config/environment';
-import { fetch } from './fetch';
+import { fetchUrl } from './fetch';
 
-let axiosStubArguments;
-jest.mock('axios', () => (args) => {
-  axiosStubArguments = args;
-  return Promise.resolve({ status: 200 });
-});
+let stubUrl;
+let stubOptions;
+
 
 const chance = new Chance();
 
 describe('fetch', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn().mockImplementation((url, options) => {
+      stubUrl = url;
+      stubOptions = options;
+      return Promise.resolve({
+        status: 200,
+        text: jest.fn()
+      });
+    });
+  });
+
   describe(' URL ', () => {
     it('should return url with localhost by default', (done) => {
       const endpoint = `/${chance.word()}`;
-      fetch.url(endpoint).then(() => {
-        expect(axiosStubArguments).toEqual({
-          url: `http://localhost:${config.PORT}${endpoint}`
-        });
+      fetchUrl(endpoint).then(() => {
+        expect(stubUrl).toEqual(`http://localhost:${config.PORT}${endpoint}`);
         done();
       }).catch((e) => {
         done(e);
@@ -26,10 +33,8 @@ describe('fetch', () => {
     });
     it('should return given url if it contains double-slash', (done) => {
       const endpoint = `//${chance.word()}`;
-      fetch.url(endpoint).then(() => {
-        expect(axiosStubArguments).toEqual({
-          url: endpoint
-        });
+      fetchUrl(endpoint).then(() => {
+        expect(stubUrl).toEqual(endpoint);
         done();
       }).catch((e) => {
         done(e);
@@ -39,8 +44,8 @@ describe('fetch', () => {
     it('should return request options with data', (done) => {
       const endpoint = chance.word();
       const data = chance.sentence();
-      fetch.url(endpoint, { data }).then(() => {
-        expect(axiosStubArguments.data).toEqual(data);
+      fetchUrl(endpoint, { data }).then(() => {
+        expect(stubOptions.data).toEqual(data);
         done();
       }).catch((e) => {
         done(e);

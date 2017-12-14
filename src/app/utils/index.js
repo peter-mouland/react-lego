@@ -1,4 +1,4 @@
-export { fetch, json } from './fetch';
+export { fetchUrl, getJSON, postJSON } from './fetch';
 export { randomRange } from './randomRange';
 
 const navigator = global.navigator && global.navigator.userAgent;
@@ -10,11 +10,6 @@ export const isBrowser = typeof navigator !== 'undefined' && navigator.indexOf('
 const getLocalUrl = () => {
   if (isBrowser) {
     const { location } = window;
-    if (!location.origin) { // Some browsers (mainly IE) does not have this property
-      location.origin = `${location.protocol}//${location.hostname}${location.port
-        ? (`:${location.port}`)
-        : ''}`;
-    }
     return location.origin;
   }
   return `http://localhost:${process.env.PORT}`;

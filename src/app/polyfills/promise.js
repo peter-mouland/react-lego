@@ -1,2 +1,7 @@
+/* eslint-disable */
 // for ie
-require('es6-promise').polyfill();
+var Promise = require('promise-polyfill');
+
+if (!window.Promise) {
+  window.Promise = Promise;
+}

@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* global fetch */
 import debug from 'debug';
 
 import { localUrl } from '../utils';
@@ -23,24 +23,19 @@ const jsonOpts = (method, data) => ({
   data: data && JSON.stringify(data)
 });
 
-const fetchUrl = (endpoint, opts = {}) => {
+export const fetchUrl = (endpoint, opts = {}) => {
   const url = endpoint.indexOf('//') > -1 ? endpoint : `${localUrl}${endpoint}`;
-  return axios({ url, ...opts })
+  return fetch(url, { ...opts })
     .then(checkStatus)
-    .then((response) => response.data)
+    .then((response) => response.text())
     .catch((error) => {
       log('request failed', error);
       throw new Error('request failed');
     });
 };
 
-const getJSON = (url, options) => fetchUrl(url, jsonOpts('GET', null, options));
-const postJSON = (url, data, options) => fetchUrl(url, jsonOpts('POST', data, options));
+export const getJSON = (url, options) =>
+  fetchUrl(url, jsonOpts('GET', null, options)).then((data) => JSON.parse(data));
 
-export const fetch = {
-  url: fetchUrl,
-};
-export const json = {
-  get: getJSON,
-  post: postJSON
-};
+export const postJSON = (url, data, options) =>
+  fetchUrl(url, jsonOpts('POST', data, options));

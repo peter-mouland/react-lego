@@ -8,7 +8,7 @@ import Question from '../../../src/app/components/Question/Question';
 import Answer from '../../../src/app/components/Answer/Answer';
 import Root from '../../../src/app/Root';
 import { findRoute } from '../../../src/app/routes';
-import { json } from '../../../src/app/utils';
+import * as fetch from '../../../src/app/utils/fetch';
 
 const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
 const context = {}
@@ -57,7 +57,7 @@ describe('Game Route', function () {
     const promise = Promise.resolve(fixtures);
 
     beforeAll(() => {
-      jsonGetSpy = jest.spyOn(json, 'get').mockReturnValue(promise)
+      jsonGetSpy = jest.spyOn(fetch, 'getJSON').mockReturnValue(promise)
     });
 
     beforeEach(() => {
