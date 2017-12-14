@@ -39,7 +39,8 @@ The `Code changes` column is where you go if you want to see how the code change
  
  | Category | New Tech | Code changes | Client-side App (kb) | Comparator | kb |  |
  | --- | --- | --- | --- | --- | --- | --- | 
- | | | | | | | |
+  | Client-side Rendering | [React](https://github.com/peter-mouland/react-lego/tree/master/) | - | 26kb (+165 node_modules) |  |  | 
+| | | | | | | |
  
  
  ### _Previous branches still to be updated_

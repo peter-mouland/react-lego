@@ -1,10 +1,9 @@
+/* global jest, describe, expect, it, test, beforeAll, afterAll, beforeEach, afterEach */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { expect } from 'chai';
-import sinon from 'sinon';
 import fs from 'fs';
 
-import Game, { Loading } from '../../../src/app/containers/Game/Game';
+import Game, { Loading } from '../../../src/app/components/Game/Game';
 import Question from '../../../src/app/components/Question/Question';
 import Answer from '../../../src/app/components/Answer/Answer';
 import Root from '../../../src/app/Root';
@@ -12,121 +11,112 @@ import { findRoute } from '../../../src/app/routes';
 import { json } from '../../../src/app/utils';
 
 const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
-const sandbox = sinon.sandbox.create();
+const context = {}
+
+let wrapper;
+let jsonGetSpy;
 
 describe('Game Route', function () {
   describe(`should contain  markup`, () => {
 
-    before(() => {
-      this.wrapper = mount(<Root location={ '/game/' } />);
+    beforeAll(() => {
+      wrapper = mount(<Root location={ '/game/' } context={context} />);
     });
 
-    after(() => {
-      this.wrapper.unmount();
+    afterAll(() => {
+      wrapper.unmount();
     });
 
     it(`should contain the Game container`, () => {
-      expect(this.wrapper.find(Game)).to.be.present();
+      expect(wrapper.find(Game).exists()).toBe(true);
     });
 
     it(`should contain the 'main' layout`, () => {
-      expect(this.wrapper.find('.layout.layout--main')).to.be.present();
-      expect(this.wrapper.find('.layout__nav')).to.be.present();
-      expect(this.wrapper.find('.layout__content')).to.be.present();
-      expect(this.wrapper.find('.layout__footer')).to.be.present();
+      expect(wrapper.find('.layout.layout--main').exists()).toBe(true);
+      expect(wrapper.find('.layout__nav').exists()).toBe(true);
+      expect(wrapper.find('.layout__content').exists()).toBe(true);
+      expect(wrapper.find('.layout__footer').exists()).toBe(true);
     });
 
     it('Should contain a title', () => {
-      expect(document.title).to.equal(findRoute('game').meta.title);
+      expect(document.title).toBe(findRoute('game').meta.title);
     });
 
     it('should have a nav', () => {
-      expect(this.wrapper.find('nav')).to.be.present();
+      expect(wrapper.find('nav').exists()).toBe(true);
     });
 
     it('should have a footer', () => {
-      expect(this.wrapper.find('footer')).to.be.present();
+      expect(wrapper.find('footer').exists()).toBe(true);
     });
 
   });
 
   describe(`be able to deal a hand`, () => {
 
-    let wrapper;
     const promise = Promise.resolve(fixtures);
 
-    before(() => {
-      sandbox.stub(json, 'get').callsFake(() => promise)
+    beforeAll(() => {
+      jsonGetSpy = jest.spyOn(json, 'get').mockReturnValue(promise)
     });
 
     beforeEach(() => {
-      wrapper = mount(<Root location={ '/game/' } />);
+      wrapper = mount(<Root location={ '/game/' } context={context}  />);
     });
 
     afterEach(() => {
       wrapper.unmount();
     });
 
-    after(() => {
-      sandbox.restore();
+    afterAll(() => {
+      jsonGetSpy.mockReset();
+      jsonGetSpy.mockRestore();
     });
 
     it(`is not loading before it gets mounted`, () => {
-        wrapper = shallow(<Root location={ '/game/' } />);
-        expect(wrapper.find(Loading)).not.to.be.present();
+        wrapper = shallow(<Root location={ '/game/' } context={context}  />);
+        expect(wrapper.find(Loading).exists()).toBe(false);
     });
 
     it(`starts loading as soon as the page is mounted`, () => {
-        expect(wrapper.find(Loading)).to.be.present();
+        expect(wrapper.find(Loading).exists()).toBe(true);
     });
 
     it(`removes loading once the json results are returned`, () => {
       return promise.then(() => {
-        setImmediate(()=>{
-          wrapper.update();
-          expect(wrapper.find(Loading)).not.to.be.present();
-        })
+        wrapper.update();
+        expect(wrapper.find(Loading).exists()).toBe(false);
       })
     });
 
     it(`renders the question`, () => {
       return promise.then(() => {
-        setImmediate(()=>{
-          wrapper.update();
-          expect(wrapper.find(Question)).to.be.present();
-        })
+        wrapper.update();
+        expect(wrapper.find(Question).exists()).toBe(true);
       })
     });
 
     it(`passes the json response to the Question`, () => {
       return promise.then(() => {
-        setImmediate(()=>{
-          wrapper.update();
-          const questionComponet = wrapper.find(Question);
-          expect(questionComponet.props().cards).to.deep.equal([fixtures, fixtures]);
-        })
+        wrapper.update();
+        const questionComponent = wrapper.find(Question);
+        expect(questionComponent.props().cards).toEqual([fixtures, fixtures]);
       })
     });
 
     it(`does not render the answer by default`, () => {
-      return promise.then(() => {
-        setImmediate(()=>{
-          wrapper.update();
-          expect(wrapper.find(Answer)).not.to.be.present();
-        })
-      })
+      const answerComponent = wrapper.find(Answer);
+      expect(answerComponent.exists()).toBe(false);
     });
 
     it(`renders the answer after the 'view answer' button is clicked`, () => {
       return promise.then(() => {
-        setImmediate(()=>{
-          wrapper.update();
-          wrapper.find('button.game__btn--show-answer').simulate('click');
-          wrapper.update();
-          const answerComponent = wrapper.find(Answer);
-          expect(answerComponent).to.be.present();
-          expect(answerComponent.props().cards).to.deep.equal([fixtures, fixtures]);
-        })
+        wrapper.update();
+        wrapper.find('button.game__btn--show-answer').simulate('click');
+        wrapper.update();
+        const answerComponent = wrapper.find(Answer);
+        expect(answerComponent.exists()).toBe(true);
+        expect(answerComponent.props().cards).toEqual([fixtures, fixtures]);
       })
     });
   });

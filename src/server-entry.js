@@ -4,7 +4,7 @@ const config = require('./config/environment');
 const path = require('path');
 const Webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('./config/webpack.config.dev.js');
+const webpackConfig = require('../webpack.config.dev.js');
 
 const compiler = Webpack(webpackConfig);
 const server = new WebpackDevServer(compiler, {

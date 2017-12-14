@@ -6,14 +6,14 @@
   },
   "selenium" : {
     "start_process" : true,
-    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.0.1-server.jar",
+    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.7.1-server.jar",
     "cli_args" : {
-      "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.27-x64-chromedriver"
+      "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.33-x64-chromedriver"
     }
   },
-  "custom_commands_path" : "./tests/config/nightwatch-commands",
-  "page_objects_path" : "./tests/config/nightwatch-pages",
-  "globals_path": "./tests/config/nightwatch-globals.js",
+  "custom_commands_path" : "./tests/config/nightwatch/nightwatch-commands",
+  "page_objects_path" : "./tests/config/nightwatch/nightwatch-pages",
+  "globals_path": "./tests/config/nightwatch/nightwatch-globals.js",
 
   "test_settings" : {
     "default" : {
@@ -44,7 +44,7 @@
       "selenium_host"  : "127.0.0.1",
       "desiredCapabilities": {
         "build": "build local",
-        "browserName": "phantomjs",
+        "browserName": "chrome",
         "browserstack.local" : false
       }
     },

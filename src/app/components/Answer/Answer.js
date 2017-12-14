@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../../../config/environment';
 
 export const CardItemValue = ({ value }) => {
   const values = [].concat(value);
@@ -8,8 +9,8 @@ export const CardItemValue = ({ value }) => {
       values
         .map((val, i) => {
           props.key = `${i}-${val}`;
-          const text = val.replace('http://swapi.co/api/', '');
-          return val.indexOf('http://swapi.co/api/') === 0
+          const text = val.replace(config.api, '');
+          return val.indexOf(config.api) === 0
             ? <a href={val} target="_blank" { ...props }>{ text }</a>
             : <span { ...props }>{ text }</span>;
         })

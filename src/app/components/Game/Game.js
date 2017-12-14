@@ -1,10 +1,11 @@
 import React from 'react';
 import debug from 'debug';
 
-import { randomRange, json } from '../../utils';
+import { randomRange, json } from '../../utils/index';
 import Hand from './hand';
-import Question from '../../components/Question/Question';
-import Answer from '../../components/Answer/Answer';
+import Question from '../Question/Question';
+import Answer from '../Answer/Answer';
+import config from '../../../config/environment';
 
 debug('lego:Game');
 
@@ -16,7 +17,7 @@ export const Error = ({ error }) => {
   return <p className="error">Error Loading cards!<span>{String(error)}</span></p>;
 };
 export const Loading = () => <p className="loading">Loading hand....</p>;
-const getCard = (api, cardId) => json.get(`http://swapi.co/api/${api}/${cardId}/`);
+const getCard = (api, cardId) => json.get(`${config.api.host}${api}/${cardId}/`);
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -84,7 +85,7 @@ export default class Game extends React.Component {
       <div id="game">
         <header className="header">
           <h1>Star Wars Trivia</h1>
-          <p>A simple game using <a href="http://www.swapi.com" target="_blank">SWAPI</a>.</p>
+          <p>A simple game using <a href={config.api.homepage} target="_blank">{config.api.label}</a>.</p>
         </header>
         <button onClick={() => this.deal()}>Deal cards!</button>
         {error && <Error error={ error } />}

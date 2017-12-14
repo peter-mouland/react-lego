@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -9,7 +8,7 @@ const baseProps = {};
 describe('Settings Container', () => {
   it('should have an id of homepage', () => {
     const wrapper = shallow(<Homepage { ...baseProps } />);
-    expect(wrapper.at(0)).to.have.prop('id', 'homepage');
+    expect(wrapper.at(0).props().id).toBe('homepage');
   });
   //  unit testing goes here
 });

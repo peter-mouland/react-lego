@@ -2,16 +2,17 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import Link from 'react-router-dom/Link';
 import Switch from 'react-router-dom/Switch';
-import bemHelper from 'react-bem-helper';
 import DocumentMeta from 'react-document-meta';
 import debug from 'debug';
 
+import bemHelper from './utils/bem';
 import MainLayout from './Layouts/MainLayout';
-import Homepage from './containers/Homepage/Homepage';
-import Game from './containers/Game/Game';
-import NotFound from './containers/NotFound/NotFound';
+import Homepage from './components/Homepage/Homepage';
+import Game from './components/Game/Game';
+import NotFound from './components/NotFound/NotFound';
 
 debug('lego:routes');
+const cn = bemHelper({ block: 'link' });
 
 const baseMetaData = {
   title: 'React Lego',
@@ -53,12 +54,11 @@ export const findRoute = (to) => getRoutesConfig().find((rt) => rt.name === to);
 export const NamedLink = ({
   className, to, children, ...props
 }) => {
-  const bem = bemHelper({ name: 'link' });
   const route = findRoute(to);
   if (!route) throw new Error(`Route to '${to}' not found`);
   return (
     <Route path={ route.path } exact children={({ match }) => (
-      <Link to={ route.path } { ...props } { ...bem(null, { active: match }, className) }>
+      <Link to={ route.path } { ...props } className={cn(null, { active: match }, className) }>
         { children || route.label }
       </Link>
     )} />

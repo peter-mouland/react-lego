@@ -2,9 +2,9 @@
   "parser": "babel-eslint",
   "extends": "airbnb/base",
   "env": {
+    "jest/globals": true,
     "node": true,
     "es6": true,
-    "mocha": true,
     "browser": true
   },
   "parserOptions": {
@@ -13,8 +13,13 @@
       "modules": true
     }
   },
-  "plugins": ["react"],
+  "plugins": ["react", "jest"],
   "rules": {
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "arrow-parens": ["error", "always"],

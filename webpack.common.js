@@ -4,7 +4,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const { SRC, DIST } = require('./paths');
+const { SRC, DIST } = require('./src/config/paths');
 
 module.exports = {
   devtool: 'source-map',

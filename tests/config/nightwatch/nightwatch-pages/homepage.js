@@ -1,22 +1,22 @@
 // https://github.com/nightwatchjs/nightwatch/wiki/Page-Object-API
 // http://nightwatchjs.org/guide#using-page-objects
-import { findRoute } from '../../../src/app/routes';
+import { findRoute } from '../../../../src/app/routes';
 
 module.exports = {
 
   url: function () {
-    return findRoute('game').path;
+    return findRoute('homepage').path;
   },
 
   elements: [{
-    main: "#game"
+    main: "#homepage"
   }],
 
   sections: {
 
     main: {
 
-      selector: '#game',
+      selector: '#homepage',
       locateStrategy: 'css selector'
 
     }

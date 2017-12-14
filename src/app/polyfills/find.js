@@ -1,4 +1,6 @@
 /* eslint-disable */
+// for ie
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
   Object.defineProperty(Array.prototype, 'find', {

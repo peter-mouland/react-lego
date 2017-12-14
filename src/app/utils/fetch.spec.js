@@ -1,51 +1,33 @@
-import { expect, sinon } from '../../../tests/config/test.helper';
-import config from '../../config/environment';
-
 import Chance from 'chance';
-import proxyquire from 'proxyquire';
+
+import config from '../../config/environment';
+import { fetch } from './fetch';
+
+let axiosStubArguments;
+jest.mock('axios', () => (args) => {
+  axiosStubArguments = args;
+  return Promise.resolve({ status: 200 });
+});
 
 const chance = new Chance();
-const sandbox = sinon.sandbox.create();
-let axiosStub;
-let axiosStubArguments;
-let fetchLib;
-let fetch;
-let json;
 
-describe('fetch', ()=>{
-
-  beforeEach(() => {
-    axiosStub = ({ ...args }) => {
-      axiosStubArguments = args;
-      return Promise.resolve({ status: 200 });
-    };
-    fetchLib = proxyquire('./fetch', {
-      'axios': axiosStub
-    });
-    fetch = fetchLib.fetch;
-    json = fetchLib.json;
-  });
-
-  afterEach(()=>{
-    sandbox.restore();
-  });
-
-  context(' URL ', ()=>{
+describe('fetch', () => {
+  describe(' URL ', () => {
     it('should return url with localhost by default', (done) => {
-      const endpoint = '/' + chance.word();
+      const endpoint = `/${chance.word()}`;
       fetch.url(endpoint).then(() => {
-        expect(axiosStubArguments).to.deep.equal({
+        expect(axiosStubArguments).toEqual({
           url: `http://localhost:${config.PORT}${endpoint}`
         });
         done();
       }).catch((e) => {
         done(e);
-      })
+      });
     });
     it('should return given url if it contains double-slash', (done) => {
       const endpoint = `//${chance.word()}`;
       fetch.url(endpoint).then(() => {
-        expect(axiosStubArguments).to.deep.equal({
+        expect(axiosStubArguments).toEqual({
           url: endpoint
         });
         done();
@@ -57,12 +39,12 @@ describe('fetch', ()=>{
     it('should return request options with data', (done) => {
       const endpoint = chance.word();
       const data = chance.sentence();
-      fetch.url(endpoint, { data }).then(()=>{
-        expect(axiosStubArguments.data).to.equal(data);
+      fetch.url(endpoint, { data }).then(() => {
+        expect(axiosStubArguments.data).toEqual(data);
         done();
-      }).catch((e)=>{
+      }).catch((e) => {
         done(e);
-      })
+      });
     });
   });
 });

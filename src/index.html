@@ -9,17 +9,11 @@
 <body>
 <div id="html" ></div>
 <script>
-  if (!window.location.origin) { // Some browsers (mainly IE) does not have this property
-    var local = window.location;
-    window.location.origin = local.protocol + '//' + local.hostname + (
-      local.port ? (':' + local.port) : ''
-    );
-  }
-  if(!window.Promise) { // synchronously polyfill promises - required for code-splitting
-    var req = new XMLHttpRequest();
-    req.open('GET', location.origin + '/dist/promise-polyfill.js', false);
-    req.send();
-    eval(req.responseText);
+  // synchronously polyfill stuff needed for the app in old browsers
+  if (!window.location.origin || !window.Promise || !Array.prototype.find) {
+    let js = document.createElement('script');
+    js.src = '/dist/polyfills.js'
+    document.body.appendChild(js);
   }
 </script>
 <script src="/dist/app.js"></script>

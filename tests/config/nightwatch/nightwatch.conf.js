@@ -6,7 +6,7 @@ process.env.PORT = 3210;
 require('babel-core/register')({
   only: [/src/, /tests/]
 });
-const testServer = require('./test-server/test-server-entry');
+const testServer = require('../test-server/test-server-entry');
 
 const TARGET_PATH = argv.target || `http://localhost:${process.env.PORT}`;
 const needLocalServer = TARGET_PATH.indexOf('localhost') > -1;
@@ -33,6 +33,7 @@ module.exports = (function(settings) {
         return;
       }
       if (weHaveFailures) {
+        console.log({client})
         client.saveScreenshot(`${client.currentTest.name}.png`, function(result) {
           if (!result || result.status !== 0)  {
             console.log('Error saving screenshot...', result);
