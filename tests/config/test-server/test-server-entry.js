@@ -1,4 +1,5 @@
 require('../../../src/config/environment');
+require('../../../src/app/polyfills/node-fetch');
 
 const HttpServer = require('http-server').HttpServer;
 let openServer = new HttpServer({ root: 'compiled'});
