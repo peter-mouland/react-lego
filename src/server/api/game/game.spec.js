@@ -1,5 +1,5 @@
-import * as utils from '../../utils/randomRange';
-import Hand from './hand';
+import * as utils from '../../../app/utils/randomRange';
+import { Hand } from './index';
 
 let stub;
 const fakeCard1 = {
