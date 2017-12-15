@@ -10,6 +10,10 @@ module.exports = {
   devtool: 'source-map',
   cache: true,
   context: SRC,
+  entry: {
+    app: [`${SRC}/styles/app.scss`, `${SRC}/client-entry.js`],
+    polyfills: [`${SRC}/polyfills.js`]
+  },
   output: {
     path: DIST,
     filename: '[name]-[chunkhash].js',

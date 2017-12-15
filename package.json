@@ -17,7 +17,7 @@
     "------ SERVER STEPS ------": "",
     "start": "node compiled/server-entry.js",
     "start:prod": "npm run start",
-    "start:dev": "ENV=dev nodemon src/server-entry.js",
+    "start:dev": "webpack-dev-server --config webpack-dev-server.js",
     "------ TESTING ------": "",
     "test:setup": "selenium-standalone install yarn build",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
@@ -101,6 +101,7 @@
     "selenium-standalone": "^6.0.1",
     "supertest": "^3.0.0",
     "webpack-dev-server": "^2.4.1",
+    "webpack-merge": "^4.1.1",
     "yargs": "^10.0.3"
   }
 }
