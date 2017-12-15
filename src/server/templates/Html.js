@@ -11,7 +11,9 @@ export default class Html extends React.Component {
   };
 
   render() {
-    const { scripts, stylesheets, markup } = this.props;
+    const {
+      initialState, scripts, stylesheets, markup
+    } = this.props;
     return (
       <html lang="en">
       <head>
@@ -21,6 +23,9 @@ export default class Html extends React.Component {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       </head>
       <body>
+      <script dangerouslySetInnerHTML={{
+        __html: `window.__APOLLO_STATE__ = ${JSON.stringify(initialState)}`
+      }} />
       <div id="stylesheets" dangerouslySetInnerHTML={{ __html: stylesheets.join('') }} />
       <div id="html" dangerouslySetInnerHTML={{ __html: markup }} />
       <div id="scripts" dangerouslySetInnerHTML={{ __html: scripts.join('') }} />
