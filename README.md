@@ -41,6 +41,7 @@ The `Code changes` column is where you go if you want to see how the code change
  | --- | --- | --- | --- | --- | --- | --- | 
  | Client-side Rendering | [React](https://github.com/peter-mouland/react-lego/tree/master/) | - | 27kb (+152kb node_modules) |  |  | 
  | Server-side Rendering | [Koa v2](https://github.com/peter-mouland/react-lego/tree/ssr) | [add SSR](https://github.com/peter-mouland/react-lego/compare/master...ssr) | 25kb (+152kb node_modules) |  
+ | CSS | [CSS Imports](https://github.com/peter-mouland/react-lego/tree/ssr-css)  | [add CSS](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)| 25kb (+152kb node_modules) |   CSS Modules  | | [>> More about adding CSS](https://github.com/peter-mouland/react-lego/wiki/CSS) |
 | | | | | | | |
  
  
@@ -50,7 +51,6 @@ The `Code changes` column is where you go if you want to see how the code change
  | Category | New Tech | Code changes | Client-side App (kb) | Comparator | kb |  |
  | --- | --- | --- | --- | --- | --- | --- | 
  | Client-side Rendering |  |  | | Preact > [Preact code vs React](https://github.com/peter-mouland/react-lego/compare/master...preact) | tbc | [>> More about adding Preact](https://github.com/peter-mouland/react-lego/wiki/Preact)
- | CSS | [CSS Imports](https://github.com/peter-mouland/react-lego/tree/ssr-css)  | [add CSS](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)| tbc |   CSS Modules  | | [>> More about adding CSS](https://github.com/peter-mouland/react-lego/wiki/CSS) |
  | State Management | [Redux](https://github.com/peter-mouland/react-lego/tree/ssr-css-redux) | [add redux](https://github.com/peter-mouland/react-lego/compare/ssr-css...ssr-css-redux)| tbc |  | | [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux) |
  | State Management | [Async routes](https://github.com/peter-mouland/react-lego/tree/ssr-css-redux-async) | [add async routes](https://github.com/peter-mouland/react-lego/compare/ssr-css-redux...ssr-css-redux-async) | tbc |  | | [>> More about adding Promise middleware](https://github.com/peter-mouland/react-lego/wiki/Redux-Promise-Middleware)
  | State Management | Redux Dev Tools
