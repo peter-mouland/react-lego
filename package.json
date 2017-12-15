@@ -15,6 +15,7 @@
     "start": "http-server compiled",
     "start:dev": "ENV=dev node src/server-entry.js",
     "------ TESTING ------": "",
+    "test:setup": "selenium-standalone install yarn build",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "yarn test:unit && yarn test:func",
     "test:unit": "jest --config jest.json .*.spec.jsx?",
@@ -23,7 +24,6 @@
     "test:e2e-local": "yarn nightwatch -- --env local --tag staging",
     "test:e2e-production": "yarn nightwatch -- --env chrome_win --tag production",
     "test:e2e-staging": "yarn nightwatch -- --env safari_osx,chrome_osx,firefox_win,firefox_osx,IE11,edge --tag staging",
-    "prenightwatch": "selenium-standalone install --version=3.7.1",
     "nightwatch": "nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch/nightwatch.conf.js",
     "------ UTILS ------": "",
     "nuke": "rm -rf node_modules && yarn && yarn test"

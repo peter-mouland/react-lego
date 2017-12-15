@@ -23,7 +23,7 @@ module.exports = (function(settings) {
 
   settings.test_settings.default.globals = {
     TARGET_PATH : TARGET_PATH,
-    before:  needLocalServer ? testServer.start : noop,
+    before: needLocalServer ? testServer.start : noop,
     after: needLocalServer ? testServer.stop : noop,
     afterEach: function (client, done) {
       var weHaveFailures = client.currentTest.results.errors > 0 || client.currentTest.results.failed > 0;
@@ -33,8 +33,7 @@ module.exports = (function(settings) {
         return;
       }
       if (weHaveFailures) {
-        console.log({client})
-        client.saveScreenshot(`${client.currentTest.name}.png`, function(result) {
+        client.saveScreenshot(`${client.currentTest.name}${client.currentTest.module}.png`, function(result) {
           if (!result || result.status !== 0)  {
             console.log('Error saving screenshot...', result);
           }

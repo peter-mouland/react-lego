@@ -3,8 +3,8 @@
 
 module.exports = {
 
-  url: function () {
-    return this.api.launchUrl;
+  elements: {
+    loading: ".loading",
   },
 
   sections: {
@@ -13,10 +13,14 @@ module.exports = {
       locateStrategy: 'css selector',
       elements: {
         aboutLink: 'a[href="/about/"]',
-        gameLink: 'a[href="/orders/"]',
+        gameLink: 'a[href="/game/"]',
       },
     },
     main: {
+      selector: '.layout',
+      locateStrategy: 'css selector',
+    },
+    content: {
       selector: 'main.layout__content',
       locateStrategy: 'css selector',
     },
