@@ -102,7 +102,7 @@ export default class Game extends React.Component {
             View Answer
           </button>
         ) }
-        {!!cards.length && (
+        {showAnswer && (
           <Answer cards={ cards } answerId={ answerId } showAnswer={ showAnswer } />
         ) }
       </div>

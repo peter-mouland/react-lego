@@ -12,7 +12,7 @@ const mockFixtures = JSON.parse(fs.readFileSync(__dirname + '/fixtures/card-80.j
 
 // prevent real API calls going out
 jest.mock('../../src/app/utils/fetch', () => ({
-  getJSON: () => mockFixtures,
+  getJSON: () => Promise.resolve(mockFixtures),
 }));
 
 describe('Client Render', function () {

@@ -15,7 +15,7 @@ let wrapper;
 
 // prevent real API calls going out
 jest.mock('../../../src/app/utils/fetch', () => ({
-  getJSON: () => mockFixtures,
+  getJSON: () => Promise.resolve(mockFixtures),
 }));
 
 describe('Game Route', function () {
@@ -88,6 +88,7 @@ describe('Game Route', function () {
     });
 
     it(`does not render the answer by default`, () => {
+      wrapper.update();
       const answerComponent = wrapper.find(Answer);
       expect(answerComponent.exists()).toBe(false);
     });
