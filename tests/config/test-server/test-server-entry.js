@@ -2,6 +2,7 @@
 require('babel-core/register')({
   only: [/src/, /tests/, /config/]
 });
+require('../../../src/server/utils/assets-helper');
 const webpackAssets = require('../../../compiled/webpack-assets.json');
 const mapWebpackAssets = require('../../../src/server/utils/mapWebpackAssets');
 require('../../../src/config/environment');

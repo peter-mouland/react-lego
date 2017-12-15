@@ -1,6 +1,8 @@
 import React from 'react';
 import config from '../../../config/environment';
 
+import './answer.scss';
+
 export const CardItemValue = ({ value }) => {
   const values = [].concat(value);
   const props = { className: 'card-item-value' };
