@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import fs from 'fs';
 
 import Root from '../../src/app/Root';
 import Homepage from '../../src/app/components/Homepage/Homepage';
@@ -7,6 +8,12 @@ import NotFound from '../../src/app/components/NotFound/NotFound';
 import Game from '../../src/app/components/Game/Game';
 
 const context = {}
+const mockFixtures = JSON.parse(fs.readFileSync(__dirname + '/fixtures/card-80.json', 'utf8'));
+
+// prevent real API calls going out
+jest.mock('../../src/app/utils/fetch', () => ({
+  getJSON: () => mockFixtures,
+}));
 
 describe('Client Render', function () {
   it('Should render the Homepage', () => {

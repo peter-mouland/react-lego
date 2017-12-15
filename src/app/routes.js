@@ -18,7 +18,7 @@ const baseMetaData = {
   title: 'React Lego',
   description: 'React Lego : incrementally add more cool stuff to your react app',
   meta: {
-    charset: 'utf-8',
+    charSet: 'utf-8',
     name: {
       keywords: 'react,example'
     }

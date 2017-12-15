@@ -8,22 +8,23 @@ import Question from '../../../src/app/components/Question/Question';
 import Answer from '../../../src/app/components/Answer/Answer';
 import Root from '../../../src/app/Root';
 import { findRoute } from '../../../src/app/routes';
-import * as fetch from '../../../src/app/utils/fetch';
 
-const fixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
+const mockFixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
 const context = {}
-
 let wrapper;
-let jsonGetSpy;
+
+// prevent real API calls going out
+jest.mock('../../../src/app/utils/fetch', () => ({
+  getJSON: () => mockFixtures,
+}));
 
 describe('Game Route', function () {
   describe(`should contain  markup`, () => {
-
-    beforeAll(() => {
+    beforeEach(() => {
       wrapper = mount(<Root location={ '/game/' } context={context} />);
-    });
+    })
 
-    afterAll(() => {
+    afterEach(() => {
       wrapper.unmount();
     });
 
@@ -53,24 +54,12 @@ describe('Game Route', function () {
   });
 
   describe(`be able to deal a hand`, () => {
-
-    const promise = Promise.resolve(fixtures);
-
-    beforeAll(() => {
-      jsonGetSpy = jest.spyOn(fetch, 'getJSON').mockReturnValue(promise)
-    });
-
     beforeEach(() => {
       wrapper = mount(<Root location={ '/game/' } context={context}  />);
     });
 
     afterEach(() => {
       wrapper.unmount();
-    });
-
-    afterAll(() => {
-      jsonGetSpy.mockReset();
-      jsonGetSpy.mockRestore();
     });
 
     it(`is not loading before it gets mounted`, () => {
@@ -83,25 +72,19 @@ describe('Game Route', function () {
     });
 
     it(`removes loading once the json results are returned`, () => {
-      return promise.then(() => {
-        wrapper.update();
-        expect(wrapper.find(Loading).exists()).toBe(false);
-      })
+      wrapper.update();
+      expect(wrapper.find(Loading).exists()).toBe(false);
     });
 
     it(`renders the question`, () => {
-      return promise.then(() => {
-        wrapper.update();
-        expect(wrapper.find(Question).exists()).toBe(true);
-      })
+      wrapper.update();
+      expect(wrapper.find(Question).exists()).toBe(true);
     });
 
     it(`passes the json response to the Question`, () => {
-      return promise.then(() => {
-        wrapper.update();
-        const questionComponent = wrapper.find(Question);
-        expect(questionComponent.props().cards).toEqual([fixtures, fixtures]);
-      })
+      wrapper.update();
+      const questionComponent = wrapper.find(Question);
+      expect(questionComponent.props().cards).toEqual([mockFixtures, mockFixtures]);
     });
 
     it(`does not render the answer by default`, () => {
@@ -110,14 +93,12 @@ describe('Game Route', function () {
     });
 
     it(`renders the answer after the 'view answer' button is clicked`, () => {
-      return promise.then(() => {
-        wrapper.update();
-        wrapper.find('button.game__btn--show-answer').simulate('click');
-        wrapper.update();
-        const answerComponent = wrapper.find(Answer);
-        expect(answerComponent.exists()).toBe(true);
-        expect(answerComponent.props().cards).toEqual([fixtures, fixtures]);
-      })
+      wrapper.update();
+      wrapper.find('button.game__btn--show-answer').simulate('click');
+      wrapper.update();
+      const answerComponent = wrapper.find(Answer);
+      expect(answerComponent.exists()).toBe(true);
+      expect(answerComponent.props().cards).toEqual([mockFixtures, mockFixtures]);
     });
   });
 });
