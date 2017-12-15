@@ -15,7 +15,9 @@ let wrapper;
 
 // prevent real API calls going out
 jest.mock('../../../src/app/utils/fetch', () => ({
-  getJSON: () => Promise.resolve(mockFixtures),
+  getJSON: () => Promise.resolve({
+    cards: [mockFixtures, mockFixtures], question: 'question', answerId: 'answerId', answer: 'answer'
+  }),
 }));
 
 describe('Game Route', function () {

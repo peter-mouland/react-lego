@@ -15,11 +15,11 @@ export default function mapWebpackAssets(assetsObj) {
         </script>
       `);
     } else if (js && key === 'vendor') {
-      assets.javascript.unshift(`<script src=${js}></script>`);
+      assets.javascript.unshift(`<script src="${js}"></script>`);
     } else if (js) {
-      assets.javascript.push(`<script src=${js}></script>`);
+      assets.javascript.push(`<script src="${js}"></script>`);
     }
-    if (css) assets.styles.push(`<link href=${css} rel="stylesheet" />`);
+    if (css) assets.styles.push(`<link href="${css}" rel="stylesheet" />`);
   });
   return assets;
 }

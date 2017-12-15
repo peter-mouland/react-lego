@@ -21,7 +21,7 @@ const NotFound = () => <div>Not found!</div>;
 const BrokenClientRoute = () => {
   throw new Error('new error!');
 };
-const ReactRoutes = (
+const ReactRoutes = () => (
   <AppRoute >
     <Switch>
       <Route path="/" exact component={AppRoute} />
@@ -33,6 +33,7 @@ const ReactRoutes = (
     </Switch>
   </AppRoute>
 );
+
 const setupMocks = (mockRoutes) => {
   jest.doMock('../../src/app/routes', mockRoutes);
   server = require('../../src/server/server') // eslint-disable-line
@@ -41,6 +42,7 @@ const setupMocks = (mockRoutes) => {
 
 describe('Server', function () {
   beforeEach(() => {
+    jest.resetModules();
     setupMocks(() => ({
       getRoutesConfig: fakeGetRoutesConfig.mockImplementation(() =>
         [
@@ -59,7 +61,7 @@ describe('Server', function () {
           }
         ]
       ),
-      makeRoutes: fakeMakeRoutes.mockImplementation(() => ReactRoutes)
+      makeRoutes: fakeMakeRoutes.mockImplementation(() => ReactRoutes())
     }));
   });
 

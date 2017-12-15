@@ -12,7 +12,7 @@ module.exports = {
   context: SRC,
   output: {
     path: DIST,
-    filename: '[name].js',
+    filename: '[name]-[chunkhash].js',
     publicPath: '/'
   },
   plugins: [
@@ -21,7 +21,7 @@ module.exports = {
     new Visualizer({
       filename: '../webpack-stats.html'
     }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name]-[contenthash].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.PORT': JSON.stringify(process.env.PORT),
