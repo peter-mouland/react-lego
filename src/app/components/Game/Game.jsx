@@ -4,7 +4,6 @@ import debug from 'debug';
 import { randomRange, getJSON } from '../../utils/index';
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
-import Hand from './hand';
 import Question from '../Question/Question';
 import Answer from '../Answer/Answer';
 import config from '../../../config/environment';
@@ -13,7 +12,7 @@ debug('lego:Game');
 
 const DECK = 87;
 
-const getCard = (api, cardId) => getJSON(`${config.api.host}${api}/${cardId}/`);
+const getHand = (api, card1, card2) => getJSON(`/api/game/${api}/${card1}/${card2}`);
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -44,21 +43,14 @@ export default class Game extends React.Component {
   deal = () => {
     const cardsIds = randomRange(1, DECK, 2);
     const gameType = 'people';
-    const promises = [getCard(gameType, cardsIds[0]), getCard(gameType, cardsIds[1])];
     this.setState({
       error: null,
       loading: true
     });
-    return Promise.all(promises)
-      .then((cards) => {
-        const hand = new Hand(cards);
+    return getHand(gameType, cardsIds[0], cardsIds[1])
+      .then((hand) => {
         this.setState({
-          hand: {
-            cards,
-            question: hand.question,
-            answerId: hand.answerId,
-            answer: hand.answer
-          },
+          hand,
           loading: false
         });
       })

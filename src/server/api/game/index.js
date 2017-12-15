@@ -1,6 +1,9 @@
-import { randomRange } from '../../utils';
+import config from '../../../config/environment';
+import { randomRange, getJSON } from '../../../app/utils';
 
-export default class Hand {
+const getSwapiData = (api, id) => getJSON(`${config.api.host}${api}/${id}/`);
+
+export class Hand {
   constructor(cards = []) {
     if (cards.length < 2) {
       throw new Error('You needs more than 2 cards to play a game');
@@ -39,3 +42,13 @@ export default class Hand {
     }
   }
 }
+
+export default ({ gameType, card1, card2 }) => {
+  const promises = [getSwapiData(gameType, card1), getSwapiData(gameType, card2)];
+  return Promise.all(promises).then((cards) => {
+    const hand = new Hand(cards);
+    return {
+      cards, question: hand.question, answerId: hand.answerId, answer: hand.answer
+    };
+  });
+};

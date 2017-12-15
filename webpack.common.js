@@ -10,10 +10,14 @@ module.exports = {
   devtool: 'source-map',
   cache: true,
   context: SRC,
+  entry: {
+    app: [`${SRC}/styles/app.scss`, `${SRC}/client-entry.jsx`],
+    polyfills: [`${SRC}/polyfills.js`]
+  },
   output: {
     path: DIST,
-    filename: '[name].js',
-    publicPath: '/dist/'
+    filename: '[name]-[chunkhash].js',
+    publicPath: '/'
   },
   plugins: [
     new ProgressBarPlugin(),
@@ -21,7 +25,7 @@ module.exports = {
     new Visualizer({
       filename: '../webpack-stats.html'
     }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name]-[contenthash].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.PORT': JSON.stringify(process.env.PORT),

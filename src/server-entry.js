@@ -1,24 +1,19 @@
-/* eslint-disable no-console, import/no-extraneous-dependencies */
-const path = require('path');
-const Webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-
-const config = require('./config/environment');
-const webpackConfig = require('../webpack.config.dev.js');
+/* eslint-disable */
+require('./config/environment');
 require('./app/polyfills/node-fetch');
 
-const compiler = Webpack(webpackConfig);
-const server = new WebpackDevServer(compiler, {
-  contentBase: path.join(__dirname, '..', 'compiled'),
-  publicPath: '/dist/',
-  hot: true,
-  quiet: false,
-  noInfo: false,
-  stats: {
-    colors: true
-  }
-});
+function getAssets() {
+ // maybe just wait until file exists
+ return (process.env.NODE_ENV === 'production')
+   ? require('../compiled/webpack-assets.json')
+   : {"app":{"js":"/app.js","css":"/app.css"},"polyfills":{"js":"/polyfills.js"}}
+}
+const webpackAssets = getAssets()
+const mapWebpackAssets = require('./server/utils/mapWebpackAssets');
 
-server.listen(config.PORT, '127.0.0.1', () => {
-  console.log(`Starting server on http://localhost:${config.PORT}`);
+const assets = mapWebpackAssets(webpackAssets);
+const createServer = require('./server/server');
+
+createServer(assets).listen(process.env.PORT, () => {
+  console.log(`listening at http://localhost:${process.env.PORT}`);
 });

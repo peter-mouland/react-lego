@@ -23,6 +23,10 @@
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "arrow-parens": ["error", "always"],
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": ["ctx"]
+    }],
     "class-methods-use-this": 0,
     "comma-dangle": 0,
     "no-unused-vars": ["error", {"varsIgnorePattern": "^log"}],

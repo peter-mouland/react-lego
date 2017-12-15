@@ -10,5 +10,4 @@ tests_screenshots/
 .divshot-cache
 *.iml
 *.log
-webpack-assets.json
 webpack-stats.json
