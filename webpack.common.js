@@ -1,8 +1,5 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const { SRC, DIST } = require('./src/config/paths');
 
@@ -12,7 +9,6 @@ module.exports = {
   context: SRC,
   entry: {
     app: [`${SRC}/client-entry.js`],
-    polyfills: [`${SRC}/polyfills.js`]
   },
   output: {
     path: DIST,
@@ -20,13 +16,6 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new ProgressBarPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
-    new Visualizer({
-      filename: '../webpack-stats.html'
-    }),
-    new ExtractTextPlugin('[name]-[contenthash].css'),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
@@ -47,20 +36,6 @@ module.exports = {
         options: {
           cacheDirectory: true
         }
-      },
-      {
-        test: /\.s?css$/,
-        include: [/src/],
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader', 'sass-loader']
-        })
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          'file-loader?name=[name].[ext]'
-        ]
       }
     ]
   }

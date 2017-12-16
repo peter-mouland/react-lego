@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Game from '../../components/Game/Game';
+import Homepage from '../../components/Homepage/Homepage';
 import { randomRange } from '../../utils';
 
 const GET_GAME = gql`
@@ -45,7 +45,7 @@ const withHands = graphql(GET_GAME, {
   }),
 });
 
-const GameWithData = withHands(Game);
+const HomepageWithData = withHands(Homepage);
 
 const DECK = 87;
 const cards = randomRange(1, DECK, 2);
@@ -60,7 +60,7 @@ export default class VariableChange extends React.Component {
 
   render() {
     return (
-      <GameWithData
+      <HomepageWithData
         gameType={this.state.gameType}
         card1={this.state.card1}
         card2={this.state.card2}

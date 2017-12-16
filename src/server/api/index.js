@@ -1,13 +1,10 @@
 import koaBody from 'koa-body';
 import Router from 'koa-router';
 
-import handleError from '../middleware/handle-error';
 import getGame from './game';
 
 const parseBody = koaBody();
 const router = new Router({ prefix: '/api' });
-
-router.use(handleError());
 
 router.get('/', (ctx) => {
   ctx.type = 'json';

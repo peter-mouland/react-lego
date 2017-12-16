@@ -1,9 +1,5 @@
 /* global fetch */
-import debug from 'debug';
-
 import { localUrl } from '../utils';
-
-const log = debug('base:fetch');
 
 export function checkStatus(response) {
   if (response.status < 200 || response.status >= 500) {
@@ -29,7 +25,6 @@ export const fetchUrl = (endpoint, opts = {}) => {
     .then(checkStatus)
     .then((response) => response.text())
     .catch((error) => {
-      log('request failed', error);
       throw new Error('request failed');
     });
 };

@@ -1,6 +1,5 @@
 const merge = require('webpack-merge')
 const nodemon = require('nodemon')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
 
@@ -16,9 +15,6 @@ module.exports = merge(baseConfig, {
     filename: '[name].js',
     publicPath: '/'
   },
-  plugins: [
-    new ExtractTextPlugin('[name].css'),
-  ],
   devServer: {
     port: 3000,
     publicPath: baseConfig.output.publicPath,

@@ -1,37 +1,57 @@
 import React from 'react';
-import debug from 'debug';
+import PropTypes from 'prop-types';
 
-debug('lego:Homepage.jsx');
+import config from '../../../config/environment';
+
+export const Error = ({ error }) => {
+  if (typeof error !== 'string') {
+    return <p className="error">{String(error)} <strong>needs to be handled, was not a string</strong></p>;
+  }
+  return <p className="error">Error Loading cards!<span>{String(error)}</span></p>;
+};
+export const Loading = () => <p className="loading">Loading hand....</p>;
 
 export default class Homepage extends React.Component {
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    handleDeal: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    cards: [],
+    loading: true,
+    error: null,
+  };
+
+  deal = (e) => {
+    e.preventDefault();
+    this.props.handleDeal();
+  };
+
   render() {
+    const {
+      cards, question, error, loading
+    } = this.props;
+    const options = cards.length ? [cards[0].name, cards[1].name, 'both', 'unknown'] : [];
+
     return (
-      <div id="homepage">
-        <header className="header">
-          <h1>About React Lego</h1>
-          <p>Iteratively add more technologies to React Applications.</p>
-        </header>
-        <section>
-          <h2>The 'Base' App</h2>
-          <p>This demo is the '<strong>base</strong>' app, which includes :</p>
-          <ul>
-            <li>Rendering Universal Javascript (rendered on the server + client)</li>
-            <li>Importing stylesheets</li>
-            <li>
-              Fully tested app :
-              <ul>
-                <li>Unit tests</li>
-                <li>Functional tests</li>
-                <li>End-to-end tests</li>
-              </ul>
-            </li>
-          </ul>
-          <h2>It could be simpler...</h2>
-          <p>This app isn't aimed to be the simplest 'base' React app,
-            it's aimed at <em>adding new technologies</em> simple.</p>
-          <p>But, this means that when it comes to adding Redux for example,
-            much less changes are required.</p>
-        </section>
+      <div id="game">
+        <h1>Apollo Example</h1>
+        <button className={'game__btn--deal'} onClick={this.deal}>Deal!</button>
+        {error && <Error error={ error } />}
+        {loading ?
+          <Loading /> :
+          <section className="question">
+            <p className="question__text" >{question}</p>
+            <ul className="question__options">
+              {options.map((option, i) => (
+                <li className={'question__option'} key={i}>
+                  {option}
+                </li>
+              ))}
+            </ul>
+          </section>
+        }
       </div>
     );
   }
