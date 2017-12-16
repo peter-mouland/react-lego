@@ -19,6 +19,7 @@
     }
   }]],
   "plugins": [
+    "graphql-tag",
     ["transform-runtime", { "helpers": false, "polyfill": false, "regenerator": true }],
     "add-module-exports",
     "transform-class-properties",
