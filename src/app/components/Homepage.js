@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../../../config/environment';
+import config from '../../config/environment';
 
 export const Error = ({ error }) => {
   if (typeof error !== 'string') {

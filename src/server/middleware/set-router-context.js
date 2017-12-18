@@ -8,7 +8,7 @@ import { SchemaLink } from 'apollo-link-schema';
 import { withClientState } from 'apollo-link-state';
 
 import schema from '../../app/schema/schema';
-import Homepage from '../../app/containers/Homepage/Homepage';
+import Homepage from '../../app/containers/Homepage';
 
 const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT || 'api' // 'graphql';
 const GRAPHQL_PORT = process.env.GRAPHQL_PORT || 3000;

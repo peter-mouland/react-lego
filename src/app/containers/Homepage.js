@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Homepage from '../../components/Homepage/Homepage';
-import { randomRange } from '../../utils';
+import Homepage from '../components/Homepage';
+import { randomRange } from '../utils/index';
 
 const GET_GAME = gql`
   query ($gameType: String!, $card1: Int!, $card2: Int!) {
