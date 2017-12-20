@@ -1,6 +1,6 @@
 {
   "sourceMaps": true,
-  "presets": ["react", ["env", {
+  "presets": ["@babel/react", ["@babel/env", {
     "targets": {
       "browsers": [
         "safari >= 9",
@@ -19,8 +19,9 @@
     }
   }]],
   "plugins": [
+    ["@babel/transform-runtime", { "helpers": false, "polyfill": false, "regenerator": true }],
     "add-module-exports",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 }
