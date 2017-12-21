@@ -67,6 +67,7 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.35",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.35",
     "@babel/preset-env": "^7.0.0-beta.35",
+    "@babel/register": "^7.0.0-beta.35",
     "babel-eslint": "^8.0.3",
     "babel-jest": "^22.0.3",
     "babel-plugin-add-module-exports": "^0.2.1",
