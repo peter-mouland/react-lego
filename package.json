@@ -6,7 +6,7 @@
   "scripts": {
     "------ GIT HOOKS ------": "",
     "precommit": "yarn lint && yarn test",
-    "prepush": "yarn build && yarn test:e2e",
+    "prepush": "yarn build && yarn test:setup && yarn test:e2e",
     "postinstall": "yarn build",
     "------ BUILD STEPS ------": "",
     "build": "rm -rf compiled && yarn compile && cp src/index.html compiled",
