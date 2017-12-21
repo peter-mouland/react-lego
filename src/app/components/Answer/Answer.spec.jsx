@@ -15,7 +15,7 @@ describe('Answer Component', () => {
     const card1 = fakeCard();
     const card2 = fakeCard();
     baseProps = { cards: [card1, card2], showAnswer: true };
-    const wrapper = shallow(<Answer { ...baseProps } />);
+    const wrapper = shallow(<Answer {...baseProps} />);
     expect(wrapper.get(0).props.className).toContain('visible');
   });
 
@@ -23,7 +23,7 @@ describe('Answer Component', () => {
     const card1 = fakeCard();
     const card2 = fakeCard();
     baseProps = { cards: [card1, card2], showAnswer: false };
-    const wrapper = shallow(<Answer { ...baseProps } />);
+    const wrapper = shallow(<Answer {...baseProps} />);
     expect(wrapper.get(0).props.className).toContain('hidden');
   });
 
@@ -31,7 +31,7 @@ describe('Answer Component', () => {
     const card1 = fakeCard();
     const card2 = fakeCard();
     baseProps = { cards: [card1, card2], showAnswer: true };
-    const wrapper = shallow(<Answer { ...baseProps } />);
+    const wrapper = shallow(<Answer {...baseProps} />);
     expect(wrapper.find(AnswerOption).get(0).props).toEqual({ card: card1, isAnswer: false });
     expect(wrapper.find(AnswerOption).get(1).props).toEqual({ card: card2, isAnswer: false });
   });
@@ -40,7 +40,7 @@ describe('Answer Component', () => {
     const card1 = fakeCard();
     const card2 = fakeCard();
     baseProps = { cards: [card1, card2], answerId: card2.url, showAnswer: false };
-    const wrapper = shallow(<Answer { ...baseProps } />);
+    const wrapper = shallow(<Answer {...baseProps} />);
     expect(wrapper.find(AnswerOption).get(0).props.isAnswer).toBe(false);
     expect(wrapper.find(AnswerOption).get(1).props.isAnswer).toBe(true);
   });

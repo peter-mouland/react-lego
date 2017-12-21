@@ -7,7 +7,7 @@ const defaultConfig = require('./webpack.common');
 const devConfig = Object.assign({}, defaultConfig, {
   mode: 'development',
   entry: {
-    app: [`webpack-dev-server/client?http://localhost:${config.PORT}/`, `${SRC}/styles/app.scss`, `${SRC}/client-entry.js`],
+    app: [`webpack-dev-server/client?http://localhost:${config.PORT}/`, `${SRC}/styles/app.scss`, `${SRC}/client-entry.jsx`],
     polyfills: [`${SRC}/polyfills.js`]
   }
 });
