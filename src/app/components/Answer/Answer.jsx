@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import config from '../../../config/environment';
 
+import './answer.scss';
+
 const cardShape = {
   birth_year: PropTypes.string,
   created: PropTypes.string,

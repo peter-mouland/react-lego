@@ -5,6 +5,8 @@ import debug from 'debug';
 import bemHelper from '../utils/bem';
 import { NamedLink } from '../routes';
 
+import './mainLayout.scss';
+
 const log = debug('base:mainLayout');
 const cn = bemHelper({ block: 'layout' });
 
