@@ -7,7 +7,7 @@ import supertest from 'supertest';
 import { TESTS, DIST } from '../../src/config/paths';
 import mapWebpackAssets from '../../src/server/utils/mapWebpackAssets';
 
-const fixtureAssets = require('./fixtures/webpack-assets.json');
+const fixtureAssets = require('../fixtures/webpack-assets.json');
 const fakeMakeRoutes = jest.fn();
 const fakeGetRoutesConfig = jest.fn();
 let server

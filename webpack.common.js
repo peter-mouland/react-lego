@@ -11,7 +11,7 @@ module.exports = {
   cache: true,
   context: SRC,
   entry: {
-    app: [`${SRC}/styles/app.scss`, `${SRC}/client-entry.jsx`],
+    app: [`${SRC}/client-entry.jsx`],
     polyfills: [`${SRC}/polyfills.js`]
   },
   output: {

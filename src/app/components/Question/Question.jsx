@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './question.scss';
+
 const QuestionOption = ({
   onClick, attempt, children, answer, showAnswer
 }) => {

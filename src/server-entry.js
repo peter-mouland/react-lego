@@ -1,6 +1,7 @@
 /* eslint-disable */
 require('./config/environment');
 require('./app/polyfills/node-fetch');
+require('./server/utils/assets-helper');
 
 function getAssets() {
  // maybe just wait until file exists
