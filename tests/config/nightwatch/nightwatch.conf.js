@@ -1,6 +1,6 @@
 /* eslint-disable */
 const argv = require('yargs')
-  .usage('Usage: $0 --target=[string] --sha=[string] --bskey=[string] --bsuser=[string]')
+  .usage('Usage: $0 --target=[string] --sha=[string]')
   .argv;
 process.env.PORT = 3210;
 require('@babel/register')({
