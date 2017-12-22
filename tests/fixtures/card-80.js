@@ -1,12 +1,15 @@
-{
-  "name": "Tarfful",
+const Chance = require('chance')
+const chance = new Chance()
+
+module.exports = () => ({
+  "name": chance.name(),
   "height": "234",
   "mass": "136",
-  "hair_color": "brown",
-  "skin_color": "brown",
-  "eye_color": "blue",
+  "hair_color": chance.color(),
+  "skin_color": chance.color(),
+  "eye_color": chance.color(),
   "birth_year": "unknown",
-  "gender": "male",
+  "gender": chance.gender(),
   "homeworld": "https://swapi.co/api/planets/14/",
   "films": [
     "https://swapi.co/api/films/6/"
@@ -19,4 +22,4 @@
   "created": "2014-12-20T19:46:34.209000Z",
   "edited": "2014-12-20T21:17:50.491000Z",
   "url": "https://swapi.co/api/people/80/"
-}
+})

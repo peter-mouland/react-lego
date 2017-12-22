@@ -1,21 +1,21 @@
 /* global jest, describe, expect, it, test, beforeAll, afterAll, beforeEach, afterEach */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import fs from 'fs';
 
-import Game, { Loading } from '../../../src/app/components/Game/Game';
+import Game from '../../../src/app/components/Game/Game';
+import Loading from '../../../src/app/components/Loading/Loading';
 import Question from '../../../src/app/components/Question/Question';
 import Answer from '../../../src/app/components/Answer/Answer';
 import Root from '../../../src/app/Root';
 import { findRoute } from '../../../src/app/routes';
 
-const mockFixtures = JSON.parse(fs.readFileSync(__dirname + '/../fixtures/card-80.json', 'utf8'));
+const mockFixtures = require('../../fixtures/card-80.js');
 const context = {}
 let wrapper;
 
 // prevent real API calls going out
 jest.mock('../../../src/app/utils/fetch', () => ({
-  getJSON: () => Promise.resolve(mockFixtures),
+  getJSON: () => Promise.resolve(mockFixtures()),
 }));
 
 describe('Game Route', function () {
@@ -84,7 +84,9 @@ describe('Game Route', function () {
     it(`passes the json response to the Question`, () => {
       wrapper.update();
       const questionComponent = wrapper.find(Question);
-      expect(questionComponent.props().cards).toEqual([mockFixtures, mockFixtures]);
+      expect(questionComponent.props().cards.length).toEqual(2);
+      expect(questionComponent.props().cards[0].name).not.toEqual(undefined);
+      expect(questionComponent.props().cards[1].name).not.toEqual(undefined);
     });
 
     it(`does not render the answer by default`, () => {
@@ -99,7 +101,9 @@ describe('Game Route', function () {
       wrapper.update();
       const answerComponent = wrapper.find(Answer);
       expect(answerComponent.exists()).toBe(true);
-      expect(answerComponent.props().cards).toEqual([mockFixtures, mockFixtures]);
+      expect(answerComponent.props().cards.length).toEqual(2);
+      expect(answerComponent.props().cards[0].name).not.toEqual(undefined);
+      expect(answerComponent.props().cards[1].name).not.toEqual(undefined);
     });
   });
 });

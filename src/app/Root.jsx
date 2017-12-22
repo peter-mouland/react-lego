@@ -11,12 +11,8 @@ debug('lego:Root');
 // exported to be used in tests
 export const Router = isBrowser ? BrowserRouter : StaticRouter;
 
-export default class Root extends React.Component {
-  render() {
-    return (
-      <Router {...this.props} >
-        {makeRoutes()}
-      </Router>
-    );
-  }
-}
+export default (props) => (
+  <Router {...props} >
+    {makeRoutes()}
+  </Router>
+);

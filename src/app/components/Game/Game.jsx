@@ -2,6 +2,8 @@ import React from 'react';
 import debug from 'debug';
 
 import { randomRange, getJSON } from '../../utils/index';
+import Error from '../Error/Error';
+import Loading from '../Loading/Loading';
 import Hand from './hand';
 import Question from '../Question/Question';
 import Answer from '../Answer/Answer';
@@ -10,23 +12,17 @@ import config from '../../../config/environment';
 debug('lego:Game');
 
 const DECK = 87;
-export const Error = ({ error }) => {
-  if (typeof error !== 'string') {
-    return <p className="error">{String(error)} <strong>needs to be handled, was not a string</strong></p>;
-  }
-  return <p className="error">Error Loading cards!<span>{String(error)}</span></p>;
-};
-export const Loading = () => <p className="loading">Loading hand....</p>;
+
 const getCard = (api, cardId) => getJSON(`${config.api.host}${api}/${cardId}/`);
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false,
+      error: null,
       loading: false,
       showAnswer: false,
-      attempt: null
+      attempt: null,
     };
     this.deal = this.deal.bind(this);
     this.viewAnswer = this.viewAnswer.bind(this);
@@ -37,12 +33,20 @@ export default class Game extends React.Component {
     this.deal();
   }
 
-  deal() {
+  setAttempt = (attempt) => {
+    this.setState({ attempt });
+  }
+
+  viewAnswer() {
+    this.setState({ showAnswer: true });
+  }
+
+  deal = () => {
     const cardsIds = randomRange(1, DECK, 2);
     const gameType = 'people';
     const promises = [getCard(gameType, cardsIds[0]), getCard(gameType, cardsIds[1])];
     this.setState({
-      error: false,
+      error: null,
       loading: true
     });
     return Promise.all(promises)
@@ -60,18 +64,10 @@ export default class Game extends React.Component {
       })
       .catch((e) => {
         this.setState({
-          error: e,
+          error: e.toString(),
           loading: false
         });
       });
-  }
-
-  setAttempt(attempt) {
-    this.setState({ attempt });
-  }
-
-  viewAnswer() {
-    this.setState({ showAnswer: true });
   }
 
   render() {
@@ -87,15 +83,17 @@ export default class Game extends React.Component {
           <h1>Star Wars Trivia</h1>
           <p>A simple game using <a href={config.api.homepage} target="_blank">{config.api.label}</a>.</p>
         </header>
-        <button className={'game__btn--deal'} onClick={() => this.deal()}>Deal cards!</button>
-        {error && <Error error={ error } />}
-        {loading ?
-          <Loading /> :
-          <Question { ...{
-            showAnswer, answer, cards, attempt, onClick: this.setAttempt
-          } }>
+        <button className="game__btn--deal" onClick={() => this.deal()}>Deal cards!</button>
+        {error && <Error error={error} />}
+        {loading ? <Loading /> : null }
+        {!loading && question ?
+          <Question {...{
+              showAnswer, answer, cards, attempt, onClick: this.setAttempt
+            }}
+          >
             {question}
           </Question>
+          : null
         }
         {!!cards.length && (
           <button className="game__btn--show-answer" onClick={() => this.viewAnswer()}>
@@ -103,7 +101,7 @@ export default class Game extends React.Component {
           </button>
         ) }
         {showAnswer && (
-          <Answer cards={ cards } answerId={ answerId } showAnswer={ showAnswer } />
+          <Answer cards={cards} answerId={answerId} showAnswer={showAnswer} />
         ) }
       </div>
     );

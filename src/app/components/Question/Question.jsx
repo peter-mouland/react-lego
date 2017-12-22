@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const QuestionOption = ({
   onClick, attempt, children, answer, showAnswer
@@ -13,27 +15,59 @@ const QuestionOption = ({
   return <li className={classNames.join(' ')} onClick={onClick} >{children}</li>;
 };
 
-export default class Question extends React.Component {
-  render() {
-    const {
-      children, showAnswer, answer, cards, attempt, onClick, ...props
-    } = this.props;
-    if (!cards.length) return null;
+QuestionOption.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
+  attempt: PropTypes.node,
+  answer: PropTypes.node,
+  showAnswer: PropTypes.bool,
+};
 
-    const options = [cards[0].name, cards[1].name, 'both', 'unknown'];
-    const optionProps = { answer, attempt, showAnswer };
+QuestionOption.defaultProps = {
+  attempt: null,
+  answer: null,
+  showAnswer: false,
+};
 
-    return (
-      <section className="question" { ...props }>
-        <p className="question__text" >{children}</p>
-        <ul className="question__options">
-          {options.map((option, i) => (
-            <QuestionOption {...optionProps} onClick={() => onClick(option)} key={i}>
-              {option}
-            </QuestionOption>
-          ))}
-        </ul>
-      </section>
-    );
-  }
-}
+const Question = ({
+  children, showAnswer, answer, cards, attempt, onClick, ...props
+}) => {
+  if (!cards.length) return null;
+
+  const options = [cards[0].name, cards[1].name, 'both', 'unknown'];
+  const optionProps = { answer, attempt, showAnswer };
+
+  return (
+    <section className="question" {...props}>
+      <p className="question__text">{children}</p>
+      <ul className="question__options">
+        {options.map((option) => (
+          <QuestionOption {...optionProps} onClick={() => onClick(option)} key={option}>
+            {option}
+          </QuestionOption>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+Question.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
+  attempt: PropTypes.node,
+  answer: PropTypes.node,
+  showAnswer: PropTypes.bool,
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string
+  })),
+};
+
+Question.defaultProps = {
+  attempt: null,
+  answer: null,
+  showAnswer: false,
+  cards: [],
+};
+
+export default Question;
+

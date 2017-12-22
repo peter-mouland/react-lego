@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Route from 'react-router-dom/Route';
 import Link from 'react-router-dom/Link';
 import Switch from 'react-router-dom/Switch';
@@ -24,6 +25,7 @@ const baseMetaData = {
     }
   }
 };
+
 export const getRoutesConfig = () => [
   {
     name: 'homepage',
@@ -57,29 +59,61 @@ export const NamedLink = ({
   const route = findRoute(to);
   if (!route) throw new Error(`Route to '${to}' not found`);
   return (
-    <Route path={ route.path } exact children={({ match }) => (
-      <Link to={ route.path } { ...props } className={cn(null, { active: match }, className) }>
-        { children || route.label }
-      </Link>
-    )} />
+    <Route
+      path={route.path}
+      exact
+      children={({ match }) => ( // eslint-disable-line react/no-children-prop
+        <Link to={route.path} {...props} className={cn(null, { active: match }, className)}>
+          { children || route.label }
+        </Link>
+    )}
+    />
   );
 };
 
+NamedLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.element,
+};
+
+NamedLink.defaultProps = {
+  className: '',
+  children: null,
+};
+
 const RouteWithMeta = ({ component: Component, meta, ...props }) => (
-  <Route {...props} render={(matchProps) => (
-    <span>
-        <DocumentMeta { ...meta }/>
-        <Component {...matchProps}/>
+  <Route
+    {...props}
+    render={(matchProps) => (
+      <span>
+        <DocumentMeta {...meta} />
+        <Component {...matchProps} />
       </span>
-  )}/>
+  )}
+  />
 );
+
+RouteWithMeta.propTypes = {
+  component: PropTypes.func.isRequired,
+  meta: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    meta: PropTypes.shape({
+      charSet: PropTypes.string,
+      name: PropTypes.shape({
+        keywords: PropTypes.string,
+      })
+    })
+  }).isRequired,
+};
 
 export function makeRoutes() {
   return (
     <MainLayout>
       <Switch>
-        {getRoutesConfig().map((route) => <RouteWithMeta {...route} key={ route.name } />)}
-        <Route title={'Page Not Found - React Lego'} component={ NotFound }/>
+        {getRoutesConfig().map((route) => <RouteWithMeta {...route} key={route.name} />)}
+        <Route title="Page Not Found - React Lego" component={NotFound} />
       </Switch>
     </MainLayout>
   );
