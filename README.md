@@ -37,14 +37,14 @@ _All branches use [babel v7](https://github.com/babel/babel), [React v16.2](http
 The `Code changes` column is where you go if you want to see how the code changed from the previous branch.
  This is a great place to see how to do it yourself.
  
- | Category | New Tech | Code changes | Client-side App (kb) | Comparator | kb |  |
- | --- | --- | --- | --- | --- | --- | --- | 
- | Client-side Rendering | [React](https://github.com/peter-mouland/react-lego/tree/master/) | - | 23kb (+152kb node_modules) |  |  | 
- | Server-side Rendering | [Koa v2](https://github.com/peter-mouland/react-lego/tree/ssr) | [add SSR](https://github.com/peter-mouland/react-lego/compare/master...ssr) | 22kb (+153kb node_modules) |  
- | CSS | [CSS Imports](https://github.com/peter-mouland/react-lego/tree/ssr-css)  | [add CSS](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)| 22kb (+153kb node_modules) |   CSS Modules  | | [>> More about adding CSS](https://github.com/peter-mouland/react-lego/wiki/CSS) |
- | State Management | [Redux](https://github.com/peter-mouland/react-lego/tree/ssr-css-redux) | [add redux](https://github.com/peter-mouland/react-lego/compare/ssr-css...ssr-css-redux)| 22kb (+188kb node_modules) |  | | [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux) |
-| | | | | | | |
- 
+ | Category | Code changes | App size (node_modules) | Comparator | kb |  |
+ | --- | --- | --- | --- | --- | --- |
+ | Client-side Rendering | [React](https://github.com/peter-mouland/react-lego/tree/master/) | 23kb (+152kb) |  |  | 
+ | Server-side Rendering | [add Koa v2](https://github.com/peter-mouland/react-lego/compare/master...ssr) | 22kb (+153kb) |  
+ | CSS | [add CSS Imports](https://github.com/peter-mouland/react-lego/compare/ssr...ssr-css)| 22kb (+153kb ) |   CSS Modules  | | [>> More about adding CSS](https://github.com/peter-mouland/react-lego/wiki/CSS) |
+ | State Management | [add Redux](https://github.com/peter-mouland/react-lego/compare/ssr-css...ssr-css-redux)| 22kb (+188kb) |  | | [>> More about adding Redux](https://github.com/peter-mouland/react-lego/wiki/Redux) |
+| | | | | | |
+
  
  ### _Previous branches still to be updated_
  > These branches are from React Lego 2017 and are on my 'todo' list to update!
