@@ -5,7 +5,10 @@ import Game from './Game';
 
 const mockFixtures = require('../../../../tests/fixtures/card-80.js');
 
-const baseProps = {};
+const mockFetchHand = jest.fn();
+const baseProps = {
+  fetchHand: mockFetchHand
+};
 const mockText = jest.fn();
 
 describe('Game Container', () => {

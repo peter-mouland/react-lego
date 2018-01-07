@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import debug from 'debug';
 
-import { randomRange, getJSON } from '../../utils/index';
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
 import Question from '../Question/Question';
@@ -10,22 +10,13 @@ import config from '../../../config/environment';
 
 debug('lego:Game');
 
-const DECK = 87;
-
-const getHand = (api, card1, card2) => getJSON(`/api/game/${api}/${card1}/${card2}`);
-
-export default class Game extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      loading: false,
       showAnswer: false,
       attempt: null,
     };
-    this.deal = this.deal.bind(this);
-    this.viewAnswer = this.viewAnswer.bind(this);
-    this.setAttempt = this.setAttempt.bind(this);
   }
 
   componentDidMount() {
@@ -36,38 +27,25 @@ export default class Game extends React.Component {
     this.setState({ attempt });
   }
 
-  viewAnswer() {
+  viewAnswer = () => {
     this.setState({ showAnswer: true });
   }
 
   deal = () => {
-    const cardsIds = randomRange(1, DECK, 2);
-    const gameType = 'people';
     this.setState({
-      error: null,
-      loading: true
+      showAnswer: false,
+      attempt: null
     });
-    return getHand(gameType, cardsIds[0], cardsIds[1])
-      .then((hand) => {
-        this.setState({
-          hand,
-          loading: false
-        });
-      })
-      .catch((e) => {
-        this.setState({
-          error: e.toString(),
-          loading: false
-        });
-      });
+    this.props.fetchHand();
   }
 
   render() {
     const {
-      error, loading, showAnswer, attempt, hand: {
+      error, loading, hand: {
         cards = [], question, answer, answerId
       } = {}
-    } = this.state;
+    } = this.props;
+    const { showAnswer, attempt } = this.state;
 
     return (
       <div id="game">
@@ -99,3 +77,24 @@ export default class Game extends React.Component {
     );
   }
 }
+
+
+Game.propTypes = {
+  error: PropTypes.bool,
+  loading: PropTypes.bool,
+  fetchHand: PropTypes.func.isRequired,
+  hand: PropTypes.shape({
+    question: PropTypes.string,
+    answer: PropTypes.string,
+    answerId: PropTypes.string,
+    cards: PropTypes.array
+  })
+};
+
+Game.defaultProps = {
+  error: false,
+  loading: false,
+  hand: {}
+};
+
+export default Game;

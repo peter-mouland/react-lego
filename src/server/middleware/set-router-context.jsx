@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import matchPath from 'react-router-dom/matchPath';
+import { Provider } from 'react-redux';
 
 import { makeRoutes, getRoutesConfig } from '../../app/routes';
+import configureStore from '../../app/store/configure-store';
+
+const store = configureStore();
 
 function getMatch(routesArray, url) {
   return routesArray
@@ -12,9 +16,11 @@ function getMatch(routesArray, url) {
 }
 
 const Markup = ({ url, context }) => (
-  <StaticRouter location={url} context={context}>
-    {makeRoutes()}
-  </StaticRouter>
+  <Provider store={store}>
+    <StaticRouter location={url} context={context}>
+      {makeRoutes()}
+    </StaticRouter>
+  </Provider>
 );
 
 Markup.propTypes = {
