@@ -1,4 +1,4 @@
-export { fetchUrl, getJSON, postJSON } from './fetch';
+export { fetchUrl, getJSON, postJSON, fetchGraphQL } from './fetch';
 export { randomRange } from './randomRange';
 
 const navigator = global.navigator && global.navigator.userAgent;

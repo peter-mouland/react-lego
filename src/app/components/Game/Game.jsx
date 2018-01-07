@@ -81,7 +81,7 @@ class Game extends React.Component {
 
 
 Game.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.object,
   loading: PropTypes.bool,
   fetchHand: PropTypes.func.isRequired,
   hand: PropTypes.shape({
@@ -93,7 +93,7 @@ Game.propTypes = {
 };
 
 Game.defaultProps = {
-  error: false,
+  error: null,
   loading: false,
   hand: {}
 };

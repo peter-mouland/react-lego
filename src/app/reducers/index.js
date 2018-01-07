@@ -12,15 +12,15 @@ export function game(state = {}, action) {
       return {
         ...state,
         loading: true,
-        error: false,
+        error: null,
         status: action.status
       };
     case `${actions.FETCH_HAND}_FULFILLED`:
       return {
         ...state,
         loading: false,
-        error: false,
-        hand: action.payload,
+        error: null,
+        hand: action.payload && action.payload.getHand,
         status: action.status
       };
     case `${actions.FETCH_HAND}_REJECTED`:

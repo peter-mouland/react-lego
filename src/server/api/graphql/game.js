@@ -3,6 +3,39 @@ import { randomRange, getJSON } from '../../../app/utils';
 
 const getSwapiData = (api, id) => getJSON(`${config.api.host}${api}/${id}/`);
 
+const schema = (`
+type GameCard {
+  birth_year : String
+  created : String
+  edited : String
+  eye_color : String
+  films : [String]
+  gender : String
+  hair_color : String
+  height : String
+  homeworld : String 
+  mass : String
+  name : String
+  skin_color : String
+  species : [String]
+  starships : [String]
+  url : String
+  vehicles : [String] 
+}
+
+type Hand {
+  gameType: String!
+  question: String
+  answer: String
+  cards: [GameCard]
+  answerId: String
+}
+`);
+
+export const handQuery = `
+getHand(gameType: String, card1: Int, card2: Int): Hand
+`;
+
 export class Hand {
   constructor(cards = []) {
     if (cards.length < 2) {
@@ -43,7 +76,7 @@ export class Hand {
   }
 }
 
-export default ({ gameType, card1, card2 }) => {
+export const getHand = ({ gameType, card1, card2 }) => {
   const promises = [getSwapiData(gameType, card1), getSwapiData(gameType, card2)];
   return Promise.all(promises).then((cards) => {
     const hand = new Hand(cards);
@@ -52,3 +85,5 @@ export default ({ gameType, card1, card2 }) => {
     };
   });
 };
+
+export default schema;
