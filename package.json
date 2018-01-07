@@ -13,7 +13,7 @@
     "compile": "webpack --config webpack.config.prod.js",
     "compile:prod": "npm run compile",
     "compile:dev": "ENV=dev webpack --config src/config/webpack.config.dev.js",
-    "compile:server": "babel src -d compiled",
+    "compile:server": "babel src -d compiled --ignore spec.js,test.js",
     "------ SERVER STEPS ------": "",
     "start": "node compiled/server-entry.js",
     "start:prod": "npm run start",
@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.36",
+    "@babel/node": "^7.0.0-beta.36",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.36",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
     "@babel/preset-env": "^7.0.0-beta.36",
