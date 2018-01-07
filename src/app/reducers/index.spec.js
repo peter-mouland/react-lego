@@ -35,6 +35,7 @@ describe('reducers/index', () => {
       expect(result.loading).toBe(false, 'State should be updated');
       expect(result[fakeKey]).toBe(fakeValue, 'State should be loading');
       expect(result.status).toBe(status, 'State should be updated');
+      expect(result.hand).toBe(payload, 'State should be updated');
     });
   });
 });

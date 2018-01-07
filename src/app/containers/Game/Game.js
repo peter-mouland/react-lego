@@ -7,7 +7,11 @@ function mapStateToProps(state) {
   return { ...state.game };
 }
 
-export default connect(
+const WrappedComponent = connect(
   mapStateToProps,
   { fetchHand }
 )(Game);
+
+WrappedComponent.needs = [fetchHand];
+
+export default WrappedComponent;

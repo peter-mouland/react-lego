@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import DocumentMeta from 'react-document-meta';
 import { hasWindow } from '../../app/utils';
 
-const Html = ({ scripts, stylesheets, markup }) => (
+const Html = ({
+  initialState, scripts, stylesheets, markup
+}) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -14,6 +16,10 @@ const Html = ({ scripts, stylesheets, markup }) => (
     </head>
     <body>
       <div id="stylesheets" dangerouslySetInnerHTML={{ __html: stylesheets.join('') }} />
+      <script dangerouslySetInnerHTML={{
+        __html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}`
+        }}
+      />
       <div id="html" dangerouslySetInnerHTML={{ __html: markup }} />
       <div id="scripts" dangerouslySetInnerHTML={{ __html: scripts.join('') }} />
     </body>
@@ -23,7 +29,8 @@ const Html = ({ scripts, stylesheets, markup }) => (
 Html.propTypes = {
   markup: PropTypes.string.isRequired,
   scripts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  stylesheets: PropTypes.arrayOf(PropTypes.string).isRequired
+  stylesheets: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialState: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 export default Html;
