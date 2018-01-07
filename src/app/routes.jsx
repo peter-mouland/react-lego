@@ -9,7 +9,7 @@ import debug from 'debug';
 import bemHelper from './utils/bem';
 import MainLayout from './Layouts/MainLayout';
 import Homepage from './components/Homepage/Homepage';
-import Game from './components/Game/Game';
+import Game from './containers/Game/Game';
 import NotFound from './components/NotFound/NotFound';
 
 debug('lego:routes');
