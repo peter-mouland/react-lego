@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import promiseMiddleware from 'redux-promise-middleware';
 
 import reducers from '../reducers';
 import { isBrowser } from '../utils';
@@ -12,6 +13,7 @@ const composeEnhancers = composeWithDevTools({
 
 const middleware = [
   thunk,
+  promiseMiddleware(),
   createLogger({
     predicate: () => isBrowser && process.env.NODE_ENV !== 'production',
     collapsed: true

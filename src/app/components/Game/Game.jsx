@@ -15,11 +15,12 @@ class Game extends React.Component {
     super(props);
     this.state = {
       showAnswer: false,
-      attempt: null,
+      attempt: null
     };
   }
 
   componentDidMount() {
+    if (this.props.hand) return;
     this.deal();
   }
 
