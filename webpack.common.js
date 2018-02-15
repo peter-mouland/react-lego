@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const { SRC, DIST } = require('./src/config/paths');
@@ -17,10 +16,6 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
-    new Visualizer({
-      filename: '../webpack-stats.html'
-    }),
     new ExtractTextPlugin('[name].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({

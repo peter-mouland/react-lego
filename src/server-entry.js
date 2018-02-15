@@ -1,24 +1,19 @@
 /* eslint-disable no-console, import/no-extraneous-dependencies */
-const path = require('path');
 const Webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const WebpackServer = require('webpack-serve');
 
-const config = require('./config/environment');
-const webpackConfig = require('../webpack.config.dev.js');
+const { PORT } = require('./config/environment');
+const config = require('../webpack.config.dev.js');
 require('./app/polyfills/node-fetch');
 
-const compiler = Webpack(webpackConfig);
-const server = new WebpackDevServer(compiler, {
-  contentBase: path.join(__dirname, '..', 'compiled'),
-  publicPath: '/dist/',
-  hot: true,
-  quiet: false,
-  noInfo: false,
-  stats: {
-    colors: true
-  }
-});
+const options = { ...config.serve };
+delete config.serve;
+const compiler = Webpack(config);
+options.compiler = compiler;
+options.port = PORT;
 
-server.listen(config.PORT, '127.0.0.1', () => {
-  console.log(`Starting server on http://localhost:${config.PORT}`);
+WebpackServer(options).then((server) => {
+  server.on('listening', () => {
+    console.log(`Starting server on http://localhost:${PORT}`);
+  });
 });
