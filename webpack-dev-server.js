@@ -32,10 +32,10 @@ module.exports = merge(baseConfig, {
       '**': 'http://localhost:9000'
     },
     hot: false,
-    setup () {
-      process.env.PORT = 9000
-      nodemonConfig.script = 'src/server-entry.js'
-      nodemon(nodemonConfig)
+    before() {
+      process.env.PORT = 9000;
+      nodemonConfig.script = 'src/server-entry.js';
+      nodemon(nodemonConfig);
     }
   }
-})
+});
