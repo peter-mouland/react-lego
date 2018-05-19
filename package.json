@@ -2,7 +2,14 @@
   "name": "react-lego",
   "version": "3.0.0",
   "description": "",
+  "license": "MIT",
   "main": "src/server-entry.js",
+  "engines": {
+    "node": "^9.3.0",
+    "npm": "^5.5.1",
+    "yarn": "^1.3.2"
+  },
+  "author": "Peter Mouland",
   "scripts": {
     "------ GIT HOOKS ------": "",
     "postinstall": "yarn build",
@@ -32,13 +39,6 @@
       "pre-push": "yarn build && yarn test:setup && yarn test:e2e"
     }
   },
-  "engines": {
-    "node": "^9.3.0",
-    "npm": "^5.5.1",
-    "yarn": "^1.3.2"
-  },
-  "author": "Peter Mouland",
-  "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.0.0-beta.40",
     "@babel/plugin-transform-runtime": "^7.0.0-beta.40",
