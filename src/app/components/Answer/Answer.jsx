@@ -31,7 +31,7 @@ export const CardItemValue = ({ value }) => {
           props.key = `${i}-${val}`;
           const text = val.replace(config.api, '');
           return val.indexOf(config.api) === 0
-            ? <a href={val} target="_blank" {...props}>{ text }</a>
+            ? <a href={val} target="_blank" rel="noopener noreferrer" {...props}>{ text }</a>
             : <span {...props}>{ text }</span>;
         })
     }
