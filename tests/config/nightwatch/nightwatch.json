@@ -6,9 +6,9 @@
   },
   "selenium" : {
     "start_process" : true,
-    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.7.1-server.jar",
+    "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.8.1-server.jar",
     "cli_args" : {
-      "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.33-x64-chromedriver"
+      "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.37-x64-chromedriver"
     }
   },
   "custom_commands_path" : "./tests/config/nightwatch/nightwatch-commands",
