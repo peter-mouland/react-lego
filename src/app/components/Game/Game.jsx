@@ -81,7 +81,7 @@ export default class Game extends React.Component {
       <div id="game">
         <header className="header">
           <h1>Star Wars Trivia</h1>
-          <p>A simple game using <a href={config.api.homepage} target="_blank">{config.api.label}</a>.</p>
+          <p>A simple game using <a href={config.api.homepage} target="_blank" rel="noopener noreferrer">{config.api.label}</a>.</p>
         </header>
         <button className="game__btn--deal" onClick={() => this.deal()}>Deal cards!</button>
         {error && <Error error={error} />}
