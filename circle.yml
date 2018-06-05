@@ -2,7 +2,7 @@ machine:
   timezone:
     Europe/London
   node:
-    version: v9.3.0
+    version: v8.11.2
   java:
     version: openjdk8
   environment:
